@@ -1,6 +1,6 @@
-const RelatedListsOperations = require("../../../../../../../core/com/zoho/crm/api/related_lists/related_lists_operations").RelatedListsOperations;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/related_lists/api_exception").APIException;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/related_lists/response_wrapper").ResponseWrapper;
+const RelatedListsOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/related_lists/related_lists_operations").RelatedListsOperations;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/related_lists/api_exception").APIException;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/related_lists/response_wrapper").ResponseWrapper;
 class RelatedList{
 
     /**
@@ -8,8 +8,7 @@ class RelatedList{
 	 * This method is used to get the related list data of a particular module and print the response.
      * @param {String} moduleAPIName The API Name of the module to get related lists
      */
-    static async getRelatedLists(moduleAPIName){
-
+    static async getRelatedLists(moduleAPIName) {
         //example
         //let moduleAPIName = "Leads";
         
@@ -19,25 +18,22 @@ class RelatedList{
         //Call getRelatedLists method
         let response = await relatedListsOperations.getRelatedLists();
 
-        if(response != null){
-            
+        if(response != null) {
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
-            if(responseObject != null){
-
+            if(responseObject != null) {
                 //Check if expected ResponseWrapper instance is received
-                if(responseObject instanceof ResponseWrapper){
-
+                if(responseObject instanceof ResponseWrapper) {
                     //Get the array of obtained RelatedList instances
                     let relatedLists = responseObject.getRelatedLists();
 
@@ -109,11 +105,10 @@ class RelatedList{
      * @param {String} moduleAPIName The API Name of the module to get related list
      * @param {BigInt} relatedListId The ID of the relatedList to be obtained
      */
-    static async getRelatedList(moduleAPIName, relatedListId){
-
+    static async getRelatedList(moduleAPIName, relatedListId) {
         //example
         //let moduleAPIName = "Contacts";
-        // let relatedListId = 3409643000000062003n;
+        // let relatedListId = 34096430062003n;
 
         //Get instance of RelatedListsOperations Class that takes moduleAPIName as parameter
         let relatedListsOperations = new RelatedListsOperations(moduleAPIName);
@@ -121,24 +116,22 @@ class RelatedList{
         //Call getRelatedList method which takes relatedListId as parameter
         let response = await relatedListsOperations.getRelatedList(relatedListId);
 
-        if(response != null){
-
+        if(response != null) {
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
-            if(responseObject != null){
-
+            if(responseObject != null) {
                 //Check if expected ResponseWrapper instance is received
-                if(responseObject instanceof ResponseWrapper){
+                if(responseObject instanceof ResponseWrapper) {
                     let relatedLists = responseObject.getRelatedLists();
 
                     relatedLists.forEach(relatedList => {
@@ -177,7 +170,7 @@ class RelatedList{
                     });
                 }
                 //Check if the request returned an exception
-				else if(responseObject instanceof APIException){
+				else if(responseObject instanceof APIException) {
 					//Get the Status
 					console.log("Status: " + responseObject.getStatus().getValue());
 

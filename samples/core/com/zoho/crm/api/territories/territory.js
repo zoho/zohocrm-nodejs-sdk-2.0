@@ -1,6 +1,6 @@
-const TerritoriesOperations = require("../../../../../../../core/com/zoho/crm/api/territories/territories_operations").TerritoriesOperations;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/territories/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/territories/api_exception").APIException;
+const TerritoriesOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/territories/territories_operations").TerritoriesOperations;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/territories/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/territories/api_exception").APIException;
 
 class Territory{
 
@@ -19,16 +19,16 @@ class Territory{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -39,7 +39,6 @@ class Territory{
                     let territories = responseObject.getTerritories();
 
                     territories.forEach(territory => {
-
 						//Get the CreatedTime of each Territory
 						console.log("Territory CreatedTime: " + territory.getCreatedTime());
 						
@@ -137,7 +136,7 @@ class Territory{
     static async getTerritory(territoryId){
 
 		//example
-		//let territoryId = 3409643000000505351n;
+		//let territoryId = 34096430505351n;
 
 		//Get instance of TerritoriesOperations Class
         let territoriesOperations = new TerritoriesOperations();
@@ -148,16 +147,16 @@ class Territory{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

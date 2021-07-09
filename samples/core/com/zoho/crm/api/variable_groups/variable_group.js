@@ -1,6 +1,6 @@
-const VariableGroupsOperations = require("../../../../../../../core/com/zoho/crm/api/variable_groups/variable_groups_operations").VariableGroupsOperations;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/variable_groups/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/variable_groups/api_exception").APIException;
+const VariableGroupsOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variable_groups/variable_groups_operations").VariableGroupsOperations;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variable_groups/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variable_groups/api_exception").APIException;
 
 class VariableGroup{
 
@@ -19,16 +19,16 @@ class VariableGroup{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -90,7 +90,7 @@ class VariableGroup{
     static async getVariableGroupById(variableGroupId){
 
         //example
-        //let variableGroupId = 3409643000002275023n;
+        //let variableGroupId = 34096432275023n;
 
         //Get instance of VariableGroupsOperations Class
         let variableGroupsOperations = new VariableGroupsOperations();
@@ -101,16 +101,16 @@ class VariableGroup{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -183,16 +183,16 @@ class VariableGroup{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

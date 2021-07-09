@@ -26,7 +26,6 @@ const Territories = require("../core/com/zoho/crm/api/territories/territory").Te
 const Users = require("../core/com/zoho/crm/api/users/user").User;
 const Variables = require("../core/com/zoho/crm/api/variables/variable").Variable;
 const VariableGroups = require("../core/com/zoho/crm/api/variable_groups/variable_group").VariableGroup;
-const test = require("../core/com/zoho/crm/api/initializer/initialize").SDKInitializer;
 
 class Test{
     static async call(){
@@ -87,20 +86,16 @@ class Test{
         this.variable();
     }
 
-    static async attachment(){
+    static async attachment() {
         let moduleAPIName = "Leads";
 
-        let recordId = 3409643000002267003n;
+        let recordId = 6838056n;
 
-        let attachmentId = 3409643000003452001n;
+        let attachmentId = 347706110605001n;
 
-        let destinationFolder = "/Users/abc-XXX/Desktop";
+        let destinationFolder = "/Users/user_name/Documents";
 
-        let absoluteFilePath = "/Users/abc-XXX/Desktop/py.html";
-
-        let attachmentURL = "https://5.imimg.com/data5/KJ/UP/MY-8655440/zoho-crm-500x500.png";
-
-        let attachmentIds = [3409643000002394001n, 3409643000002394002n, 3409643000002394003n, 3409643000002394004n];
+        let absoluteFilePath = "/Users/user_name/Documents/download.png";
 
         console.log("-----Calling getAttachments()-----");
         await Attachments.getAttachments(moduleAPIName, recordId);
@@ -109,10 +104,10 @@ class Test{
         await Attachments.uploadAttachments(moduleAPIName, recordId, absoluteFilePath);
 
         console.log("-----Calling uploadLinkAttachment()-----");
-        await Attachments.uploadLinkAttachment(moduleAPIName , recordId, attachmentURL);
+        await Attachments.uploadLinkAttachment(moduleAPIName , recordId, "https://drones2.com");
 
         console.log("-----Calling deleteAttachments()-----");
-        await Attachments.deleteAttachments(moduleAPIName, recordId, attachmentIds)
+        await Attachments.deleteAttachments(moduleAPIName, recordId, [347706110603001n, 347706110604001n,739487589374589n,89358395n])
 
         console.log("-----Calling deleteAttachment()-----");
         await Attachments.deleteAttachment(moduleAPIName, recordId, attachmentId);
@@ -121,12 +116,12 @@ class Test{
         await Attachments.downloadAttachment(moduleAPIName, recordId, attachmentId, destinationFolder)
     }
 
-    static async bluePrint(){
+    static async bluePrint() {
         let moduleAPIName = "Leads";
 
-        let recordId = 3409643000002955002n;
+        let recordId = 4381002n;
 
-        let transitionId = 3409643000001172075n;
+        let transitionId = 0173093n;
 
         console.log("-----Calling getBlueprint()-----")
         await BluePrint.getBlueprint(moduleAPIName, recordId);
@@ -135,12 +130,10 @@ class Test{
         await BluePrint.updateBlueprint(moduleAPIName, recordId, transitionId);
     }
 
-    static async bulkRead(){
+    static async bulkRead() {
         let moduleAPIName = "Leads";
 
-        let jobId = 3409643000002955007n;
-
-        let destinationFolder = "/Users/abc-XXX/Desktop";
+        let jobId = 347706110610001n;
 
         console.log("-----Calling createBulkReadJob()-----")
         await BulkRead.createBulkReadJob(moduleAPIName);
@@ -149,42 +142,34 @@ class Test{
         await  BulkRead.getBulkReadJobDetails(jobId);
 
         console.log("-----Calling downloadResult()-----")
-        await BulkRead.downloadResult(jobId, destinationFolder)
+        await BulkRead.downloadResult(347706110610001n, "/Users/user_name/Documents")
     }
 
-    static async bulkWrite(){
+    static async bulkWrite() {
 
-        let filePath = "/Users/abc-XXX/Desktop/Leads.zip";
+        let filePath = "/Users/user_name/Documents/Leads.zip";
 
-        let orgId = "673xxx";
+        let orgId = "xxxxxx";
 
-        let moduleAPIName = "Leads";
+        let downloadUrl = "https://download-accl.zoho.com/v2/crm/xxxxxx/bulk-write/347706110616001/347706110616001.zip";
 
-        let fileId = "3409xxx";
-
-        let jobId = 3477061000006916033n;
-
-        let downloadUrl = "https://download-accl.zoho.com/v2/crm/673xxx/bulk-write/3409xxx/3409xxx.zip";
-
-        let destinationFolder = "/Users/abc-XXX/Desktop";
-
-        console.log("-----Calling uploadFile()-----")
         await BulkWrite.uploadFile(orgId, filePath);
 
-        console.log("-----Calling createBulkWriteJob()-----")
-        await BulkWrite.createBulkWriteJob(moduleAPIName, fileId);
+        await BulkWrite.createBulkWriteJob("Leads", "347706110614001");
 
-        console.log("-----Calling getBulkWriteJobDetails()-----")
-        await BulkWrite.getBulkWriteJobDetails(jobId);
+        await BulkWrite.getBulkWriteJobDetails(347706110616001n);
 
-        console.log("-----Calling downloadBulkWriteResult()-----")
-        await BulkWrite.downloadBulkWriteResult(downloadUrl, destinationFolder);
+        await BulkWrite.downloadBulkWriteResult(downloadUrl, "/Users/user_name/Documents")
     }
 
-    static async contactRole(){
-        let contactRoleId = 3409643000003118004n;
+    static async contactRole() {
+        let contactRoleId = 347706110624002n;
 
-        let contactRoleIds = [3409643000003458007n, 3409643000003458006n, 3409643000003458005n];
+        let contactRoleIds = ["347706110624003", "347706110624004", "347706110624005"];
+
+        let contactId = 0208070n;
+        
+        let dealId = 0207273n;
 
         console.log("-----Calling getContactRoles()-----")
         await ContactRoles.getContactRoles();
@@ -192,7 +177,7 @@ class Test{
         console.log("-----Calling getContactRole()-----")
         await ContactRoles.getContactRole(contactRoleId);
 
-        console.log("-----Calling createContactRoles()-----")
+        console.log( "-----Calling createContactRoles()-----")
         await ContactRoles.createContactRoles();
 
         console.log("-----Calling updateContactRoles()-----")
@@ -206,10 +191,18 @@ class Test{
 
         console.log("-----Calling deleteContactRoles()-----")
         await ContactRoles.deleteContactRoles(contactRoleIds);
+
+        await ContactRoles.getAllContactRolesOfDeal(dealId);
+
+		await ContactRoles.getContactRoleOfDeal(contactId, dealId);
+
+		await ContactRoles.addContactRoleToDeal(contactId, dealId);
+
+		await ContactRoles.removeContactRoleFromDeal(contactId, dealId);
     }
 
     static async currency(){
-        let currencyId = 3409643000002293037n;
+        let currencyId = 6011001n;
 
         console.log("-----Calling enableMultipleCurrencies()-----")
         await Currencies.enableMultipleCurrencies();
@@ -233,10 +226,18 @@ class Test{
         await Currencies.updateBaseCurrency();
     }
 
-    static async customView(){
-        let moduleAPIName = "Sales_Orders";
+    static async customView() {
+        let moduleAPIName = "Sales_orders"
 
-        let customViewId = 3409643000002427117n;
+        let customViewId = 0087671n;
+
+        let names = ["Products", "Tasks", "Vendors", "Calls", "Leads", "Deals", "Campaigns", "Quotes", 
+		"Invoices", "Attachments", "Price_Books", "Sales_Orders", "Contacts", "Solutions", "Events",
+		 "Purchase_Orders", "Accounts", "Cases", "Notes"];
+		
+		// names.forEach(async name => {
+		// 	await CustomViews.getCustomViews(name);
+		// });
 
         console.log("-----Calling getCustomViews()-----")
         await CustomViews.getCustomViews(moduleAPIName);
@@ -245,10 +246,18 @@ class Test{
         await CustomViews.getCustomView(moduleAPIName, customViewId);
     }
 
-    static async field(){
+    static async field() {
         let moduleAPIName = "Contacts"
 
-        let fieldId = 3409643000000152009n;
+        let fieldId = 340964300152009n;
+
+        let names = ["Products", "Tasks", "Vendors", "Calls", "Leads", "Deals", "Campaigns", "Quotes", 
+		"Invoices", "Attachments", "Price_Books", "Sales_Orders", "Contacts", "Solutions", "Events",
+		 "Purchase_Orders", "Accounts", "Cases", "Notes"];
+		
+        // names.forEach(async name => {
+		// 	await Fields.getFields(name);
+		// });
 
         console.log("-----Calling getFields()-----")
         await Fields.getFields(moduleAPIName);
@@ -257,23 +266,30 @@ class Test{
         await Fields.getField(moduleAPIName, fieldId);
     }
 
-    static async file(){
+    static async file() {
+        let destinationFolder = "/Users/user_name/Documents";
 
-        let destinationFolder = "/Users/abc-XXX/Desktop";
+        let fileId = "ae9c7cefa418aec1d6a5cc2d9ab35c32242bfc2e8335c6f560d272c204ebbd89";
 
-        let fileId = "ll60f0225a94cb9d543f284ee1a11f60e3ab5";
-
-        console.log("-----Calling uploadFiles()-----");
+        console.log("-----Calling uploadFile()-----");
         await File.uploadFiles();
 
         console.log("-----Calling getFile()-----");
-        await File.getFile(fileId, desstinationFolder);
+        await File.getFile(fileId, destinationFolder);
     }
 
-    static async layout(){
+    static async layout() {
         let moduleAPIName = "Leads";
 
-        let layoutId = 3409643000000091055n;
+        let layoutId = 340964300091055n;
+
+        let names = ["Products", "Tasks", "Vendors", "Calls", "Leads", "Deals", "Campaigns", "Quotes", 
+		"Invoices", "Attachments", "Price_Books", "Sales_Orders", "Contacts", "Solutions", "Events",
+		 "Purchase_Orders", "Accounts", "Cases", "Notes"];
+        
+        // names.forEach(async name => {
+		// 	await Layouts.getLayouts(name);
+		// });
 
         console.log("-----Calling getLayouts()-----")
         await Layouts.getLayouts(moduleAPIName);
@@ -282,10 +298,10 @@ class Test{
         await Layouts.getLayout(moduleAPIName, layoutId);
     }
 
-    static async module(){
+    static async module() {
         let moduleAPIName = "Test";
 
-        let moduleId = 3409643000000252001n;
+        let moduleId = 340964300252001n;
 
         console.log("-----Calling getModules()-----")
         await Modules.getModules();
@@ -300,10 +316,10 @@ class Test{
         await Modules.updateModuleById(moduleId);
     }
 
-    static async note(){
-        let noteId = 3409643000003465001n;
+    static async note() {
+        let noteId = 7683022n;
 
-        let noteIds = [3409643000003465001n, 3409643000003465002n, 3409643000003465003n, 3409643000003465004n, 3409643000003465005n];
+        let noteIds = [7697018n, 7697019n, 7697020n, 347706110640006n, 347706110640005n];
 
         console.log("-----Calling getNotes()-----")
         await Notes.getNotes();
@@ -328,7 +344,7 @@ class Test{
     }
 
     static async notification() {
-        let channelIds = [100000006800211n, 100000006800232n];
+        let channelIds = [10006800211n, 10006800232n];
 
         console.log("-----Calling enableNotifications()-----")
         await Notification.enableNotifications();
@@ -345,22 +361,22 @@ class Test{
         console.log("-----Calling disableNotifications()-----")
         await Notification.disableNotifications(channelIds);
 
-        console.log("-----Calling disableNotification()-----")
+        console.log("-----Calling getNotificationDetails()-----")
         await Notification.disableNotification();
     }
 
-    static async org(){
-        let absoluteFilePath = "/Users/abc-XXX/Desktop/image.png";
+    static async org() {
+        let filePath = "/Users/user_name/Documents/download.png";
 
         console.log("-----Calling getOrganization()-----")
         await Org.getOrganization();
 
         console.log("-----Calling uploadOrganizationPhoto()-----")
-        await Org.uploadOrganizationPhoto(absoluteFilePath);
+        await Org.uploadOrganizationPhoto(filePath);
     }
 
-    static async profile(){
-        let profileId = 3477061000000026014n;
+    static async profile() {
+        let profileId = 0026014n;
 
         console.log("-----Calling getProfiles()-----")
         await Profiles.getProfiles();
@@ -370,31 +386,44 @@ class Test{
     }
 
     static async query() {
-        console.log("-----Calling getRecords()-----")
         await Query.getRecords();
     }
 
-    static async record(){
-        let moduleAPIName = "Leads";
+    static async record() {
+        let moduleAPIName = "leads";
         
-        let recordId = 3409643000000729033n;
+        let recordId = 347706110654001n;
 
-        let destinationFolder = "/Users/abc-XXX/Desktop";
+        let externalFieldValue = "Last_Name1";
 
-        let absoluteFilePath = "/Users/abc-XXX/Desktop/record_image.png";
+        let destinationFolder = "/Users/user_name/Documents";
 
-        let recordIds = [3409643000000729030n, 3409643000000729017n, 3409643000000729009n];
+        let filePath = "/Users/user_name/Documents/download.png";
 
-        let jobId = "3409643000000729055";
+        let recordIds = ["340964300729017", "340964300729009"];
+
+        let jobId = "347706110671013";
+
+        let names = ["Products", "Tasks", "Vendors", "Calls", "Leads", "Deals", "Campaigns", "Quotes", 
+		"Invoices", "Attachments", "Price_Books", "Sales_Orders", "Contacts", "Solutions", "Events",
+		 "Purchase_Orders", "Accounts", "Cases", "Notes"];
+        
+        // names.forEach(async name => {
+        //     await Records.getRecords(name);
+        // });
 
         console.log("-----Calling getRecord()-----")
-        await Records.getRecord(moduleAPIName, recordId);
+        await Records.getRecord(moduleAPIName, recordId, destinationFolder);
 
-        console.log("-----Calling updateRecord()-----")
         await Records.updateRecord(moduleAPIName, recordId);
 
-        console.log("-----Calling deleteRecord()-----")
         await Records.deleteRecord(moduleAPIName, recordId);
+
+        await Records.getRecordUsingExternalId(moduleAPIName, externalFieldValue, destinationFolder);
+
+		await Records.updateRecordUsingExternalId(moduleAPIName, externalFieldValue);
+		
+		await Records.deleteRecordUsingExternalId(moduleAPIName, externalFieldValue);
 
         console.log("-----Calling getRecords()-----")
         await Records.getRecords(moduleAPIName);
@@ -402,44 +431,43 @@ class Test{
         console.log("-----Calling createRecords()-----");
         await Records.createRecords(moduleAPIName);
 
-        console.log("-----Calling updateRecords()-----")
         await Records.updateRecords(moduleAPIName);
 
-        console.log("-----Calling deleteRecords()-----")
         await Records.deleteRecords(moduleAPIName, recordIds);
 
-        console.log("-----Calling upsertRecords()-----")
         await Records.upsertRecords(moduleAPIName);
 
-        console.log("-----Calling getDeletedRecords()-----")
         await Records.getDeletedRecords(moduleAPIName);
 
-        console.log("-----Calling searchRecords()-----")
         await Records.searchRecords(moduleAPIName);
 
-        console.log("-----Calling convertLead()-----")
-        await Records.convertLead(recordId);
+        await Records.convertLead(347706110654001n);
 
         console.log("-----Calling uploadPhoto()-----");
-        await Records.uploadPhoto(moduleAPIName, recordId, absoluteFilePath);
+        await Records.uploadPhoto(moduleAPIName, recordId, filePath);
 
         console.log("-----Calling getPhoto()-----");
         await Records.getPhoto(moduleAPIName, recordId, destinationFolder);
 
-        console.log("-----Calling deletePhoto()-----")
         await Records.deletePhoto(moduleAPIName, recordId);
 
-        console.log("-----Calling massUpdateRecords()-----")
         await Records.massUpdateRecords(moduleAPIName);
 
-        console.log("-----Calling getMassUpdateStatus()-----")
         await Records.getMassUpdateStatus(moduleAPIName, jobId);
     }
 
-    static async relatedList(){
+    static async relatedList() {
         let moduleAPIName = "Contacts";
 
-        let relatedListId = 3409643000002904150n;
+        let relatedListId = 340964302904150n;
+
+        let names = ["Products", "Tasks", "Vendors", "Calls", "Leads", "Deals", "Campaigns", "Quotes", 
+		"Invoices", "Attachments", "Price_Books", "Sales_Orders", "Contacts", "Solutions", "Events",
+		 "Purchase_Orders", "Accounts", "Cases", "Notes"];
+		
+		// names.forEach(async name => {
+		// 	await RelatedLists.getRelatedLists(name);
+		// });
 
         console.log("-----Calling getRelatedLists()-----")
         await RelatedLists.getRelatedLists(moduleAPIName);
@@ -448,25 +476,25 @@ class Test{
         await RelatedLists.getRelatedList(moduleAPIName, relatedListId)
     }
 
-    static async relatedRecord(){
-        let moduleAPIName = "Products";
+    static async relatedRecord() {
+        let moduleAPIName = "leads";
 
-        let recordId = 3409643000002757042n;
+        let recordId = 347706110665026n;
 
-        let relatedModuleAPIName = "Price_Books";
+        let relatedModuleAPIName = "products";
 
-        let relatedId = 3409643000002757053n;
+        let relatedId = 347706110665032n;
 
-        let relatedIds = [3409643000002757124n, 3409643000002757359n];
+        let relatedIds = [347706110640047n, 347706110538010n];
+
+        let externalValue = "TestExternalLead";
+
+		let externalFieldValue = "TestExternalProduct";
+
+        let destinationFolder = "";
 
         console.log("-----Calling getRelatedRecords()-----")
         await RelatedRecords.getRelatedRecords(moduleAPIName, recordId, relatedModuleAPIName);
-
-        console.log("-----Calling getRelatedRecord()-----")
-        await RelatedRecords.getRelatedRecord(moduleAPIName, recordId, relatedModuleAPIName, relatedId)
-
-        console.log("-----Calling updateRelatedRecord()-----")
-        await RelatedRecords.updateRelatedRecord(moduleAPIName, recordId, relatedModuleAPIName, relatedId);
 
         console.log("-----Calling updateRelatedRecords()-----")
         await RelatedRecords.updateRelatedRecords(moduleAPIName, recordId, relatedModuleAPIName);
@@ -474,12 +502,30 @@ class Test{
         console.log("-----Calling deLinkRecords()-----")
         await RelatedRecords.deLinkRecords(moduleAPIName, recordId, relatedModuleAPIName, relatedIds);
 
+        await RelatedRecords.getRelatedRecordsUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName);
+		
+		await RelatedRecords.updateRelatedRecordsUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName);
+		
+		await RelatedRecords.deleteRelatedRecordsUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName, relatedIds);
+
+        console.log("-----Calling getRelatedRecord()-----")
+        await RelatedRecords.getRelatedRecord(moduleAPIName, recordId, relatedModuleAPIName, relatedId)
+
+        console.log("-----Calling updateRelatedRecord()-----")
+        await RelatedRecords.updateRelatedRecord(moduleAPIName, recordId, relatedModuleAPIName, relatedId);
+
         console.log("-----Calling deLinkRecord()-----")
         await RelatedRecords.deLinkRecord(moduleAPIName, recordId, relatedModuleAPIName, relatedId);
+
+        await RelatedRecords.getRelatedRecordUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName, externalFieldValue, destinationFolder);
+		
+		await RelatedRecords.updateRelatedRecordUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName, externalFieldValue);
+		
+		await RelatedRecords.deleteRelatedRecordUsingExternalId(moduleAPIName, externalValue, relatedModuleAPIName, externalFieldValue);
     }
 
-    static async role(){
-        let roleId = 3409643000000026005n;
+    static async role() {
+        let roleId = 340964300026005n;
 
         console.log("-----Calling getRoles()-----")
         await Roles.getRoles();
@@ -488,10 +534,10 @@ class Test{
         await Roles.getRole(roleId);
     }
 
-    static async shareRecord(){
-        let moduleAPIName = "Contacts";
+    static async shareRecord() {
+        let moduleAPIName = "Leads";
 
-        let recordId = 3409643000002112011n;
+        let recordId = 5623115n;
 
         console.log("-----Calling shareRecord()-----")
         await ShareRecords.shareRecord(moduleAPIName, recordId);
@@ -506,18 +552,18 @@ class Test{
         await ShareRecords.revokeSharedRecord(moduleAPIName, recordId);
     }
 
-    static async tag(){
+    static async tag() {
         let moduleAPIName = "Leads";
 
-        let tagId = 3409643000003477002n;
+        let tagId = 8662001n;
 
-        let recordId = 3409643000002821002n;
+        let recordId = 347706110671013n;
 
-        let tagNames = ["addtag23","addtag12"];
+        let tagNames = ["edited-tagname,addtag"];
 
-        let recordIds = [3409643000002821002n, 3409643000002730218n, 3409643000002469044n];
+        let recordIds = [347706110671012n, 347706110671013n, 340964302469044n];
 
-        let conflictId = "3409643000002827001";
+        let conflictId = "8662001";
 
         console.log("-----Calling getTags()-----")
         await Tags.getTags(moduleAPIName);
@@ -554,10 +600,8 @@ class Test{
     }
 
 
-    static async tax(){
-        let taxId = 3409643000002540014n;
-
-        let taxIds = [3409643000002540424n, 3409643000002540510n];
+    static async tax() {
+        let taxId = 347706110556002n;
 
         console.log("-----Calling getTaxes()-----")
         await Taxes.getTaxes();
@@ -572,14 +616,14 @@ class Test{
         await Taxes.updateTaxes();
 
         console.log("-----Calling deleteTaxes()-----")
-        await Taxes.deleteTaxes(taxIds);
+        await Taxes.deleteTaxes([347706110677010n, 347706110677009n])
 
         console.log("-----Calling deleteTax()-----")
-        await Taxes.deleteTax(taxId);
+        await Taxes.deleteTax(347706110031041n)
     }
 
-    static async territory(){
-        let territoryId = 3409643000000505385n;
+    static async territory() {
+        let territoryId = 340964300505385n;
 
         console.log("-----Calling getTerritories()-----")
         await Territories.getTerritories();
@@ -588,14 +632,17 @@ class Test{
         await Territories.getTerritory(territoryId);
     }
 
-    static async user(){
-        let userId = 3409643000000302031n;
+    static async user() {
+        let userId = 347706110671023n;
 
         console.log("-----Calling getUsers()-----")
         await Users.getUsers();
 
+        console.log("-----Calling createUser()-----")
+        await Users.createUser();
+
         console.log("-----Calling getUser()-----")
-        await Users.getuser(userId);
+        await Users.getUser(userId);
 
         console.log("-----Calling updateUsers()-----")
         await Users.updateUsers();
@@ -605,13 +652,10 @@ class Test{
 
         console.log("-----Calling deleteUser()-----")
         await Users.deleteUser(userId);
-
-        console.log("-----Calling createUser()-----")
-        await Users.createUser();
     }
 
     static async variableGroup(){
-        let variableGroupId = 3409643000003480050n;
+        let variableGroupId = 3089001n;
 
         let variableGroupAPIName = "General";
 
@@ -625,13 +669,8 @@ class Test{
         await VariableGroups.getVariableGroupByAPIName(variableGroupAPIName);
     }
 
-    static async variable(){
-
-        let variableIds = [3409643000003480006n, 3409643000003480007n, 3409643000003480008n, 3409643000003480010n];
-
-        let varaibleId = 3409643000003480005n;
-
-        let variableName = "Variable551";
+    static async variable() {
+        let variableIds = [7444014n];
 
         console.log("-----Calling createVariables()-----")
         await Variables.createVariables();
@@ -640,16 +679,16 @@ class Test{
         await Variables.getVariables();
 
         console.log("-----Calling getVariableById()-----")
-        await Variables.getVariableById();
+        await Variables.getVariableById(7022031n);
 
         console.log("-----Calling getVariableForAPIName()-----")
-        await Variables.getVariableForAPIName(variableName);
+        await Variables.getVariableForAPIName("Variable66133");
 
         console.log("-----Calling updateVariableByAPIName()-----")
-        await Variables.updateVariableByAPIName(variableName);
+        await Variables.updateVariableByAPIName("Variable66133");
 
         console.log("-----Calling updateVariableById()-----")
-        await Variables.updateVariableById(varaibleId);
+        await Variables.updateVariableById(6852038n);
 
         console.log("-----Calling updateVariables()-----")
         await Variables.updateVariables();
@@ -658,7 +697,7 @@ class Test{
         await Variables.deleteVariables(variableIds);
 
         console.log("-----Calling deleteVariable()-----")
-        await Variables.deleteVariable(varaibleId);
+        await Variables.deleteVariable(7022031n)
     }
 }
 

@@ -1,6 +1,6 @@
-const ProfilesOperations = require("../../../../../../../core/com/zoho/crm/api/profiles/profiles_operations").ProfilesOperations;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/profiles/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/profiles/api_exception").APIException;
+const ProfilesOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/profiles/profiles_operations").ProfilesOperations;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/profiles/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/profiles/api_exception").APIException;
 
 
 class Profile{
@@ -24,16 +24,16 @@ class Profile{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 if(responseObject instanceof ResponseWrapper){
@@ -130,7 +130,7 @@ class Profile{
     static async getProfile(profileId){
 
 		//example
-		// let profileId = 3409643000000026014n;
+		// let profileId = 34096430026014n;
 
 		//Get instance of ProfilesOperations Class
         let profilesOperations = new ProfilesOperations(null);
@@ -141,16 +141,16 @@ class Profile{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

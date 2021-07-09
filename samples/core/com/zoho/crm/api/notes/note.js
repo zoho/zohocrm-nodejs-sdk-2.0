@@ -1,13 +1,13 @@
-const {NotesOperations, DeleteNotesParam, GetNotesHeader, GetNotesParam, GetNoteHeader, GetNoteParam} = require("../../../../../../../core/com/zoho/crm/api/notes/notes_operations");
-const ZCRMNote = require("../../../../../../../core/com/zoho/crm/api/notes/note").Note;
-const ZCRMRecord = require("../../../../../../../core/com/zoho/crm/api/record/record").Record;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const HeaderMap = require("../../../../../../../routes/header_map").HeaderMap;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/notes/response_wrapper").ResponseWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/notes/action_wrapper").ActionWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/notes/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/notes/success_response").SuccessResponse;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/notes/body_wrapper").BodyWrapper;
+const {NotesOperations, DeleteNotesParam, GetNotesHeader, GetNotesParam, GetNoteHeader, GetNoteParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/notes_operations");
+const ZCRMNote = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/note").Note;
+const ZCRMRecord = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/record/record").Record;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const HeaderMap = require("@zohocrm/nodejs-sdk-2.0/routes/header_map").HeaderMap;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/response_wrapper").ResponseWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/action_wrapper").ActionWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/success_response").SuccessResponse;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notes/body_wrapper").BodyWrapper;
 
 class Note{
 
@@ -43,16 +43,16 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -63,7 +63,6 @@ class Note{
                     let notes = responseObject.getData();
 
                     notes.forEach(note => {
-
 						//Get the owner User instance of each Note
 						let owner = note.getOwner();
 						
@@ -230,7 +229,7 @@ class Note{
     static async getNote(noteId){
 
         //example
-        //let noteId = 3409643000000549003n
+        //let noteId = 34096430549003n
 
         //Get instance of NotesOperations Class
         let notesOperations = new NotesOperations();
@@ -253,16 +252,16 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -556,13 +555,13 @@ class Note{
             let parentRecord = new ZCRMRecord();
 
             //Set ID of the Record
-            parentRecord.setId(3409643000002757042n);
+            parentRecord.setId(347706110611060n);
 
             //Set ParentId of the Note
             note.setParentId(parentRecord);
 
             //Set SeModule of the Record
-            note.setSeModule("PRoducts");
+            note.setSeModule("Leads");
 
             //Add Note instance to the array
             notesArray.push(note);
@@ -577,10 +576,10 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -685,7 +684,7 @@ class Note{
         let note = new ZCRMNote();
 
         //Set ID to Note
-        note.setId(3409643000002193004n);
+        note.setId(347706110640004n);
 
         //Set Note_Title of the Note
 		note.setNoteTitle("Contacted12");
@@ -700,7 +699,7 @@ class Note{
         note = new ZCRMNote();
 
         //Set ID to Note
-        note.setId(3409643000001930001n);
+        note.setId(347706110640003n);
 		
 		//Set Note_Title of the Note
 		note.setNoteTitle("Contacted13");
@@ -720,10 +719,10 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -817,7 +816,7 @@ class Note{
     static async updateNote(noteId){
 
         //example
-        //let noteId = 3409643000000549003n
+        //let noteId = 34096430549003n
 
         //Get instance of NotesOperations Class
         let notesOperations = new NotesOperations();
@@ -849,10 +848,10 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -945,7 +944,7 @@ class Note{
     static async deleteNotes(noteIds){
 
         //example
-        //let noteIds = [3409643000000648001n, 3409643000000648005n];
+        //let noteIds = [34096430648001n, 34096430648005n];
 
         //Get instance of NotesOperations Class
         let notesOperations = new NotesOperations();
@@ -964,10 +963,10 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1060,7 +1059,7 @@ class Note{
     static async deleteNote(noteId){
 
         //example
-        //let noteId = 3409643000000549003n
+        //let noteId = 34096430549003n
 
         //Get instance of NotesOperations Class
         let notesOperations = new NotesOperations();
@@ -1071,10 +1070,10 @@ class Note{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

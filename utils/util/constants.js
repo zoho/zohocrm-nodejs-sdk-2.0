@@ -1,6 +1,6 @@
 class Constants {
     static TYPE_VS_DATATYPE = new Map([
-        ["map","[object Map]"],
+        ["map", "[object Map]"],
         ["hashmap", "[object Map]"],
         ["string", "[object String]"],
         ["list", "[object Array]"],
@@ -61,26 +61,26 @@ class Constants {
 
     static ZOHO_SDK = "X-ZOHO-SDK";
 
-    static SDK_VERSION = "1.0.0";
+    static SDK_VERSION = "2.0.0";
 
     static MYSQL_HOST = "localhost";
-	
-	static MYSQL_DATABASE_NAME = "zohooauth";
-	
-	static MYSQL_USER_NAME = "root";
-	
+
+    static MYSQL_DATABASE_NAME = "zohooauth";
+
+    static MYSQL_USER_NAME = "root";
+
     static MYSQL_PORT_NUMBER = "3306";
-    
+
     static GET_TOKEN_DB_ERROR = "Exception in getToken - DBStore : ";
 
     static GET_TOKENS_DB_ERROR = "Exception in getTokens - DBStore : ";
 
     static DELETE_TOKEN_DB_ERROR = "Exception in deleteToken - DBStore : ";
-    
-	static DELETE_TOKENS_DB_ERROR = "Exception in deleteTokens - DBStore : ";
+
+    static DELETE_TOKENS_DB_ERROR = "Exception in deleteTokens - DBStore : ";
 
     static SAVE_TOKEN_DB_ERROR = "Exception in saveToken - DBStore : ";
-	
+
     static GET_TOKEN_FILE_ERROR = "Exception in getToken - FileStore : ";
 
     static GET_TOKENS_FILE_ERROR = "Exception in getTokens - FileStore : ";
@@ -101,27 +101,27 @@ class Constants {
 
     static TOKEN_ERROR = "TOKEN ERROR";
 
-    static ERROR_HASH_FIELD = 'field'
+    static ERROR_HASH_FIELD = 'field';
 
-    static ERROR_HASH_EXPECTED_TYPE = 'expected_type'
+    static ERROR_HASH_EXPECTED_TYPE = 'expected_type';
 
-    static ERROR_HASH_CLASS = 'class'
+    static ERROR_HASH_CLASS = 'class';
 
-    static CONTENT_TYPE = 'content-type'
+    static CONTENT_TYPE = 'content-type';
 
-    static INSTANCE_NUMBER = 'instance-number'
+    static INSTANCE_NUMBER = 'instance-number';
 
-    static ERROR_HASH_MEMBER = 'member'
+    static ERROR_HASH_MEMBER = 'member';
 
-    static NAME = 'name'
+    static NAME = 'name';
 
-    static DATA_TYPE_ERROR = "DATA TYPE ERROR"
+    static DATA_TYPE_ERROR = "DATA TYPE ERROR";
 
-    static VALUES = 'values'
+    static VALUES = 'values';
 
-    static ACCEPTED_VALUES = 'accepted-values'
+    static ACCEPTED_VALUES = 'accepted-values';
 
-    static ACCEPTED_TYPE = 'accepted-type'
+    static ACCEPTED_TYPE = 'accepted-type';
 
     static GIVEN_TYPE = "given-type";
 
@@ -129,69 +129,69 @@ class Constants {
 
     static GIVEN_VALUE = "given-value";
 
-    static UNACCEPTED_VALUES_ERROR = 'UNACCEPTED VALUES ERROR'
+    static UNACCEPTED_VALUES_ERROR = 'UNACCEPTED VALUES ERROR';
 
-    static MIN_LENGTH = "min-length"
+    static MIN_LENGTH = "min-length";
 
-    static MAX_LENGTH = "max-length"
+    static MAX_LENGTH = "max-length";
 
-    static ERROR_HASH_MAXIMUM_LENGTH = "maximum-length"
+    static ERROR_HASH_MAXIMUM_LENGTH = "maximum-length";
 
-    static MAXIMUM_LENGTH_ERROR = "MAXIMUM LENGTH ERROR"
+    static MAXIMUM_LENGTH_ERROR = "MAXIMUM LENGTH ERROR";
 
-    static ERROR_HASH_MINIMUM_LENGTH = "minimum-length"
+    static ERROR_HASH_MINIMUM_LENGTH = "minimum-length";
 
-    static MINIMUM_LENGTH_ERROR = "MINIMUM LENGTH ERROR"
+    static MINIMUM_LENGTH_ERROR = "MINIMUM LENGTH ERROR";
 
-    static REGEX = "regex"
+    static REGEX = "regex";
 
-    static REGEX_MISMATCH_ERROR = "REGEX MISMATCH ERROR"
+    static REGEX_MISMATCH_ERROR = "REGEX MISMATCH ERROR";
 
-    static UNIQUE = "unique"
+    static UNIQUE = "unique";
 
-    static UNIQUE_KEY_ERROR = "UNIQUE KEY ERROR"
+    static UNIQUE_KEY_ERROR = "UNIQUE KEY ERROR";
 
-    static FIRST_INDEX = "first-index"
+    static FIRST_INDEX = "first-index";
 
-    static NEXT_INDEX = "next-index"
+    static NEXT_INDEX = "next-index";
 
-    static LONG_NAMESPACE = 'Long'
+    static LONG_NAMESPACE = 'Long';
 
-    static BOOLEAN_NAMESPACE = 'Boolean'
+    static BOOLEAN_NAMESPACE = 'Boolean';
 
-    static INTEGER_NAMESPACE = 'Integer'
+    static INTEGER_NAMESPACE = 'Integer';
 
-    static STRING_NAMESPACE = 'String'
+    static STRING_NAMESPACE = 'String';
 
-    static DOUBLE_NAMESPACE = 'Double'
+    static DOUBLE_NAMESPACE = 'Double';
 
-    static DATETIME_NAMESPACE = 'DateTime'
+    static DATETIME_NAMESPACE = 'DateTime';
 
-    static DATE_NAMESPACE = 'Date'
+    static DATE_NAMESPACE = 'Date';
 
-    static DOUBLE_COLON = '::'
+    static DOUBLE_COLON = '::';
 
-    static DOT = '.'
+    static DOT = '.';
 
-    static UNDERSCORE = "_"
+    static UNDERSCORE = "_";
 
-    static STREAM_WRAPPER_CLASS_PATH = "utils/util/stream_wrapper"
+    static STREAM_WRAPPER_CLASS_PATH = "utils/util/stream_wrapper";
 
-    static FILE_NAMESPACE = "utils/util/stream_wrapper"
+    static FILE_NAMESPACE = "utils/util/stream_wrapper";
 
     static CONTENT_DISPOSITION = "content-disposition";
 
-    static PACKAGE_PREFIX = 'com.zoho.crm.api.'
+    static PACKAGE_PREFIX = 'com.zoho.crm.api.';
 
-    static INTERFACE = "interface"
+    static INTERFACE = "interface";
 
-    static CLASSES = "classes"
+    static CLASSES = "classes";
 
-    static CLASS_KEY = "class"
+    static CLASS_KEY = "class";
 
-    static READ_ONLY = "read-only"
+    static READ_ONLY = "read-only";
 
-    static IS_KEY_MODIFIED = 'is_key_modified'
+    static IS_KEY_MODIFIED = 'is_key_modified';
 
     static SET_KEY_MODIFIED = "set_key_modified";
 
@@ -199,27 +199,27 @@ class Constants {
 
     static REQUIRED_IN_UPDATE = "required_in_update";
 
-    static MANDATORY_VALUE_ERROR = "MANDATORY VALUE ERROR"
+    static MANDATORY_VALUE_ERROR = "MANDATORY VALUE ERROR";
 
-    static MANDATORY_VALUE_NULL_ERROR = "MANDATORY VALUE NULL ERROR"
+    static MANDATORY_VALUE_NULL_ERROR = "MANDATORY VALUE NULL ERROR";
 
     static MANDATORY_KEY_ERROR = "Value missing or null for mandatory key(s) :";
 
-    static MANDATORY_KEY_NULL_ERROR = "Null Value for mandatory key : "
+    static MANDATORY_KEY_NULL_ERROR = "Null Value for mandatory key : ";
 
-    static LIST_NAMESPACE = "list"
-        
-    static MAP_NAMESPACE = "map"
+    static LIST_NAMESPACE = "list";
 
-    static HASH_MAP_NAMESPACE = "HashMap"
-        
-    static STRUCTURE_NAME = "structure_name"
+    static MAP_NAMESPACE = "map";
 
-    static KEYS = "keys"
+    static HASH_MAP_NAMESPACE = "HashMap";
 
-    static KEY_VALUES = "key_values"
+    static STRUCTURE_NAME = "structure_name";
 
-    static INITIALIZATION_ERROR = 'INITIALIZATION ERROR'
+    static KEYS = "keys";
+
+    static KEY_VALUES = "key_values";
+
+    static INITIALIZATION_ERROR = 'INITIALIZATION ERROR';
 
     static INITIALIZATION_EXCEPTION = "Exception in initialization : ";
 
@@ -227,32 +227,32 @@ class Constants {
 
     static EMAIL = "email";
 
-    static USER_ERROR = "USER ERROR"
+    static USER_ERROR = "USER ERROR";
 
-    static CLIENT_ID_FIELD = "clientID"
+    static CLIENT_ID_FIELD = "clientID";
 
-    static CLIENT_SECRET_FIELD = "clientSecret"
+    static CLIENT_SECRET_FIELD = "clientSecret";
 
-    static REDIRECT_URL_FIELD = "redirectURL"
+    static REDIRECT_URL_FIELD = "redirectURL";
 
-    static TYPE = "type"
+    static TYPE = "type";
 
-    static TYPE_ERROR = "TYPE ERROR"
+    static TYPE_ERROR = "TYPE ERROR";
 
-    static HEADER_PARAM_VALIDATION_ERROR = "Exception in header or param validation"
+    static HEADER_PARAM_VALIDATION_ERROR = "Exception in header or param validation";
 
-    static TOKEN = "token"
+    static TOKEN = "token";
 
-    static EXPECTED_TOKEN_TYPES = "REFRESH, GRANT"
+    static EXPECTED_TOKEN_TYPES = "REFRESH, GRANT";
 
-    static INVALID_CLIENT_ERROR = "INVALID CLIENT ERROR"
+    static INVALID_CLIENT_ERROR = "INVALID CLIENT ERROR";
 
-    static ERROR_KEY = "error"
+    static ERROR_KEY = "error";
 
     static GET_TOKEN_ERROR = "Exception in getting access token";
 
-    static LOGFILE_NAME = "sdk_logs.log"
-    
+    static LOGFILE_NAME = "sdk_logs.log";
+
     static JSON_DETAILS_FILE_PATH = "json_details.json";
 
     static CONFIG_DIRECTORY = "config";
@@ -261,7 +261,7 @@ class Constants {
 
     static USER = "user";
 
-    static ENVIRONMENT = "environment"
+    static ENVIRONMENT = "environment";
 
     static STORE = "store";
 
@@ -271,9 +271,9 @@ class Constants {
 
     static INDEX = "index";
 
-    static CONTENT_TYPE = 'Content-Type'
+    static CONTENT_TYPE = 'Content-Type';
 
-    static APPLICATION_JSON_CONTENT_TYPE = 'application/json'
+    static APPLICATION_JSON_CONTENT_TYPE = 'application/json';
 
     static EXCEPTION_IS_KEY_MODIFIED = "Exception in calling isKeyModified";
 
@@ -336,15 +336,15 @@ class Constants {
     static PACKAGE_NAMESPACE = "core/com/zoho/crm/api";
 
     static MODULEPACKAGENAME = "modulePackageName";
-	
+
     static MODULEDETAILS = "moduleDetails";
-    
+
     static KEYS_TO_SKIP = ["Created_Time", "Modified_Time", "Created_By", "Modified_By", "Tag"];
 
     static PRODUCT_DETAILS = "Product_Details";
-	
-	static PRICING_DETAILS = "Pricing_Details";
-	
+
+    static PRICING_DETAILS = "Pricing_Details";
+
     static PARTICIPANT_API_NAME = "Participants";
 
     static COMMENTS = 'Comments';
@@ -356,8 +356,8 @@ class Constants {
     static NOTES = "notes";
 
     static ATTACHMENTS = "$attachments";
-    
-    static INVENTORY_MODULES = ["invoices", "sales_orders","purchase_orders","quotes"];
+
+    static INVENTORY_MODULES = ["invoices", "sales_orders", "purchase_orders", "quotes"];
 
     static PRICE_BOOKS = "price_books";
 
@@ -372,11 +372,11 @@ class Constants {
     static LAYOUT = "Layout";
 
     static SUBFORM = "subform";
-	
-	static LOOKUP = "lookup";
-	
+
+    static LOOKUP = "lookup";
+
     static SE_MODULE = "se_module";
-    
+
     static FIELDS_LAST_MODIFIED_TIME = "FIELDS-LAST-MODIFIED-TIME";
 
     static ATTACHMENT_ID = "attachment_id";
@@ -396,13 +396,13 @@ class Constants {
     static INVALID_URL_ERROR = "Invalid URL Error";
 
     static SET_API_URL_EXCEPTION = "Exception in setting API URL : ";
-	
-	static AUTHENTICATION_EXCEPTION = "Exception in authenticating current request : ";
-	
-	static FORM_REQUEST_EXCEPTION = "Exception in forming request body : ";
-	
+
+    static AUTHENTICATION_EXCEPTION = "Exception in authenticating current request : ";
+
+    static FORM_REQUEST_EXCEPTION = "Exception in forming request body : ";
+
     static API_CALL_EXCEPTION = "Exception in current API call execution : ";
-    
+
     static CORE = "core";
 
     static SAVE_TOKEN_ERROR = "Exception in saving tokens";
@@ -415,7 +415,7 @@ class Constants {
 
     static FILE_BODY_WRAPPER = "file_body_wrapper";
 
-    static USER_NOT_FOUND_ERROR_MESSAGE  = "Given user not found in SDK configuration details";
+    static USER_NOT_FOUND_ERROR_MESSAGE = "Given user not found in SDK configuration details";
 
     static USER_NOT_FOUND_ERROR = "USER NOT FOUND ERROR";
 
@@ -438,25 +438,25 @@ class Constants {
     static CANT_DISCLOSE = " ## can't disclose ## ";
 
     static URL = "URL";
-	
-	static HEADERS = "HEADERS";
-	
+
+    static HEADERS = "HEADERS";
+
     static PARAMS = "PARAMS";
-    
+
     static REQUEST_METHOD = "REQUEST-METHOD";
 
     static UNDERSCORE = "_";
-	
-	static RELATED_LISTS = "Related_Lists";
-	
-	static API_NAME = "api_name";
-	
-	static HREF = "href";
-	
+
+    static RELATED_LISTS = "Related_Lists";
+
+    static API_NAME = "api_name";
+
+    static HREF = "href";
+
     static NO_CONTENT_STATUS_CODE = 204;
 
     static NOT_MODIFIED_STATUS_CODE = 304;
-    
+
     static EXCEPTION = "Exception ";
 
     static REFRESH_TOKEN_MESSAGE = "Access Token has expired. Hence refreshing.";
@@ -466,9 +466,9 @@ class Constants {
     static ID = "id";
 
     static REQUEST_CATEGORY_CREATE = "CREATE";
-	
+
     static REQUEST_CATEGORY_UPDATE = "UPDATE";
-    
+
     static REQUEST_CATEGORY_READ = "READ";
 
     static REQUEST_CATEGORY_ACTION = "ACTION";
@@ -490,7 +490,7 @@ class Constants {
     static PICKLIST = "picklist";
 
     static AUTO_REFRESH_FIELDS_ERROR_MESSAGE = "autoRefreshFields MUST NOT be null.";
-    
+
     static SDK_UNINITIALIZATION_ERROR = "SDK UNINITIALIZED ERROR";
 
     static SDK_UNINITIALIZATION_MESSAGE = "SDK is UnInitialized";
@@ -514,7 +514,7 @@ class Constants {
     static PARAM_NAME_NULL_ERROR_MESSAGE = "Param Name MUST NOT be null";
 
     static HEADER_NAME_NULL_ERROR_MESSAGE = "Header Name MUST NOT be null";
-    
+
     static NULL_VALUE_ERROR_MESSAGE = " MUST NOT be null";
 
     static PARAM_INSTANCE_NULL_ERROR = "Param Instance MUST NOT be null";
@@ -530,13 +530,13 @@ class Constants {
     static NULL_VALUE = "null";
 
     static PROXY_SETTINGS = "Proxy settings - ";
-	
-	static PROXY_HOST = "Host: ";
-	
-	static PROXY_PORT = "Port: ";
-	
+
+    static PROXY_HOST = "Host: ";
+
+    static PROXY_PORT = "Port: ";
+
     static PROXY_USER = "User: ";
-    
+
     static API_ERROR_RESPONSE = "Error response : ";
 
     static FILE_ERROR = "file_error";
@@ -548,9 +548,95 @@ class Constants {
     static USER_MAIL_NULL_ERROR = "USER MAIL NULL ERROR";
 
     static USER_MAIL_NULL_ERROR_MESSAGE = "User Mail MUST NOT be null. Use userMail setter to set value.";
+
+    static REGULAR_EXPRESSION = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    static MYSQL_TABLE_NAME = "oauthtoken";
+
+    static GET_TOKEN_BY_ID_DB_ERROR = "Exception in getTokenById - DBStore : Given ID is invalid";
+
+    static GET_TOKEN_BY_ID_FILE_ERROR = "Exception in getTokenById - FileStore : Given ID is invalid";
+
+    static CLIENT_ID_NULL_ERROR_MESSAGE = "ClientID MUST NOT be null";
+
+    static CLIENT_SECRET_NULL_ERROR_MESSAGE = "ClientSecret MUST NOT be null";
+
+    static OAUTH_MANDATORY_KEYS = ["grantToken", "refreshToken", "id"];
+
+    static REDIRECT_URI = "redirect_uri";
+
+    static INVALID_TOKEN_ERROR = "INVALID TOKEN ERROR";
+
+    static NO_ACCESS_TOKEN_ERROR = "ACCESS TOKEN IS NOT PRESENT IN RESPONSE";
+
+    static IS_GENERATE_REQUEST_BODY = ["PATCH", "POST", "PUT"];
+
+    static USERSIGNATURE_ERROR_MESSAGE = "UserSignature MUST NOT be null.";
+
+    static ENVIRONMENT_ERROR_MESSAGE = "Environment MUST NOT be null.";
+
+    static TOKEN_ERROR_MESSAGE = "Token MUST NOT be null.";
+
+    static STORE_ERROR_MESSAGE = "Store MUST NOT be null.";
+
+    static SDK_CONFIG_ERROR_MESSAGE = "sdkConfig MUST NOT be null.";
+
+    static RESOURCE_PATH_INVALID_ERROR_MESSAGE = "Resource Path MUST be a valid directory.";
+
+    static CONFIG_DIRECTORY = "config";
+
+    static JSON_DETAILS_FILE_PATH = "json_details.json";
+
+    static REQUEST_PROXY_ERROR = "REQUESTPROXY ERROR";
+
+    static USER_SIGNATURE_ERROR = "USERSIGNATURE ERROR";
+
+    static FLOAT_NAMESPACE = 'Float';
+
+    static OBJECT_NAMESPACE = 'Object';
+
+    static DEFAULT_MODULENAME_VS_APINAME = new Map([
+        ["leads", "Leads"],
+        ["contacts", "Contacts"],
+        ["accounts", "Accounts"],
+        ["deals", "Deals"],
+        ["tasks", "Tasks"],
+        ["events", "Events"],
+        ["activities", "Activities"],
+        ["calls", "Calls"],
+        ["products", "Products"],
+        ["quotes", "Quotes"],
+        ["sales_orders", "Sales_Orders"],
+        ["purchase_orders", "Purchase_Orders"],
+        ["invoices", "Invoices"],
+        ["campaigns", "Campaigns"],
+        ["vendors", "Vendors"],
+        ["price_books", "Price_Books"],
+        ["cases", "Cases"],
+        ["solutions", "Solutions"],
+        ["visits", "Visits"],
+        ["approvals", "Approvals"],
+        ["notes", "Notes"],
+        ["attachments", "Attachments"],
+        ["actions_performed", "Actions_Performed"]
+    ]);
+
+    static SDK_MODULE_METADATA = "SDK-MODULE-METADATA";
+
+    static PHOTO_SUPPORTED_MODULES = ["leads", "contacts", "accounts", "products", "vendors"];
+
+    static GENERATED_TYPE = "generated_type";
+
+    static GENERATED_TYPE_CUSTOM = "custom";
+
+    static UPLOAD_PHOTO_UNSUPPORTED_ERROR = "UPLOAD PHOTO UNSUPPORTED MODULE";
+
+    static UPLOAD_PHOTO_UNSUPPORTED_MESSAGE = "Photo Upload Operation is not supported by the module: ";
+
+    static SKIP_MODULES = ["deals"];
 }
 
 module.exports = {
-    MasterModel : Constants,
-    Constants : Constants
+    MasterModel: Constants,
+    Constants: Constants
 };

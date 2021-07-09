@@ -18,9 +18,9 @@ class BulkReadOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/bulk/v2/read/");
 		apiPath = apiPath.concat(jobId.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -41,9 +41,9 @@ class BulkReadOperations{
 		apiPath = apiPath.concat("/crm/bulk/v2/read/");
 		apiPath = apiPath.concat(jobId.toString());
 		apiPath = apiPath.concat("/result");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/x-download");
 
@@ -63,12 +63,12 @@ class BulkReadOperations{
 		var handlerInstance = new CommonAPIHandler();
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/bulk/v2/read");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 

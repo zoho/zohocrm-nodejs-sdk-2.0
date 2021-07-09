@@ -1,14 +1,14 @@
-const CurrenciesOperations = require("../../../../../../../core/com/zoho/crm/api/currencies/currencies_operations").CurrenciesOperations;
-const ZCRMCurrency = require("../../../../../../../core/com/zoho/crm/api/currencies/currency").Currency;
-const Format = require("../../../../../../../core/com/zoho/crm/api/currencies/format").Format;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/currencies/response_wrapper").ResponseWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/currencies/action_wrapper").ActionWrapper;
-const BaseCurrencyWrapper = require("../../../../../../../core/com/zoho/crm/api/currencies/base_currency_wrapper").BaseCurrencyWrapper;
-const BaseCurrencyActionWrapper = require("../../../../../../../core/com/zoho/crm/api/currencies/base_currency_action_wrapper").BaseCurrencyActionWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/currencies/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/currencies/success_response").SuccessResponse;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/currencies/body_wrapper").BodyWrapper;
-const Choice = require("../../../../../../../utils/util/choice").Choice;
+const CurrenciesOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/currencies_operations").CurrenciesOperations;
+const ZCRMCurrency = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/currency").Currency;
+const Format = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/format").Format;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/response_wrapper").ResponseWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/action_wrapper").ActionWrapper;
+const BaseCurrencyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/base_currency_wrapper").BaseCurrencyWrapper;
+const BaseCurrencyActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/base_currency_action_wrapper").BaseCurrencyActionWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/success_response").SuccessResponse;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/currencies/body_wrapper").BodyWrapper;
+const Choice = require("@zohocrm/nodejs-sdk-2.0/utils/util/choice").Choice;
 
 class Currency{
 
@@ -27,16 +27,16 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -180,7 +180,7 @@ class Currency{
         currency.setSymbol("Kz");
 
         //To set the rate at which the currency has to be exchanged for home currency.
-        currency.setExchangeRate("20.000000000");
+        currency.setExchangeRate("20.");
 
         //To set the status of the currency.
 		//true: The currency is active.
@@ -212,10 +212,10 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -320,7 +320,7 @@ class Currency{
         let currency = new ZCRMCurrency();
 
         //To set currency Id
-        currency.setId(3409643000002293037n);
+        currency.setId(34770615657003n);
 
         //To set the position of the ISO code in the currency.
 		//true: Display ISO code before the currency value.
@@ -328,7 +328,7 @@ class Currency{
         currency.setPrefixSymbol(true);
 
         //To set the rate at which the currency has to be exchanged for home currency.
-        currency.setExchangeRate("10.000000000");
+        currency.setExchangeRate("10.");
 
         //To set the status of the currency.
 		//true: The currency is active.
@@ -361,10 +361,10 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -480,7 +480,7 @@ class Currency{
 		currency.setSymbol("Af");
 		
 		//To set the rate at which the currency has to be exchanged for home base currency.
-		currency.setExchangeRate("1.0000000");
+		currency.setExchangeRate("1.00");
 		
 		//To set the status of the base currency.
 		//true: The currency is active.
@@ -510,10 +510,10 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response 
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -621,10 +621,10 @@ class Currency{
 		currency.setSymbol("Af");
 		
 		//To set the rate at which the currency has to be exchanged for home base currency.
-		currency.setExchangeRate("1.0000000");
+		currency.setExchangeRate("1.00");
 		
 		//To set currency Id
-		currency.setId(3477061000006008002n);
+		currency.setId(34770616008002n);
 		
 		let format = new Format();
 		
@@ -649,10 +649,10 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response 
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -744,7 +744,7 @@ class Currency{
     static async getCurrency(currencyId){
 
         //example
-        //let currencyId = 3477061000006011001n;
+        //let currencyId = 34770616011001n;
         
         //Get instance of CurrenciesOperations Class
         let currenciesOperations = new CurrenciesOperations();
@@ -755,16 +755,16 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -883,7 +883,7 @@ class Currency{
     static async updateCurrency(currencyId){
 
         //example
-        //let currencyId = 3477061000006011001n;
+        //let currencyId = 34770616011001n;
 
         //Get instance of CurrenciesOperations Class
         let currenciesOperations = new CurrenciesOperations();
@@ -903,7 +903,7 @@ class Currency{
 		currency.setPrefixSymbol(true);
 		
 		//To set the rate at which the currency has to be exchanged for home currency.
-		currency.setExchangeRate("5.0000000");
+		currency.setExchangeRate("5.00");
 		
 		//To set the status of the currency.
 		//true: The currency is active.
@@ -936,10 +936,10 @@ class Currency{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

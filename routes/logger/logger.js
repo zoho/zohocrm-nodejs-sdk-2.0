@@ -5,20 +5,9 @@ class Logger {
     level;
     filePath;
 
-    /**
-     * The method to get the logger level
-     * @returns {String} A string representing the Log level.
-     */
-    get level() {
-        return this.level;
-    }
-
-    /**
-     * The method to get the logger filepath
-     * @returns {String} A string representing the Log filepath
-     */
-    get filePath() {
-        return this.filePath;
+    constructor(level, filePath) {
+        this.level = level;
+        this.filePath = filePath;
     }
 
     /**
@@ -30,9 +19,20 @@ class Logger {
         return new Logger(level, filePath)
     }
 
-    constructor(level,filePath) {
-        this.level = level;
-        this.filePath = filePath;
+    /**
+     * The method to get the logger level
+     * @returns {String} A string representing the Log level.
+     */
+    getLevel() {
+        return this.level;
+    }
+
+    /**
+     * The method to get the logger filepath
+     * @returns {String} A string representing the Log filepath
+     */
+    getFilePath() {
+        return this.filePath;
     }
 }
 
@@ -50,5 +50,5 @@ class Levels {
 
 module.exports = {
     Logger: Logger,
-    Levels
+    Levels: Levels
 };

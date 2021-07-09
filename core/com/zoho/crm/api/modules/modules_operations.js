@@ -19,10 +19,10 @@ class ModulesOperations{
 		var handlerInstance = new CommonAPIHandler();
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/modules");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
-		handlerInstance.header = headerInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
+		handlerInstance.setHeader(headerInstance);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -42,9 +42,9 @@ class ModulesOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/modules/");
 		apiPath = apiPath.concat(apiName.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -69,11 +69,11 @@ class ModulesOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/modules/");
 		apiPath = apiPath.concat(apiName.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_PUT;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_UPDATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_PUT);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -98,11 +98,11 @@ class ModulesOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/modules/");
 		apiPath = apiPath.concat(id.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_PUT;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_UPDATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_PUT);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 

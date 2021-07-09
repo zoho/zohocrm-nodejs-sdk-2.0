@@ -1,11 +1,21 @@
-const {ContactRolesOperations, DeleteContactRolesParam} = require("../../../../../../../core/com/zoho/crm/api/contact_roles/contact_roles_operations");
-const { ParameterMap } = require("../../../../../../../routes/parameter_map");
-const ZCRMContactRole = require("../../../../../../../core/com/zoho/crm/api/contact_roles/contact_role").ContactRole;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/contact_roles/action_wrapper").ActionWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/contact_roles/body_wrapper").BodyWrapper;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/contact_roles/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/contact_roles/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/contact_roles/success_response").SuccessResponse;
+const {ContactRolesOperations, DeleteContactRolesParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/contact_roles_operations");
+const { ParameterMap } = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map");
+const ZCRMContactRole = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/contact_role").ContactRole;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/action_wrapper").ActionWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/body_wrapper").BodyWrapper;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/success_response").SuccessResponse;
+const RecordResponseHandler = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/record_response_handler").RecordResponseHandler;
+const Record = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/record/record").Record;
+const RecordActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/record_action_wrapper").RecordActionWrapper;
+const RecordBodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/record_body_wrapper").RecordBodyWrapper;
+const RecordResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/record_response_wrapper").RecordResponseWrapper;
+const User = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/user").User;
+const Tag = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/tag").Tag;
+const Info = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/record/info").Info;
+const ContactRoleWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/contact_role_wrapper").ContactRoleWrapper;
+const RecordActionHandler = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/record_action_handler").RecordActionHandler;
 
 class ContactRole{
 
@@ -24,16 +34,16 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -44,7 +54,6 @@ class ContactRole{
                     let contactRoles = responseObject.getContactRoles();
 
                     contactRoles.forEach(contactRole => {
-
                         //Get the ID of each ContactRole
                         console.log("ContactRole ID: " + contactRole.getId());
 
@@ -90,7 +99,7 @@ class ContactRole{
     static async getContactRole(contactRoleId){
 
         //example
-		//let contactRoleId = 3409643000002212003n;
+		//let contactRoleId = 34096432212003n;
         
         //Get instance of ContactRolesOperations Class
         let contactRolesOperations = new ContactRolesOperations();
@@ -101,16 +110,16 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -174,7 +183,7 @@ class ContactRole{
         //Array to hold ContactRole instances
         let contactRolesArray = [];
 
-        for (let index = 0; index < 5; index++) {
+        for (let index = 1; index < 5; index++) {
 
             //Get instance of ContactRole Class
             let contactRole = new ZCRMContactRole();
@@ -198,10 +207,10 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -307,7 +316,7 @@ class ContactRole{
         let cr1 = new ZCRMContactRole();
 
         //Set ID to the ContactRole instance
-        cr1.setId(3409643000001792004n);
+        cr1.setId(347706110624002n);
 
         //Set name to the ContactRole instance
         cr1.setName("Edited1");
@@ -319,7 +328,7 @@ class ContactRole{
         cr1 = new ZCRMContactRole();
 
         //Set ID to the ContactRole instance
-        cr1.setId(3409643000001794001n);
+        cr1.setId(34096431794001n);
 
         //Set name to the ContactRole instance
         cr1.setName("Edited2");
@@ -336,10 +345,10 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -433,7 +442,7 @@ class ContactRole{
     static async deleteContactRoles(contactRoleIds){
 
         //example
-        //let contactRoleIds = [3409643000002157002n, 3409643000001619001n, 3409643000000006883n];
+        //let contactRoleIds = [34096432157002n, 34096431619001n, 34096430006883n];
 
         //Get instance of ContactRolesOperations Class
         let contactRolesOperations = new ContactRolesOperations();
@@ -452,10 +461,10 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -549,7 +558,7 @@ class ContactRole{
     static async updateContactRole(contactRoleId){
 
         //example
-        //let contactRoleId = 3409643000002212003n;
+        //let contactRoleId = 34096432212003n;
         
         //Get instance of ContactRolesOperations Class
         let contactRolesOperations = new ContactRolesOperations();
@@ -578,10 +587,10 @@ class ContactRole{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -675,7 +684,7 @@ class ContactRole{
     static async deleteContactRole(contactRoleId){
 
         //example
-        //let contactRoleId = 3409643000002212003n;
+        //let contactRoleId = 34096432212003n;
 
         //Get instance of ContactRolesOperations Class
         let contactRolesOperations = new ContactRolesOperations();
@@ -686,10 +695,10 @@ class ContactRole{
         if(response != null){
             
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -765,6 +774,552 @@ class ContactRole{
                     if(details != null){
                         Array.from(details.keys()).forEach(key => {
                             console.log(key + ": " + details.get(key));  
+                        });
+                    }
+
+                    //Get the Message
+                    console.log("Message: " + responseObject.getMessage().getValue());
+                }
+            }
+        }
+    }
+
+    static async getAllContactRolesOfDeal(dealId) {
+		//Get instance of ContactRolesOperations Class
+		let contactRolesOperations = new ContactRolesOperations();
+		
+		//Get instance of ParameterMap Class
+		let paramInstance = new ParameterMap();
+
+        // await paramInstance.add(GetAllContactRolesOfDealParam.IDS, 34096432267003n);
+		
+		//Call getAllContactRolesOfDeal method that takes Param instance as parameter 
+		let response = await contactRolesOperations.getAllContactRolesOfDeal(dealId, paramInstance);
+		
+		if(response !== null) {
+			//Get the status code from response
+			console.log("Status Code: " + response.getStatusCode());
+
+            if(response.getStatusCode() == 204){
+                console.log("No Content");
+
+                return;
+            }
+			
+            //Get the object from response
+            let responseHandler = response.getObject();
+            
+            if(responseHandler instanceof RecordResponseWrapper)
+            {
+                //Get the received ResponseWrapper instance
+                let responseWrapper = responseHandler;
+                
+                //Get the array of obtained Record instances
+                let records = responseWrapper.getData();
+
+                for(let record of records) {
+                    //Get the ID of each Record
+                    console.log("Record ID: " + record.getId());
+                    
+                    //Get the createdBy User instance of each Record
+                    let createdBy = record.getCreatedBy();
+                    
+                    //Check if createdBy is not null
+                    if(createdBy != null){
+                        //Get the ID of the createdBy User
+                        console.log("Record Created By User-ID: " + createdBy.getId());
+                        
+                        //Get the name of the createdBy User
+                        console.log("Record Created By User-Name: " + createdBy.getName());
+                        
+                        //Get the Email of the createdBy User
+                        console.log("Record Created By User-Email: " + createdBy.getEmail());
+                    }
+                    
+                    //Get the CreatedTime of each Record
+                    console.log("Record CreatedTime: " + record.getCreatedTime());
+                    
+                    //Get the modifiedBy User instance of each Record
+                    let modifiedBy = record.getModifiedBy();
+                    
+                    //Check if modifiedBy is not null
+                    if(modifiedBy != null){
+                        //Get the ID of the modifiedBy User
+                        console.log("Record Modified By User-ID: " + modifiedBy.getId());
+                        
+                        //Get the name of the modifiedBy User
+                        console.log("Record Modified By User-Name: " + modifiedBy.getName());
+                        
+                        //Get the Email of the modifiedBy User
+                        console.log("Record Modified By User-Email: " + modifiedBy.getEmail());
+                    }
+                    
+                    //Get the ModifiedTime of each Record
+                    console.log("Record ModifiedTime: " + record.getModifiedTime());
+                    
+                    //Get the list of Tag instance each Record
+                    let tags = record.getTag();
+                    
+                    //Check if tags is not null
+                    if(tags != null){
+                        tags.forEach(tag => {
+                            //Get the Name of each Tag
+                            console.log("Record Tag Name: " + tag.getName());
+                            
+                            //Get the Id of each Tag
+                            console.log("Record Tag ID: " + tag.getId());
+                            
+                        });
+                    }
+                    
+                    //To get particular field value 
+                    console.log("Record Field Value: " + record.getKeyValue("Last_Name"));// FieldApiName
+                    
+                    console.log("Record KeyValues: " );
+
+                    let keyValues = record.getKeyValues();
+
+                    let keyArray = Array.from(keyValues.keys());
+
+                    for(let keyName of keyArray) {
+                        let value = keyValues.get(keyName);
+
+                        if(Array.isArray(value)) {
+                            console.log("Record keyName: " + keyName);
+
+                            for(let data of value) {
+                                if(data instanceof Map) {
+                                    for(let mapKey in data) {
+                                        console.log(mapKey + " : " + data.get(mapKey));
+                                    }
+                                }
+                                else {
+                                    console.log(data);
+                                }
+                            }
+                        }
+                        else if(value instanceof Map) {
+                            console.log("Record keyName: " + keyName);
+
+                            for(let mapKey in value) {
+                                console.log(mapKey + " : " + value.get(mapKey));
+                            }
+                        }
+                        else {
+                            console.log("Record keyName: " + keyName + " - Value - " + value);
+                        }
+                    }
+                }
+                
+                //Get the obtained Info instance
+                let info = responseWrapper.getInfo();
+
+                if(info != null){
+                    
+                    if(info.getCount() != null){
+                        //Get the Count of the Info
+                        console.log("Record Info Count: " + info.getCount().toString());
+                    }
+                    
+                    if(info.getMoreRecords() != null){
+                        //Get the MoreRecords of the Info
+                        console.log("Record Info MoreRecords: " + info.getMoreRecords().toString());
+                    }
+                }
+            }
+            //Check if the request returned an exception
+            else if(responseHandler instanceof APIException){
+                //Get the Status
+                console.log("Status: " + responseHandler.getStatus().getValue());
+
+                //Get the Code
+                console.log("Code: " + responseHandler.getCode().getValue());
+
+                console.log("Details");
+
+                //Get the details map
+                let details = responseHandler.getDetails();
+
+                if(details != null){
+                    Array.from(details.keys()).forEach(key => {
+                        console.log(key + ": " + details.get(key));  
+                    });
+                }
+
+                //Get the Message
+                console.log("Message: " + responseHandler.getMessage().getValue());
+            }
+		}
+	}
+
+    static async getContactRoleOfDeal(contactId, dealId) {
+		//Get instance of ContactRolesOperations Class
+		let contactRolesOperations = new ContactRolesOperations();
+		
+		//Get instance of ParameterMap Class
+		let paramInstance = new ParameterMap();
+
+		//Call getContactRoleOfDeal method that takes Param instance as parameter 
+		let response = await contactRolesOperations.getContactRoleOfDeal(contactId, dealId);
+		
+		if(response !== null){
+			//Get the status code from response
+			console.log("Status Code: " + response.getStatusCode());
+
+            if(response.getStatusCode() == 204){
+                console.log("No Content");
+
+                return;
+            }
+			
+            //Get the object from response
+            let responseHandler = response.getObject();
+            
+            if(responseHandler instanceof RecordResponseWrapper)
+            {
+                //Get the received ResponseWrapper instance
+                let responseWrapper = responseHandler;
+                
+                //Get the array of obtained Record instances
+                let records = responseWrapper.getData();
+
+                for(let record of records) {
+                    //Get the ID of each Record
+                    console.log("Record ID: " + record.getId());
+                    
+                    //Get the createdBy User instance of each Record
+                    let createdBy = record.getCreatedBy();
+                    
+                    //Check if createdBy is not null
+                    if(createdBy != null){
+                        //Get the ID of the createdBy User
+                        console.log("Record Created By User-ID: " + createdBy.getId());
+                        
+                        //Get the name of the createdBy User
+                        console.log("Record Created By User-Name: " + createdBy.getName());
+                        
+                        //Get the Email of the createdBy User
+                        console.log("Record Created By User-Email: " + createdBy.getEmail());
+                    }
+                    
+                    //Get the CreatedTime of each Record
+                    console.log("Record CreatedTime: " + record.getCreatedTime());
+                    
+                    //Get the modifiedBy User instance of each Record
+                    let modifiedBy = record.getModifiedBy();
+                    
+                    //Check if modifiedBy is not null
+                    if(modifiedBy != null){
+                        //Get the ID of the modifiedBy User
+                        console.log("Record Modified By User-ID: " + modifiedBy.getId());
+                        
+                        //Get the name of the modifiedBy User
+                        console.log("Record Modified By User-Name: " + modifiedBy.getName());
+                        
+                        //Get the Email of the modifiedBy User
+                        console.log("Record Modified By User-Email: " + modifiedBy.getEmail());
+                    }
+                    
+                    //Get the ModifiedTime of each Record
+                    console.log("Record ModifiedTime: " + record.getModifiedTime());
+                    
+                    //Get the list of Tag instance each Record
+                    let tags = record.getTag();
+                    
+                    //Check if tags is not null
+                    if(tags != null){
+                        tags.forEach(tag => {
+                            //Get the Name of each Tag
+                            console.log("Record Tag Name: " + tag.getName());
+                            
+                            //Get the Id of each Tag
+                            console.log("Record Tag ID: " + tag.getId());
+                            
+                        });
+                    }
+                    
+                    //To get particular field value 
+                    console.log("Record Field Value: " + record.getKeyValue("Last_Name"));// FieldApiName
+                    
+                    console.log("Record KeyValues: " );
+
+                    let keyValues = record.getKeyValues();
+
+                    let keyArray = Array.from(keyValues.keys());
+
+                    for(let keyName of keyArray) {
+                        let value = keyValues.get(keyName);
+
+                        if(Array.isArray(value)) {
+                            console.log("Record keyName: " + keyName);
+
+                            for(let data of value) {
+                                if(data instanceof Map) {
+                                    for(let mapKey in data) {
+                                        console.log(mapKey + " : " + data.get(mapKey));
+                                    }
+                                }
+                                else {
+                                    console.log(data);
+                                }
+                            }
+                        }
+                        else if(value instanceof Map) {
+                            console.log("Record keyName: " + keyName);
+
+                            for(let mapKey in value) {
+                                console.log(mapKey + " : " + value.get(mapKey));
+                            }
+                        }
+                        else {
+                            console.log("Record keyName: " + keyName + " - Value - " + value);
+                        }
+                    }
+                }
+                
+                //Get the obtained Info instance
+                let info = responseWrapper.getInfo();
+
+                if(info != null){
+                    
+                    if(info.getCount() != null){
+                        //Get the Count of the Info
+                        console.log("Record Info Count: " + info.getCount().toString());
+                    }
+                    
+                    if(info.getMoreRecords() != null){
+                        //Get the MoreRecords of the Info
+                        console.log("Record Info MoreRecords: " + info.getMoreRecords().toString());
+                    }
+                }
+            }
+            //Check if the request returned an exception
+            else if(responseHandler instanceof APIException){
+                //Get the Status
+                console.log("Status: " + responseHandler.getStatus().getValue());
+
+                //Get the Code
+                console.log("Code: " + responseHandler.getCode().getValue());
+
+                console.log("Details");
+
+                //Get the details map
+                let details = responseHandler.getDetails();
+
+                if(details != null){
+                    Array.from(details.keys()).forEach(key => {
+                        console.log(key + ": " + details.get(key));  
+                    });
+                }
+
+                //Get the Message
+                console.log("Message: " + responseHandler.getMessage().getValue());
+            }
+		}
+	}
+
+    static async addContactRoleToDeal(contactId, dealId) {
+		//Get instance of ContactRolesOperations Class
+		let contactRolesOperations = new ContactRolesOperations();
+
+		//Get instance of BodyWrapper Class that will contain the request body
+		let bodyWrapper = new RecordBodyWrapper();
+
+		//Get instance of ContactRole Class
+        let contactRole = new ContactRoleWrapper();
+
+        //Set name of the Contact Role
+        contactRole.setContactRole("contactRole-node4");
+
+		//Set the list to contactRoles in BodyWrapper instance
+		bodyWrapper.setData([contactRole]);
+
+		//Call createContactRoles method that takes BodyWrapper instance as parameter
+		let response = await contactRolesOperations.addContactRoleToDeal(contactId, dealId, bodyWrapper);
+
+        if(response !== null) {
+
+            //Get the status code from response
+            console.log("Status Code: " + response.getStatusCode());
+
+            //Get object from response
+            let responseObject = response.getObject();
+
+            if(responseObject !== null){
+
+                //Check if expected ActionWrapper instance is received
+                if(responseObject instanceof RecordActionWrapper){
+
+                    //Get the array of obtained ActionResponse instances
+                    let actionResponses = responseObject.getData();
+
+                    actionResponses.forEach(actionResponse => {
+
+                        //Check if the request is successful
+                        if(actionResponse instanceof SuccessResponse){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details !== null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            //Get the Message
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                        //Check if the request returned an exception
+                        else if(actionResponse instanceof APIException){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details !== null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            //Get the Message
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                    });
+                }
+                //Check if the request returned an exception
+                else if(responseObject instanceof APIException){
+
+                    //Get the Status
+                    console.log("Status: " + responseObject.getStatus().getValue());
+
+                    //Get the Code
+                    console.log("Code: " + responseObject.getCode().getValue());
+
+                    console.log("Details");
+
+                    //Get the details map
+                    let details = responseObject.getDetails();
+
+                    if(details !== null){
+                        Array.from(details.keys()).forEach(key => {
+                            console.log(key + ": " + details.get(key));
+                        });
+                    }
+
+                    //Get the Message
+                    console.log("Message: " + responseObject.getMessage().getValue());
+                }
+            }
+        }
+	}
+
+    static async removeContactRoleFromDeal(contactId, dealId) {
+		//Get instance of ContactRolesOperations Class
+		let contactRolesOperations = new ContactRolesOperations();
+
+		//Call removeContactRoleFromDeal method that takes BodyWrapper instance as parameter
+		let response = await contactRolesOperations.removeContactRoleFromDeal(contactId, dealId);
+
+        if(response !== null){
+
+            //Get the status code from response
+            console.log("Status Code: " + response.getStatusCode());
+
+            //Get object from response
+            let responseObject = response.getObject();
+
+            if(responseObject !== null){
+
+                //Check if expected ActionWrapper instance is received
+                if(responseObject instanceof RecordActionWrapper){
+
+                    //Get the array of obtained ActionResponse instances
+                    let actionResponses = responseObject.getData();
+
+                    actionResponses.forEach(actionResponse => {
+
+                        //Check if the request is successful
+                        if(actionResponse instanceof SuccessResponse){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details !== null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            //Get the Message
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                        //Check if the request returned an exception
+                        else if(actionResponse instanceof APIException){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details !== null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            //Get the Message
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                    });
+                }
+                //Check if the request returned an exception
+                else if(responseObject instanceof APIException){
+
+                    //Get the Status
+                    console.log("Status: " + responseObject.getStatus().getValue());
+
+                    //Get the Code
+                    console.log("Code: " + responseObject.getCode().getValue());
+
+                    console.log("Details");
+
+                    //Get the details map
+                    let details = responseObject.getDetails();
+
+                    if(details !== null){
+                        Array.from(details.keys()).forEach(key => {
+                            console.log(key + ": " + details.get(key));
                         });
                     }
 

@@ -1,11 +1,11 @@
-const {NotificationOperations, DisableNotificationsParam, GetNotificationDetailsParam} = require("../../../../../../../core/com/zoho/crm/api/notification/notification_operations");
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/notification/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/notification/success_response").SuccessResponse;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/notification/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/notification/action_wrapper").ActionWrapper;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/notification/response_wrapper").ResponseWrapper;
-const ZCRMNotification = require("../../../../../../../core/com/zoho/crm/api/notification/notification").Notification;
+const {NotificationOperations, DisableNotificationsParam, GetNotificationDetailsParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/notification_operations");
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/success_response").SuccessResponse;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/action_wrapper").ActionWrapper;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/response_wrapper").ResponseWrapper;
+const ZCRMNotification = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/notification/notification").Notification;
 
 class Notification {
 
@@ -27,7 +27,7 @@ class Notification {
         let notification1 = new ZCRMNotification();
 
         //Set channel Id of the Notification
-        notification1.setChannelId(100000006800211n);
+        notification1.setChannelId(1006800211n);
 
         let events = ["Deals.all"];
 
@@ -39,7 +39,7 @@ class Notification {
 
         //To ensure that the notification is sent from Zoho CRM, by sending back the given value in notification URL body.
         //By using this value, user can validate the notifications.
-        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_1000000068002");
+        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_10068002");
 
         //URL to be notified (POST request)
         notification1.setNotifyUrl("https://www.zohoapis.com");
@@ -51,7 +51,7 @@ class Notification {
         let notification2 = new ZCRMNotification();
 
         //Set channel Id of the Notification
-        notification2.setChannelId(100000006800211n);
+        notification2.setChannelId(1006800211n);
 
         let events2 = ["Accounts.all"];
 
@@ -63,7 +63,7 @@ class Notification {
 
         //To ensure that the notification is sent from Zoho CRM, by sending back the given value in notification URL body.
         //By using this value, user can validate the notifications.
-        notification2.setToken("TOKEN_FOR_VERIFICATION_OF_100000006800211");
+        notification2.setToken("TOKEN_FOR_VERIFICATION_OF_1006800211");
 
         //URL to be notified (POST request)
         notification2.setNotifyUrl("https://www.zohoapis.com");
@@ -80,10 +80,10 @@ class Notification {
         if(response != null) {
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 if(responseObject instanceof ActionWrapper) {
@@ -201,7 +201,7 @@ class Notification {
         //Get instance of ParameterMap Class
         let paramInstance = new ParameterMap();
 
-        await paramInstance.add(GetNotificationDetailsParam.CHANNEL_ID, 100000006800211n);
+        await paramInstance.add(GetNotificationDetailsParam.CHANNEL_ID, 1006800211n);
 
         await paramInstance.add(GetNotificationDetailsParam.MODULE, "Accounts");
 
@@ -215,16 +215,16 @@ class Notification {
         if(response != null) {
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -340,7 +340,7 @@ class Notification {
         let notification1 = new ZCRMNotification();
 
         //Set channel Id of the Notification
-        notification1.setChannelId(1000000068002n);
+        notification1.setChannelId(1006800211n);
 
         let events = ["Accounts.all"];
 
@@ -352,7 +352,7 @@ class Notification {
 
         //To ensure that the notification is sent from Zoho CRM, by sending back the given value in notification URL body.
         //By using this value, user can validate the notifications.
-        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_1000000068002");
+        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_10068002");
 
         //URL to be notified (POST request)
         notification1.setNotifyUrl("https://www.zohoapis.com");
@@ -369,10 +369,10 @@ class Notification {
         if(response != null) {
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 if(responseObject instanceof ActionWrapper) {
@@ -497,7 +497,7 @@ class Notification {
         let notification1 = new ZCRMNotification();
 
         //Set channel Id of the Notification
-        notification1.setChannelId(1000000068002n);
+        notification1.setChannelId(1006800211n);
 
         let events = ["Accounts.all"];
 
@@ -509,7 +509,7 @@ class Notification {
 
         //To ensure that the notification is sent from Zoho CRM, by sending back the given value in notification URL body.
         //By using this value, user can validate the notifications.
-        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_1000000068002");
+        notification1.setToken("TOKEN_FOR_VERIFICATION_OF_10068002");
 
         //URL to be notified (POST request)
         notification1.setNotifyUrl("https://www.zohoapis.com");
@@ -526,10 +526,10 @@ class Notification {
         if(response != null) {
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 if(responseObject instanceof ActionWrapper) {
@@ -644,7 +644,7 @@ class Notification {
     static async disableNotifications(channelIds) {
 
         //example
-        //channelIds = [1000000068002n, 1000000068020n, 1000000068101n]
+        //channelIds = [10068002n, 10068020n, 10068101n]
         
         //Get instance of NotificationOperations Class
         let notificationOperations = new NotificationOperations();
@@ -663,10 +663,10 @@ class Notification {
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -770,7 +770,7 @@ class Notification {
         let notification = new ZCRMNotification();
 
         //Set channel Id of the Notification
-        notification.setChannelId(1000000068002n);
+        notification.setChannelId(10068002n);
 
         let events = ["Accounts.edit"];
 
@@ -791,10 +791,10 @@ class Notification {
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

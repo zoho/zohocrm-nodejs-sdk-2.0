@@ -7,7 +7,7 @@ const Constants = require("./constants").Constants;
  * This class handles the file stream and name.
  */
 class StreamWrapper {
-    
+
     name;
 
     stream;
@@ -20,19 +20,18 @@ class StreamWrapper {
      * @param {object} stream - A InputStream containing the file stream.
      * @param {string} filePath - A String containing the absolute file path.
      */
-    constructor(name=null , stream=null , filePath=null) {
-        if(filePath == null) {
+    constructor(name = null, stream = null, filePath = null) {
+        if (filePath == null) {
             this.name = name;
 
             this.stream = stream;
         }
         else {
-
-            if(!fs.existsSync(filePath)) {
+            if (!fs.existsSync(filePath)) {
                 throw new SDKException(Constants.FILE_ERROR, Constants.FILE_DOES_NOT_EXISTS);
             }
 
-            this.file=filePath;
+            this.file = filePath;
 
             this.name = path.basename(filePath);
 
@@ -44,7 +43,7 @@ class StreamWrapper {
      * This is a getter method to get the file name.
      * @returns A String representing the file name.
      */
-    get Name() {
+    getName() {
         return this.name;
     }
 
@@ -52,12 +51,12 @@ class StreamWrapper {
      * This is a getter method to get the file input stream.
      * @returns A ReadStream representing the file input stream.
      */
-    get Stream() {
+    getStream() {
         return this.stream;
     }
 }
 
 module.exports = {
-    MasterModel :  StreamWrapper, 
-    StreamWrapper : StreamWrapper
+    MasterModel: StreamWrapper,
+    StreamWrapper: StreamWrapper
 }

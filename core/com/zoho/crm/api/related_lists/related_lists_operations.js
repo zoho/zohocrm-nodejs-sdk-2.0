@@ -28,9 +28,9 @@ class RelatedListsOperations{
 		var handlerInstance = new CommonAPIHandler();
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/related_lists");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		await handlerInstance.addParam(new Param("module", "com.zoho.crm.api.RelatedLists.GetRelatedListsParam"), this.module);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
@@ -51,9 +51,9 @@ class RelatedListsOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/v2/settings/related_lists/");
 		apiPath = apiPath.concat(id.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		await handlerInstance.addParam(new Param("module", "com.zoho.crm.api.RelatedLists.GetRelatedListParam"), this.module);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");

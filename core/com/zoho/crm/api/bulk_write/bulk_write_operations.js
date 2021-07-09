@@ -24,13 +24,13 @@ class BulkWriteOperations{
 		var handlerInstance = new CommonAPIHandler();
 		var apiPath = '';
 		apiPath = apiPath.concat("https://content.zohoapis.com/crm/v2/upload");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.contentType = "multipart/form-data";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
-		handlerInstance.header = headerInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setContentType("multipart/form-data");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
+		handlerInstance.setHeader(headerInstance);
 		let ActionResponse = require.resolve("./action_response");
 		return handlerInstance.apiCall(ActionResponse, "application/json");
 
@@ -50,12 +50,12 @@ class BulkWriteOperations{
 		var handlerInstance = new CommonAPIHandler();
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/bulk/v2/write");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionResponse = require.resolve("./action_response");
 		return handlerInstance.apiCall(ActionResponse, "application/json");
 
@@ -75,9 +75,9 @@ class BulkWriteOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/crm/bulk/v2/write/");
 		apiPath = apiPath.concat(jobId.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseWrapper = require.resolve("./response_wrapper");
 		return handlerInstance.apiCall(ResponseWrapper, "application/json");
 
@@ -97,9 +97,9 @@ class BulkWriteOperations{
 		var apiPath = '';
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(downloadUrl.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/octet-stream");
 

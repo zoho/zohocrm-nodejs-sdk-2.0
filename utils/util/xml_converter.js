@@ -1,4 +1,7 @@
-class XMLConverter{
+class XMLConverter {
 
 }
-module.exports = {XMLConverter}
+module.exports = {
+    MasterModel: XMLConverter,
+    XMLConverter: XMLConverter
+}

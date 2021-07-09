@@ -1,16 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-const BulkReadOperations = require("../../../../../../../core/com/zoho/crm/api/bulk_read/bulk_read_operations").BulkReadOperations;
-const RequestWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_read/request_wrapper").RequestWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_read/action_wrapper").ActionWrapper;
-const FileBodyWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_read/file_body_wrapper").FileBodyWrapper;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_read/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/bulk_read/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/bulk_read/success_response").SuccessResponse;
-const CallBack = require("../../../../../../../core/com/zoho/crm/api/bulk_read/call_back").CallBack;
-const Criteria = require("../../../../../../../core/com/zoho/crm/api/bulk_read/criteria").Criteria;
-const Query = require("../../../../../../../core/com/zoho/crm/api/bulk_read/query").Query;
-const Choice = require("../../../../../../../utils/util/choice").Choice;
+const BulkReadOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/bulk_read_operations").BulkReadOperations;
+const RequestWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/request_wrapper").RequestWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/action_wrapper").ActionWrapper;
+const FileBodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/file_body_wrapper").FileBodyWrapper;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/success_response").SuccessResponse;
+const CallBack = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/call_back").CallBack;
+const Criteria = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/criteria").Criteria;
+const Query = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_read/query").Query;
+const Choice = require("@zohocrm/nodejs-sdk-2.0/utils/util/choice").Choice;
 
 class BulkRead{
 
@@ -49,7 +49,7 @@ class BulkRead{
         query.setModule(moduleAPIName);
 
         //Specifies the unique ID of the custom view, whose records you want to export.
-        query.setCvid("3409643000000087501");
+        query.setCvid("34096430087501");
 
         //Array of field names
         let fieldAPINames = [];
@@ -77,11 +77,11 @@ class BulkRead{
 
         let group111 = new Criteria();
 
-        group111.setAPIName("All_Day");
+        group111.setAPIName("Company");
 
         group111.setComparator(new Choice("equal"));
 
-        group111.setValue(false);
+        group111.setValue("Zoho");
 
         groupArray11.push(group111);
 
@@ -91,7 +91,7 @@ class BulkRead{
 
         group112.setComparator(new Choice("in"));
 
-        group112.setValue(["34770610000001"]);
+        group112.setValue(["34770610173021"]);
 
         groupArray11.push(group112);
 
@@ -99,22 +99,40 @@ class BulkRead{
 
         criteriaArray.push(group11);
 
-        // let group112 = new Criteria();
+        let group12 = new Criteria();
+
+        group12.setGroupOperator(new Choice("or"));
 
         let groupArray12 = [];
 
+        let group121 = new Criteria();
+
+        group121.setAPIName("Paid");
+
+        group121.setComparator(new Choice("equal"));
+
+        group121.setValue(true);
+
+        groupArray12.push(group121);
+
+        let group122 = new Criteria();
+
         // To set API name of a field.
-        group112.setAPIName("Created_Time");
+        group122.setAPIName("Created_Time");
 
         // To set comparator(eg: equal, greater_than.).
-        group112.setComparator(new Choice("between"));
+        group122.setComparator(new Choice("between"));
 
         let time = ["2020-06-03T17:31:48+05:30", "2020-06-03T17:31:48+05:30"];
 
         // To set the value to be compared
-        group112.setValue(time);
+        group122.setValue(time);
 
-        groupArray12.push(group112);
+        groupArray12.push(group122);
+
+        group12.setGroup(groupArray12);
+
+        criteriaArray.push(group12);
 
         criteria.setGroup(criteriaArray);
 
@@ -133,12 +151,10 @@ class BulkRead{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
-
-            console.log(responseObject);
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -166,7 +182,12 @@ class BulkRead{
 
                             if(details != null){
                                 Array.from(details.keys()).forEach(key => {
-                                    console.log(key + ": " + details.get(key));  
+                                    if(typeof details.get(key) == "object") {
+                                        console.log(key + ": " + JSON.stringify(details.get(key))); 
+                                    }
+                                    else {
+                                        console.log(key + ": " + details.get(key)); 
+                                    }
                                 });
                             }
 
@@ -234,7 +255,7 @@ class BulkRead{
     static async getBulkReadJobDetails(jobId){
 
         //example
-        // let jobId = 3409643000002461001n;
+        // let jobId = 34096432461001n;
 
         //Get instance of BulkReadOperations Class
         let bulkReadOperations = new BulkReadOperations();
@@ -245,16 +266,16 @@ class BulkRead{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -415,7 +436,7 @@ class BulkRead{
     static async downloadResult(jobId, destinationFolder){
 
         //example
-		//String jobId = 3409643000002461001n;
+		//String jobId = 34096432461001n;
         //String destinationFolder = "/Users/user_name/Documents";
         
         //Get instance of BulkReadOperations Class
@@ -427,16 +448,16 @@ class BulkRead{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -447,10 +468,10 @@ class BulkRead{
                     let streamWrapper = responseObject.getFile();
 
                     //Construct the file name by joining the destinationFolder and the name from StreamWrapper instance
-                    let fileName = path.join(destinationFolder, streamWrapper.Name);
+                    let fileName = path.join(destinationFolder, streamWrapper.getName());
 
                     //Get the stream from StreamWrapper instance
-                    let readStream = streamWrapper.Stream;
+                    let readStream = streamWrapper.getStream();
                     
                     //Write the stream to the destination file.
                     fs.writeFileSync(fileName, readStream);

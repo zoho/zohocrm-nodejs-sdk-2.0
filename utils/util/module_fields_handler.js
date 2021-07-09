@@ -10,18 +10,17 @@ const Utility = require("./utility").Utility;
 /**
  * The class contains methods to manipulate the module fields only when autoRefreshFields is set to false in Initializer.
  */
-class ModuleFieldsHandler{
-    
+class ModuleFieldsHandler {
     /**
-	 * The method to obtain resources directory path.
-	 * @returns {String} A String representing the directory's absolute path.
-	 */
+     * The method to obtain resources directory path.
+     * @returns {String} A String representing the directory's absolute path.
+     */
     static async getDirectory() {
         let initializer = await Initializer.getInitializer();
 
         return path.join(initializer.resourcePath, Constants.FIELD_DETAILS_DIRECTORY);
     }
-    
+
     /**
      * The method to delete fields JSON File of the current user.
      * @throws {SDKException}
@@ -29,13 +28,15 @@ class ModuleFieldsHandler{
     static async deleteFieldsFile() {
         try {
             let recordFieldDetailsPath = path.join(await ModuleFieldsHandler.getDirectory(), await new Converter().getEncodedFileName());
-    
-            if(fs.existsSync(recordFieldDetailsPath)) {
+
+            if (fs.existsSync(recordFieldDetailsPath)) {
                 fs.unlinkSync(recordFieldDetailsPath);
             }
         } catch (error) {
             let exception = new SDKException(null, null, null, error);
+
             Logger.error(Constants.DELETE_FIELD_FILE_ERROR, exception);
+
             throw exception;
         }
     }
@@ -47,15 +48,17 @@ class ModuleFieldsHandler{
     static async deleteAllFieldFiles() {
         try {
             let dir = await ModuleFieldsHandler.getDirectory();
-    
-            fs.readdirSync(dir).forEach(fileName =>{
+
+            fs.readdirSync(dir).forEach(fileName => {
                 let filepath = path.resolve(dir, fileName);
 
                 fs.unlinkSync(filepath);
-            });   
+            });
         } catch (error) {
             let exception = new SDKException(null, null, null, error);
+
             Logger.error(Constants.DELETE_FIELD_FILES_ERROR, exception);
+
             throw exception;
         }
     }
@@ -68,22 +71,21 @@ class ModuleFieldsHandler{
     static async deleteFields(module) {
         try {
             let initializer = await Initializer.getInitializer();
-            
+
             let recordFieldDetailsPath = path.join(initializer.resourcePath, Constants.FIELD_DETAILS_DIRECTORY, await new Converter().getEncodedFileName());
-    
-            if(fs.existsSync(recordFieldDetailsPath)) {
 
+            if (fs.existsSync(recordFieldDetailsPath)) {
                 let recordFieldDetailsJson = await Initializer.getJSON(recordFieldDetailsPath);
-    
-                if(recordFieldDetailsJson.hasOwnProperty(module.toLowerCase())) {
 
+                if (recordFieldDetailsJson.hasOwnProperty(module.toLowerCase())) {
                     await Utility.deleteFields(recordFieldDetailsJson, module);
 
                     fs.writeFileSync(recordFieldDetailsPath, JSON.stringify(recordFieldDetailsJson));
                 }
-            }   
+            }
         } catch (error) {
             let exception = new SDKException(null, null, null, error);
+
             throw exception;
         }
     }
@@ -98,12 +100,14 @@ class ModuleFieldsHandler{
             await this.deleteFields(module);
 
             await Utility.getFields(module);
-            
+
         } catch (error) {
-            if(!error instanceof SDKException) {
+            if (!(error instanceof SDKException)) {
                 error = new SDKException(null, null, null, error);
             }
-            Logger.error(Constants.REFRESH_SINGLE_MODULE_FIELDS_ERROR + module, error); 
+
+            Logger.error(Constants.REFRESH_SINGLE_MODULE_FIELDS_ERROR + module, error);
+
             throw error;
         }
     }
@@ -115,16 +119,19 @@ class ModuleFieldsHandler{
     static async refreshAllModules() {
         try {
             await Utility.refreshModules();
-            
         } catch (error) {
-            if(!error instanceof SDKException) {
+            if (!(error instanceof SDKException)) {
                 error = new SDKException(null, null, null, error);
             }
-            Logger.error(Constants.REFRESH_ALL_MODULE_FIELDS_ERROR, error); 
+
+            Logger.error(Constants.REFRESH_ALL_MODULE_FIELDS_ERROR, error);
+
             throw error;
         }
     }
 }
 
-
-module.exports = {ModuleFieldsHandler};
+module.exports = {
+    MasterModel: ModuleFieldsHandler,
+    ModuleFieldsHandler: ModuleFieldsHandler
+}

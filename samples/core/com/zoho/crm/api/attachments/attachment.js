@@ -1,14 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const ActionWrapper = require("../../../../../../../../core/com/zoho/crm/api/attachments/action_wrapper").ActionWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/attachments/api_exception").APIException;
-const ResponseWrapper = require( "../../../../../../../core/com/zoho/crm/api/attachments/response_wrapper").ResponseWrapper;
-const FileBodyWrapper = require( "../../../../../../../core/com/zoho/crm/api/attachments/file_body_wrapper").FileBodyWrapper;
-const {AttachmentsOperations, GetAttachmentsParam, DeleteAttachmentsParam, UploadLinkAttachmentParam} = require( "../../../../../../../core/com/zoho/crm/api/attachments/attachments_operations");
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/attachments/success_response").SuccessResponse;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const StreamWrapper = require("../../../../../../../utils/util/stream_wrapper").StreamWrapper;
-
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/action_wrapper").ActionWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/api_exception").APIException;
+const ResponseWrapper = require( "@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/response_wrapper").ResponseWrapper;
+const FileBodyWrapper = require( "@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/file_body_wrapper").FileBodyWrapper;
+const {AttachmentsOperations, GetAttachmentsParam, DeleteAttachmentsParam, UploadLinkAttachmentParam} = require( "@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/attachments_operations");
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/attachments/success_response").SuccessResponse;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const StreamWrapper = require("@zohocrm/nodejs-sdk-2.0/utils/util/stream_wrapper").StreamWrapper;
 
 class Attachment{
 
@@ -21,7 +20,7 @@ class Attachment{
     static async getAttachments(moduleAPIName, recordID){
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
+        // let recordId = 34096432267003n;
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
         let attachmentsOperations = new AttachmentsOperations(moduleAPIName, recordID);
@@ -30,7 +29,7 @@ class Attachment{
         let paramInstance = new ParameterMap();
 
         //Possible parameters of Get Attachments Operation
-        paramInstance.add(GetAttachmentsParam.FIELDS, "id");
+        // paramInstance.add(GetAttachmentsParam.FIELDS, "id");
 
         paramInstance.add(GetAttachmentsParam.PAGE, 1);
 
@@ -41,16 +40,16 @@ class Attachment{
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ResponseWrapper instance is received. 
@@ -213,7 +212,7 @@ class Attachment{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
+        // let recordId = 34096432267003n;
         // let absoluteFilePath = "/Users/user-name/Documents/image.jpg";
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
@@ -245,10 +244,10 @@ class Attachment{
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ActionWrapper instance is received. 
@@ -341,8 +340,8 @@ class Attachment{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
-        // let attachmentIds = [3409643000002267024n, 3409643000002267034n, 3409643000002267198n]
+        // let recordId = 34096432267003n;
+        // let attachmentIds = [34096432267024n, 34096432267034n, 34096432267198n]
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
         let attachmentsOperations = new AttachmentsOperations(moduleAPIName, recordId);
@@ -360,10 +359,10 @@ class Attachment{
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ActionWrapper instance is received. 
@@ -460,8 +459,8 @@ class Attachment{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
-        // let attachmentId = 3409643000002267024n;
+        // let recordId = 34096432267003n;
+        // let attachmentId = 34096432267024n;
         // let destinationFolder = "/Users/user-name/Desktop";
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
@@ -472,16 +471,16 @@ class Attachment{
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if(response.statusCode == 204){
+            if(response.getStatusCode() == 204){
                 console.log("No Content");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected FileBodyWrapper instance is received. 
@@ -491,10 +490,10 @@ class Attachment{
                     let streamWrapper = responseObject.getFile();
 
                     //Construct the file name by joining the destinationFolder and the name from StreamWrapper instance
-                    let fileName = path.join(destinationFolder, streamWrapper.Name);
+                    let fileName = path.join(destinationFolder, streamWrapper.getName());
 
                     //Get the stream from StreamWrapper instance
-                    let readStream = streamWrapper.Stream;
+                    let readStream = streamWrapper.getStream();
                     
                     //Write the stream to the destination file.
                     fs.writeFileSync(fileName, readStream);
@@ -537,8 +536,8 @@ class Attachment{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
-        // let attachmentId = 3409643000002267024n;
+        // let recordId = 34096432267003n;
+        // let attachmentId = 34096432267024n;
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
         let attachmentsOperations = new AttachmentsOperations(moduleAPIName, recordId);
@@ -548,10 +547,10 @@ class Attachment{
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ActionWrapper instance is received.
@@ -647,7 +646,7 @@ class Attachment{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002267003n;
+        // let recordId = 34096432267003n;
         // let attachmentURL = "https://5.imimg.com/data5/KJ/UP/MY-8655440/zoho-crm-500x500.png";
 
         //Get instance of AttachmentsOperations Class that takes recordId and moduleAPIName as parameter
@@ -665,10 +664,10 @@ class Attachment{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ActionWrapper instance is received.

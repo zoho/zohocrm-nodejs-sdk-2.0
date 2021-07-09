@@ -7,18 +7,9 @@ const got = require("got");
 const formData = require("form-data");
 
 /**
- * This class contains different types of token.
- */
-class TokenType{
-    static GRANT = 'GRANT';
-
-    static REFRESH = 'REFRESH';
-}
-
-/**
  * This class maintains the tokens and authenticates every request.
  */
-class OAuthToken extends Token{
+class OAuthToken extends Token {
     clientID;
 
     clientSecret;
@@ -38,160 +29,114 @@ class OAuthToken extends Token{
     id;
 
     /**
-     * Creates an OAuthToken class instance with the specified parameters.
-     * @param {String} clientID - A String containing the OAuth client id.
-     * @param {String} clientSecret - A String containing the OAuth client secret.
-     * @param {String} token - A String containing the REFRESH/GRANT token.
-     * @param {String} type - A TokenType key containing the given token type.
-     * @param {String} redirectURL - A String containing the OAuth redirect URL.
+     * This is a setter method to set OAuth client id.
+     * @param {string} clientID - A String containing the client Id.
      */
-    constructor(clientID, clientSecret, token, type, redirectURL = null) {
-        super();
-        
-        var error = {};
-
-        if (typeof clientID !== 'string') {
-            error[Constants.ERROR_HASH_FIELD] = Constants.CLIENT_ID_FIELD;
-
-            error[Constants.ERROR_HASH_EXPECTED_TYPE] = Constants.STRING_NAMESPACE;
-
-            error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
-
-            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
-        }
-
-        if (clientSecret != null && typeof clientSecret !== 'string') {
-            error[Constants.ERROR_HASH_FIELD] = Constants.CLIENT_SECRET_FIELD;
-
-            error[Constants.ERROR_HASH_EXPECTED_TYPE] = Constants.STRING_NAMESPACE;
-
-            error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
-
-            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
-        }
-
-        if (redirectURL != null && typeof redirectURL !== 'string') {
-            error[Constants.ERROR_HASH_FIELD] = Constants.REDIRECT_URL_FIELD;
-
-            error[Constants.ERROR_HASH_EXPECTED_TYPE] = Constants.STRING_NAMESPACE;
-
-            error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
-
-            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
-        }
-
-        if (typeof token !== 'string') {
-            error[Constants.ERROR_HASH_FIELD] = Constants.TOKEN;
-
-            error[Constants.ERROR_HASH_EXPECTED_TYPE] = Constants.STRING_NAMESPACE;
-
-            error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
-
-            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
-        }
-
-        if (!TokenType.hasOwnProperty(type)) {
-            error[Constants.ERROR_HASH_FIELD] = Constants.TYPE;
-
-            error[Constants.ERROR_HASH_EXPECTED_TYPE] = Constants.EXPECTED_TOKEN_TYPES;
-
-            error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
-
-            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
-        }
-
+    setClientId(clientID) {
         this.clientID = clientID;
-
-        this.clientSecret = clientSecret;
-
-        this.redirectURL = redirectURL;
-
-        this.accessToken = null;
-
-        this.expiresIn = null;
-
-        this.refreshToken = (type === TokenType.REFRESH) ? token : null;
-
-        this.grantToken = (type === TokenType.GRANT) ? token : null;
     }
 
     /**
      * This is a getter method to get OAuth client id.
      * @returns A String representing the OAuth client id.
      */
-    get clientID() {
+    getClientId() {
         return this.clientID;
     }
 
     /**
-	 * This is a getter method to get OAuth client secret.
-	 * @returns A String representing the OAuth client secret.
-	 */
-    get clientSecret() {
+     * This is a setter method to set OAuth client secret.
+     * @param {string} clientSecret - A String containing the client Secret.
+     */
+    setClientSecret(clientSecret) {
+        this.clientSecret = clientSecret;
+    }
+
+    /**
+     * This is a getter method to get OAuth client secret.
+     * @returns A String representing the OAuth client secret.
+     */
+    getClientSecret() {
         return this.clientSecret;
     }
 
     /**
-	 * This is a getter method to get OAuth redirect URL.
-	 * @returns A String representing the OAuth redirect URL.
-	 */
-    get redirectURL() {
+     * This is a getter method to get OAuth redirect URL.
+     * @returns A String representing the OAuth redirect URL.
+     */
+    getRedirectURL() {
         return this.redirectURL;
     }
 
     /**
-	 * This is a getter method to get grant token.
-	 * @returns A String representing the grant token.
-	 */
-    get grantToken() {
+     * This is a setter method to set OAuth redirect URL.
+     * @param {string} redirectURL - A String containing the redirectURL.
+     */
+    setRedirectURL(redirectURL) {
+        this.redirectURL = redirectURL;
+    }
+
+    /**
+     * This is a setter method to set grant token.
+     * @param {string} grantToken - A String containing the grantToken.
+     */
+    setGrantToken(grantToken) {
+        this.grantToken = grantToken;
+    }
+
+    /**
+     * This is a getter method to get grant token.
+     * @returns A String representing the grant token.
+     */
+    getGrantToken() {
         return this.grantToken;
     }
 
     /**
-	 * This is a getter method to get refresh token.
-	 * @returns A String representing the refresh token.
-	 */
-    get refreshToken() {
+     * This is a getter method to get refresh token.
+     * @returns A String representing the refresh token.
+     */
+    getRefreshToken() {
         return this.refreshToken;
     }
 
     /**
-	 * This is a setter method to set refresh token.
-	 * @param {string} refreshToken - A String containing the refresh token.
-	 */
-    set refreshToken(refreshToken) {
+     * This is a setter method to set refresh token.
+     * @param {string} refreshToken - A String containing the refresh token.
+     */
+    setRefreshToken(refreshToken) {
         this.refreshToken = refreshToken;
     }
 
     /**
-	 * This is a getter method to get access token.
-	 * @returns A String representing the access token.
-	 */
-    get accessToken() {
+     * This is a getter method to get access token.
+     * @returns A String representing the access token.
+     */
+    getAccessToken() {
         return this.accessToken;
     }
 
     /**
-	 * This is a setter method to set access token.
-	 * @param {string} accessToken A String containing the access token.
-	 */
-    set accessToken(accessToken) {
+     * This is a setter method to set access token.
+     * @param {string} accessToken A String containing the access token.
+     */
+    setAccessToken(accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-	 * This is a getter method to get token expire time.
-	 * @returns A String representing the token expire time.
-	 */
-    get expiresIn() {
+     * This is a getter method to get token expire time.
+     * @returns A String representing the token expire time.
+     */
+    getExpiresIn() {
         return this.expiresIn;
     }
 
     /**
-	 * This is a setter method to set token expire time.
-	 * @param {string} expiresIn A String containing the token expire time.
-	 */
-    set expiresIn(expiresIn) {
+     * This is a setter method to set token expire time.
+     * @param {string} expiresIn A String containing the token expire time.
+     */
+    setExpiresIn(expiresIn) {
         this.expiresIn = expiresIn;
     }
 
@@ -199,7 +144,7 @@ class OAuthToken extends Token{
      * This is a getter method to get token user mail.
      * @returns A String representing the userMail
      */
-    get userMail() {
+    getUserMail() {
         return this.userMail;
     }
 
@@ -207,7 +152,7 @@ class OAuthToken extends Token{
      * This is a setter method to set token user email.
      * @param {String} userMail A String containing the userMail
      */
-    set userMail(userMail) {
+    setUserMail(userMail) {
         this.userMail = userMail;
     }
 
@@ -215,7 +160,7 @@ class OAuthToken extends Token{
      * This is a getter method to get the id
      * @returns the id
      */
-    get id() {
+    getId() {
         return this.id;
     }
 
@@ -223,42 +168,60 @@ class OAuthToken extends Token{
      * This is a setter method to set the id
      * @param {String} id A String containing the id
      */
-    set id(id) {
+    setId(id) {
         this.id = id;
     }
 
-    async authenticate(urlConnection){
-        var token = "";
+    async authenticate(urlConnection) {
+        try {
+            var token = "";
 
-        var initializer = await Initializer.getInitializer();
+            var initializer = await Initializer.getInitializer();
 
-        var store = initializer.store;
+            var store = initializer.getStore();
 
-        var user = initializer.user;
+            var user = initializer.getUser();
 
-        var oauthToken = await store.getToken(user, this);
+            var oauthToken = null;
 
-        if (oauthToken === null) {
+            if (this.accessToken == null) {
+                if (this.id != null) {
+                    oauthToken = await store.getTokenById(this.id, this);
+                }
+                else {
+                    oauthToken = await store.getToken(user, this);
+                }
+            }
+            else {
+                oauthToken = this;
+            }
 
-            token = (this.refreshToken === null) ? (await this.generateAccessToken(user, store)).accessToken : (await this.refreshAccessToken(user, store)).accessToken;
-        } 
-        else if ((parseInt(oauthToken.expiresIn) - parseInt(new Date().getTime())) < 5000) {
-            Logger.info(Constants.REFRESH_TOKEN_MESSAGE);
+            if (oauthToken === null) {//first time
+                token = (this.refreshToken != null) ? (await this.refreshAccessToken(user, store)).getAccessToken() : (await this.generateAccessToken(user, store)).getAccessToken();
+            }
+            else if ((parseInt(oauthToken.getExpiresIn()) - parseInt(new Date().getTime())) < 5000) { //access token will expire in next 5 seconds or less
+                Logger.info(Constants.REFRESH_TOKEN_MESSAGE);
 
-            token = (await this.refreshAccessToken(user, store)).accessToken;
-        } 
-        else {
+                token = (await this.refreshAccessToken(user, store)).getAccessToken();
+            }
+            else {
+                token = this.accessToken;
+            }
 
-            token = this.accessToken;
+            await urlConnection.addHeader(Constants.AUTHORIZATION, Constants.OAUTH_HEADER_PREFIX + token);
+        } catch (error) {
+            if (!(error instanceof SDKException)) {
+                error = new SDKException(null, null, null, error);
+            }
+
+            throw error;
         }
-
-        urlConnection.addHeader(Constants.AUTHORIZATION, Constants.OAUTH_HEADER_PREFIX + token);
     }
 
-    async refreshAccessToken(user, store){
+    async refreshAccessToken(user, store) {
         let initializer = await Initializer.getInitializer();
 
-        var url = initializer.environment.accountsUrl;
+        var url = initializer.getEnvironment().getAccountsUrl();
 
         var formDataRequestBody = new formData();
 
@@ -271,24 +234,29 @@ class OAuthToken extends Token{
         formDataRequestBody.append(Constants.GRANT_TYPE, Constants.REFRESH_TOKEN);
 
         const requestDetails = {
-			method : Constants.REQUEST_METHOD_POST,
-			headers : {},
-			body : formDataRequestBody,
+            method: Constants.REQUEST_METHOD_POST,
+            headers: {},
+            body: formDataRequestBody,
             encoding: "utf8",
-			allowGetBody : true,
-			throwHttpErrors : false
-		};
+            allowGetBody: true,
+            throwHttpErrors: false
+        };
 
         var response = await this.getResponse(url, requestDetails);
 
         try {
-            await store.saveToken(user, await this.parseResponse(response.body));
+            await this.parseResponse(response.body);
 
+            if (this.id == null) {
+                await this.generateId();
+            }
+
+            await store.saveToken(user, this);
         } catch (error) {
-            if(error instanceof SDKException) {
+            if (error instanceof SDKException) {
                 throw error;
             }
-            else if(error instanceof Error) {
+            else if (error instanceof Error) {
                 throw new SDKException(Constants.SAVE_TOKEN_ERROR, null, null, error);
             }
         }
@@ -299,41 +267,46 @@ class OAuthToken extends Token{
     async generateAccessToken(user, store) {
         let initializer = await Initializer.getInitializer();
 
-        var url = initializer.environment.accountsUrl;
+        var url = initializer.getEnvironment().getAccountsUrl();
 
         var formDataRequestBody = new formData();
-
-        formDataRequestBody.append(Constants.GRANT_TYPE, Constants.GRANT_TYPE_AUTH_CODE);
 
         formDataRequestBody.append(Constants.CLIENT_ID, this.clientID);
 
         formDataRequestBody.append(Constants.CLIENT_SECRET, this.clientSecret);
 
-        if(this.redirectURL != null){
-            formDataRequestBody.append(Constants.REDIRECT_URL, this.redirectURL);
+        if (this.redirectURL != null) {
+            formDataRequestBody.append(Constants.REDIRECT_URI, this.redirectURL);
         }
+
+        formDataRequestBody.append(Constants.GRANT_TYPE, Constants.GRANT_TYPE_AUTH_CODE);
 
         formDataRequestBody.append(Constants.CODE, this.grantToken);
 
         const requestDetails = {
-			method : Constants.REQUEST_METHOD_POST,
-			headers : {},
-			body : formDataRequestBody,
+            method: Constants.REQUEST_METHOD_POST,
+            headers: {},
+            body: formDataRequestBody,
             encoding: "utf8",
-			allowGetBody : true,
-			throwHttpErrors : false
-		};
+            allowGetBody: true,
+            throwHttpErrors: false
+        };
 
         var response = await this.getResponse(url, requestDetails);
 
         try {
-            await store.saveToken(user, await this.parseResponse(response.body));
+
+            await this.parseResponse(response.body);
+
+            await this.generateId();
+
+            await store.saveToken(user, this);
 
         } catch (error) {
-            if(error instanceof SDKException) {
+            if (error instanceof SDKException) {
                 throw error;
             }
-            else if(error instanceof Error) {
+            else if (error instanceof Error) {
                 throw new SDKException(Constants.SAVE_TOKEN_ERROR, null, null, error);
             }
         }
@@ -345,26 +318,26 @@ class OAuthToken extends Token{
         return await got(url, requestDetails);
     }
 
-    async parseResponse(response){
+    async parseResponse(response) {
         var responseJSON = JSON.parse(response);
 
         if (!responseJSON.hasOwnProperty(Constants.ACCESS_TOKEN)) {
-            throw new SDKException(Constants.INVALID_CLIENT_ERROR, responseJSON[Constants.ERROR_KEY].toString());
+            throw new SDKException(Constants.INVALID_TOKEN_ERROR, responseJSON.hasOwnProperty(Constants.ERROR_KEY) ? responseJSON[Constants.ERROR_KEY].toString() : Constants.NO_ACCESS_TOKEN_ERROR);
         }
 
         this.accessToken = responseJSON[Constants.ACCESS_TOKEN];
+
+        this.expiresIn = (new Date().getTime() + await this.getTokenExpiryTime(responseJSON)).toString();
 
         if (responseJSON.hasOwnProperty(Constants.REFRESH_TOKEN)) {
             this.refreshToken = responseJSON[Constants.REFRESH_TOKEN];
         }
 
-        this.expiresIn=(new Date().getTime() + await this.getTokenExpiryTime(responseJSON)).toString();
-
         return this;
     }
 
     getTokenExpiryTime(response) {
-        return response.hasOwnProperty(Constants.EXPIRES_IN_SEC)? response[Constants.EXPIRES_IN] : response[Constants.EXPIRES_IN]*1000;
+        return response.hasOwnProperty(Constants.EXPIRES_IN_SEC) ? response[Constants.EXPIRES_IN] : response[Constants.EXPIRES_IN] * 1000;
     }
 
     async remove() {
@@ -374,11 +347,60 @@ class OAuthToken extends Token{
             await initializer.store.deleteToken(this);
 
             return true;
-            
+
         } catch (error) {
-            return false;
+            if (error instanceof SDKException) {
+                throw error;
+            }
+            else if (error instanceof Error) {
+                throw new SDKException(null, null, null, error);
+            }
         }
+    }
+
+    /**
+     * Creates an OAuthToken class instance with the specified parameters.
+     * @param {String} clientID - A String containing the OAuth client id.
+     * @param {String} clientSecret - A String containing the OAuth client secret.
+     * @param {String} grantToken - A String containing the GRANT token.
+     * @param {String} refreshToken - A String containing the REFRESH token.
+     * @param {String} redirectURL - A String containing the OAuth redirect URL.
+     * @param {String} id - A string
+     */
+    constructor(clientID, clientSecret, grantToken, refreshToken, redirectURL = null, id = null) {
+        super();
+
+        this.clientID = clientID;
+
+        this.clientSecret = clientSecret;
+
+        this.grantToken = grantToken;
+
+        this.refreshToken = refreshToken;
+
+        this.redirectURL = redirectURL;
+
+        this.accessToken = null;
+
+        this.expiresIn = null;
+
+        this.id = id;
+    }
+
+    async generateId() {
+        let email = (await Initializer.getInitializer()).getUser().getEmail();
+
+        let builder = "nodejs_" + (email).substring(0, (email.indexOf('@'))) + "_";
+
+        builder = builder + (await Initializer.getInitializer()).getEnvironment().getName() + "_";
+
+        builder = builder + this.refreshToken.substring(this.refreshToken.length - 4);
+
+        this.id = builder;
     }
 }
 
-module.exports={OAuthToken, TokenType};
+module.exports = {
+    MasterModel: OAuthToken,
+    OAuthToken: OAuthToken
+}

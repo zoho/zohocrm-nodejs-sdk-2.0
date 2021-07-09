@@ -1,11 +1,11 @@
-const {TaxesOperations, DeleteTaxesParam} = require("../../../../../../../core/com/zoho/crm/api/taxes/taxes_operations");
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/taxes/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/taxes/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/taxes/success_response").SuccessResponse;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/taxes/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/taxes/action_wrapper").ActionWrapper;
-const ZCRMTax = require("../../../../../../../core/com/zoho/crm/api/taxes/tax").Tax;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
+const {TaxesOperations, DeleteTaxesParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/taxes_operations");
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/success_response").SuccessResponse;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/action_wrapper").ActionWrapper;
+const ZCRMTax = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/taxes/tax").Tax;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
 
 class Tax{
 
@@ -24,16 +24,16 @@ class Tax{
         if(response != null){
             
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -102,7 +102,7 @@ class Tax{
     static async getTax(taxId){
 
         //example
-        //let taxId = 3409643000002317003n;
+        //let taxId = 34096432317003n;
 
         //Get instance of TaxesOperations Class
         let taxesOperations = new TaxesOperations();
@@ -113,16 +113,16 @@ class Tax{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -234,10 +234,10 @@ class Tax{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -342,7 +342,7 @@ class Tax{
         let tax = new ZCRMTax();
 
         //Set ID
-        tax.setId(3409643000002317003n);
+        tax.setId(347706110556002n);
 
         //Set Name
         tax.setName("Modifiedtax11");
@@ -353,7 +353,7 @@ class Tax{
         tax = new ZCRMTax();
 
         //Set ID
-        tax.setId(3409643000002317004n);
+        tax.setId(347706110676030n);
 
         //Set Name
         tax.setName("Modifiedtax21");
@@ -370,10 +370,10 @@ class Tax{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -467,7 +467,7 @@ class Tax{
     static async deleteTaxes(taxIds){
 
         //example
-        //let taxIds = [3409643000002407046n, 3409643000002407047n];
+        //let taxIds = [34096432407046n, 34096432407047n];
 
         //Get instance of TaxesOperations Class
         let taxesOperations = new TaxesOperations();
@@ -486,10 +486,10 @@ class Tax{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -583,7 +583,7 @@ class Tax{
     static async deleteTax(taxId){
 
         //example
-        //let taxId = 3409643000002407046n;
+        //let taxId = 34096432407046n;
 
         //Get instance of TaxesOperations Class
         let taxesOperations = new TaxesOperations();
@@ -594,10 +594,10 @@ class Tax{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

@@ -1,10 +1,9 @@
-const QueryOperations = require("../../../../../../../core/com/zoho/crm/api/query/query_operations").QueryOperations;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/query/api_exception").APIException;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/query/response_wrapper").ResponseWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/query/body_wrapper").BodyWrapper;
+const QueryOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/query/query_operations").QueryOperations;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/query/api_exception").APIException;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/query/response_wrapper").ResponseWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/query/body_wrapper").BodyWrapper;
 
 class Query {
-
     static async getRecords() {
         //Get instance of QueryOperations Class
         let queryOperations = new QueryOperations();
@@ -22,10 +21,10 @@ class Query {
         if(response != null) {
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null) {
 
@@ -136,7 +135,7 @@ class Query {
 
                     if(info != null){
 						
-						if(info.getCount() != null){
+						if(info.getCount() != null) {
 							//Get the Count of the Info
 							console.log("Record Info Count: " + info.getCount().toString());
 						}
@@ -148,7 +147,7 @@ class Query {
                     }
                 }
                 //Check if the request returned an exception
-				else if(responseObject instanceof APIException){
+				else if(responseObject instanceof APIException) {
 					//Get the Status
 					console.log("Status: " + responseObject.getStatus().getValue());
 
