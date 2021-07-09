@@ -37,9 +37,9 @@ class BluePrintOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/blueprint");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -63,12 +63,12 @@ class BluePrintOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/blueprint");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_PUT;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_UPDATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_PUT);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionResponse = require.resolve("./action_response");
 		return handlerInstance.apiCall(ActionResponse, "application/json");
 

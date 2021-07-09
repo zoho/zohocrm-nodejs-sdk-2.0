@@ -1,11 +1,11 @@
-const ZCRMBluePrint = require("../../../../../../../core/com/zoho/crm/api/blue_print/blue_print").BluePrint;
-const ZCRMRecord = require("../../../../../../../core/com/zoho/crm/api/record/record").Record;
-const BluePrintOperations = require("../../../../../../../core/com/zoho/crm/api/blue_print/blue_print_operations").BluePrintOperations;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/blue_print/response_wrapper").ResponseWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/blue_print/body_wrapper").BodyWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/blue_print/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/blue_print/success_response").SuccessResponse;
-const Transition = require("../../../../../../../core/com/zoho/crm/api/blue_print/transition").Transition;
+const ZCRMBluePrint = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/blue_print").BluePrint;
+const ZCRMRecord = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/record/record").Record;
+const BluePrintOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/blue_print_operations").BluePrintOperations;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/response_wrapper").ResponseWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/body_wrapper").BodyWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/success_response").SuccessResponse;
+const Transition = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/blue_print/transition").Transition;
 
 class BluePrint{
 
@@ -19,7 +19,7 @@ class BluePrint{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002469044n;
+        // let recordId = 34096432469044n;
 
         //Get instance of BluePrintOperations Class that takes moduleAPIName and recordId as parameter
         let bluePrintOperations = new BluePrintOperations(recordId, moduleAPIName);
@@ -30,16 +30,16 @@ class BluePrint{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -481,8 +481,8 @@ class BluePrint{
         //example
 
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002469044n;
-        // let transitionId = 3409643000001172075n;
+        // let recordId = 34096432469044n;
+        // let transitionId = 34096431172075n;
 
         //Get instance of BluePrintOperations Class that takes moduleAPIName and recordId as parameter
         let bluePrintOperations = new BluePrintOperations(recordId, moduleAPIName);
@@ -551,10 +551,10 @@ class BluePrint{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 if(responseObject instanceof SuccessResponse){

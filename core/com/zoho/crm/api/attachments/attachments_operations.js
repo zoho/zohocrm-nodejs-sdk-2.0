@@ -44,9 +44,9 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments/");
 		apiPath = apiPath.concat(id.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/x-download");
 
@@ -70,9 +70,9 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments/");
 		apiPath = apiPath.concat(id.toString());
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_DELETE;
-		handlerInstance.categoryMethod = Constants.REQUEST_METHOD_DELETE;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_DELETE);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_METHOD_DELETE);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -95,10 +95,10 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
-		handlerInstance.param = paramInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
+		handlerInstance.setParam(paramInstance);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -122,12 +122,12 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.contentType = "multipart/form-data";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setContentType("multipart/form-data");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -150,11 +150,11 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.mandatoryChecker = true;
-		handlerInstance.param = paramInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setMandatoryChecker(true);
+		handlerInstance.setParam(paramInstance);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -177,10 +177,10 @@ class AttachmentsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/Attachments");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_DELETE;
-		handlerInstance.categoryMethod = Constants.REQUEST_METHOD_DELETE;
-		handlerInstance.param = paramInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_DELETE);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_METHOD_DELETE);
+		handlerInstance.setParam(paramInstance);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 

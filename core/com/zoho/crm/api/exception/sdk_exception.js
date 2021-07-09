@@ -3,7 +3,7 @@
  */
 class SDKException extends Error {
     /**
-     * 
+     *
      * @param {string} code - A String containing the Exception error code.
      * @param {string} message - A String containing the Exception error message.
      * @param {object} details - A key/value pair object containing the error response.
@@ -29,17 +29,17 @@ class SDKException extends Error {
         }
     }
 
-    toString(){
+    toString() {
         let returnMessage = "Caused By : ";
-    
+
         if (this.details != null) {
             this.message = (this.message != null ? this.message : "") + JSON.stringify(this.details);
         }
 
-        if(this.code != null){
+        if (this.code != null) {
             returnMessage += this.code + " - " + this.message;
         }
-        else{
+        else {
             returnMessage += this.message;
         }
 
@@ -48,6 +48,6 @@ class SDKException extends Error {
 }
 
 module.exports = {
-    MasterModel : SDKException,
-    SDKException : SDKException
+    MasterModel: SDKException,
+    SDKException: SDKException
 };

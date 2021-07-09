@@ -1,10 +1,11 @@
 const fs = require("fs");
-const OrgOperations = require("../../../../../../../core/com/zoho/crm/api/org/org_operations").OrgOperations;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/org/response_wrapper").ResponseWrapper;
-const FileBodyWrapper = require("../../../../../../../core/com/zoho/crm/api/org/file_body_wrapper").FileBodyWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/org/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/org/success_response").SuccessResponse;
-const StreamWrapper = require("../../../../../../../utils/util/stream_wrapper").StreamWrapper;
+const file = require("../files/file");
+const OrgOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/org/org_operations").OrgOperations;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/org/response_wrapper").ResponseWrapper;
+const FileBodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/org/file_body_wrapper").FileBodyWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/org/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/org/success_response").SuccessResponse;
+const StreamWrapper = require("@zohocrm/nodejs-sdk-2.0/utils/util/stream_wrapper").StreamWrapper;
 
 class Organization{
 
@@ -23,16 +24,16 @@ class Organization{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -225,10 +226,10 @@ class Organization{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

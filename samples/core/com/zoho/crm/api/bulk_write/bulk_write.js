@@ -1,17 +1,17 @@
 const fs = require("fs");
 const path = require("path");
-const {BulkWriteOperations, UploadFileHeader} = require("../../../../../../../core/com/zoho/crm/api/bulk_write/bulk_write_operations");
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/bulk_write/success_response").SuccessResponse;
-const BulkWriteResponse = require("../../../../../../../core/com/zoho/crm/api/bulk_write/bulk_write_response").BulkWriteResponse;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/bulk_write/api_exception").APIException;
-const FileBodyWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_write/file_body_wrapper").FileBodyWrapper;
-const RequestWrapper = require("../../../../../../../core/com/zoho/crm/api/bulk_write/request_wrapper").RequestWrapper;
-const CallBack = require("../../../../../../../core/com/zoho/crm/api/bulk_write/call_back").CallBack;
-const Resource = require("../../../../../../../core/com/zoho/crm/api/bulk_write/resource").Resource;
-const FieldMapping = require("../../../../../../../core/com/zoho/crm/api/bulk_write/field_mapping").FieldMapping;
-const StreamWrapper = require("../../../../../../../utils/util/stream_wrapper").StreamWrapper;
-const HeaderMap = require("../../../../../../../routes/header_map").HeaderMap;
-const Choice = require("../../../../../../../utils/util/choice").Choice;
+const {BulkWriteOperations, UploadFileHeader} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/bulk_write_operations");
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/success_response").SuccessResponse;
+const BulkWriteResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/bulk_write_response").BulkWriteResponse;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/api_exception").APIException;
+const FileBodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/file_body_wrapper").FileBodyWrapper;
+const RequestWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/request_wrapper").RequestWrapper;
+const CallBack = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/call_back").CallBack;
+const Resource = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/resource").Resource;
+const FieldMapping = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/bulk_write/field_mapping").FieldMapping;
+const StreamWrapper = require("@zohocrm/nodejs-sdk-2.0/utils/util/stream_wrapper").StreamWrapper;
+const HeaderMap = require("@zohocrm/nodejs-sdk-2.0/routes/header_map").HeaderMap;
+const Choice = require("@zohocrm/nodejs-sdk-2.0/utils/util/choice").Choice;
 
 class BulkWrite{
 
@@ -66,10 +66,10 @@ class BulkWrite{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -163,7 +163,7 @@ class BulkWrite{
 
         //example
 		//let moduleAPIName = "Leads";
-        //let fileId  = "3477061000006121001";
+        //let fileId  = "34770616121001";
         
         //Get instance of BulkWriteOperations Class
         let bulkWriteOperations = new BulkWriteOperations();
@@ -272,10 +272,10 @@ class BulkWrite{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -337,7 +337,7 @@ class BulkWrite{
     static async getBulkWriteJobDetails(jobId){
 
         //example
-        //let jobId = 3477061000005615003n;
+        //let jobId = 34770615615003n;
         
         //Get instance of BulkWriteOperations Class
         let bulkWriteOperations = new BulkWriteOperations();
@@ -348,16 +348,16 @@ class BulkWrite{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -367,7 +367,7 @@ class BulkWrite{
 					console.log("Bulk write Job Status: " + responseObject.getStatus());
 					
 					//Get the CharacterEncoding of each bulkWriteResponse
-					console.log(rresponseObject.getCharacterEncoding());
+					console.log(responseObject.getCharacterEncoding());
 					
 					let resources = responseObject.getResource();
 					
@@ -522,16 +522,16 @@ class BulkWrite{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -542,10 +542,10 @@ class BulkWrite{
                     let streamWrapper = responseObject.getFile();
 
                     //Construct the file name by joining the destinationFolder and the name from StreamWrapper instance
-                    let fileName = path.join(destinationFolder, streamWrapper.Name);
+                    let fileName = path.join(destinationFolder, streamWrapper.getName());
 
                     //Get the stream from StreamWrapper instance
-                    let readStream = streamWrapper.Stream;
+                    let readStream = streamWrapper.getStream();
 
                     //Write the stream to the destination file.
                     fs.writeFileSync(fileName, readStream);

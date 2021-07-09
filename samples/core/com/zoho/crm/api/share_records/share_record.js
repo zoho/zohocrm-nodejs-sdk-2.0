@@ -1,13 +1,13 @@
-const {ShareRecordsOperations, GetSharedRecordDetailsParam} = require("../../../../../../../core/com/zoho/crm/api/share_records/share_records_operations");
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/share_records/response_wrapper").ResponseWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/share_records/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/share_records/action_wrapper").ActionWrapper;
-const DeleteActionWrapper = require("../../../../../../../core/com/zoho/crm/api/share_records/delete_action_wrapper").DeleteActionWrapper;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/share_records/success_response").SuccessResponse;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/share_records/api_exception").APIException;
-const ZCRMShareRecord = require("../../../../../../../core/com/zoho/crm/api/share_records/share_record").ShareRecord;
-const ZCRMUser = require("../../../../../../../core/com/zoho/crm/api/users/user").User;
+const {ShareRecordsOperations, GetSharedRecordDetailsParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/share_records_operations");
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/response_wrapper").ResponseWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/action_wrapper").ActionWrapper;
+const DeleteActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/delete_action_wrapper").DeleteActionWrapper;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/success_response").SuccessResponse;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/api_exception").APIException;
+const ZCRMShareRecord = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/share_records/share_record").ShareRecord;
+const ZCRMUser = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/user").User;
 
 class ShareRecord{
 
@@ -21,7 +21,7 @@ class ShareRecord{
 
         //example
         //let moduleAPIName = "Contacts";
-        //let recordId = 3409643000002112011n;
+        //let recordId = 34096432112011n;
 
         //Get instance of ShareRecordsOperations Class that takes moduleAPIName and recordId as parameter
         let sharedRecordsOperations = new ShareRecordsOperations(recordId, moduleAPIName);
@@ -32,7 +32,7 @@ class ShareRecord{
         /* Possible parameters of Get Shared Record Details operation */
         await paramInstance.add(GetSharedRecordDetailsParam.VIEW, "summary");
 
-        // await paramInstance.add(GetSharedRecordDetailsParam.SHAREDTO, "3409643000000302031");
+        // await paramInstance.add(GetSharedRecordDetailsParam.SHAREDTO, "34096430302031");
 
         //Call getSharedRecordDetails method that takes ParameterMap instance as parameter
         let response = await sharedRecordsOperations.getSharedRecordDetails(paramInstance);
@@ -40,16 +40,16 @@ class ShareRecord{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -172,7 +172,7 @@ class ShareRecord{
 
         //example
         //let moduleAPIName = "Contacts";
-        // let recordId = 3409643000002112011n;
+        // let recordId = 34096432112011n;
 
         //Get instance of ShareRecordsOperations Class that takes moduleAPIName and recordId as parameter
         let sharedRecordsOperations = new ShareRecordsOperations(recordId, moduleAPIName);
@@ -196,7 +196,7 @@ class ShareRecord{
         let user = new ZCRMUser();
 
         //Set User ID
-        user.setId(3409643000000302031n);
+        user.setId(34770615791024n);
 
         //Set the User instance to user
         shareRecord.setUser(user);
@@ -213,10 +213,10 @@ class ShareRecord{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -312,7 +312,7 @@ class ShareRecord{
 
         //example
         //let moduleAPIName = "Contacts";
-        // let recordId = 3409643000002112011n;
+        // let recordId = 34096432112011n;
 
         //Get instance of ShareRecordsOperations Class that takes moduleAPIName and recordId as parameter
         let sharedRecordsOperations = new ShareRecordsOperations(recordId, moduleAPIName);
@@ -336,7 +336,7 @@ class ShareRecord{
         let user = new ZCRMUser();
 
         //Set ID to the User
-        user.setId(3409643000000302031n);
+        user.setId(34770615791024n);
 
         //Set user instance to user in ShareRecord instance
         shareRecord.setUser(user);
@@ -353,10 +353,10 @@ class ShareRecord{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -452,7 +452,7 @@ class ShareRecord{
 
         //example
         //let moduleAPIName = "Contacts";
-        // let recordId = 3409643000002112011n;
+        // let recordId = 34096432112011n;
 
         //Get instance of ShareRecordsOperations Class that takes moduleAPIName and recordId as parameter
         let shareRecordsOperations = new ShareRecordsOperations(recordId, moduleAPIName);
@@ -463,10 +463,10 @@ class ShareRecord{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

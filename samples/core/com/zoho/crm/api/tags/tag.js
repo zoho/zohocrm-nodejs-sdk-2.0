@@ -1,15 +1,15 @@
-const {TagsOperations, AddTagsToMultipleRecordsParam, AddTagsToRecordParam, CreateTagsParam, GetRecordCountForTagParam, GetTagsParam, RemoveTagsFromMultipleRecordsParam, RemoveTagsFromRecordParam, UpdateTagParam, UpdateTagsParam} = require("../../../../../../../core/com/zoho/crm/api/tags/tags_operations");
-const ZCRMTag = require("../../../../../../../core/com/zoho/crm/api/tags/tag").Tag;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/response_wrapper").ResponseWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/action_wrapper").ActionWrapper;
-const RecordActionWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/record_action_wrapper").RecordActionWrapper;
-const MergeWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/merge_wrapper").MergeWrapper;
-const CountWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/count_wrapper").CountWrapper;
-const ConflictWrapper = require("../../../../../../../core/com/zoho/crm/api/tags/conflict_wrapper").ConflictWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/tags/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/tags/success_response").SuccessResponse;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
+const {TagsOperations, AddTagsToMultipleRecordsParam, AddTagsToRecordParam, CreateTagsParam, GetRecordCountForTagParam, GetTagsParam, RemoveTagsFromMultipleRecordsParam, RemoveTagsFromRecordParam, UpdateTagParam, UpdateTagsParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/tags_operations");
+const ZCRMTag = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/tag").Tag;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/response_wrapper").ResponseWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/action_wrapper").ActionWrapper;
+const RecordActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/record_action_wrapper").RecordActionWrapper;
+const MergeWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/merge_wrapper").MergeWrapper;
+const CountWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/count_wrapper").CountWrapper;
+const ConflictWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/conflict_wrapper").ConflictWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/tags/success_response").SuccessResponse;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
 
 class Tag{
 
@@ -41,16 +41,16 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -187,10 +187,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -305,10 +305,10 @@ class Tag{
         let tag = new ZCRMTag();
 
         //Set ID to tag instance
-        tag.setId(3409643000002993001n);
+        tag.setId(34770618236039n);
 
         //Set name
-        tag.setName("edited-tagname");
+        tag.setName("edited-tagname11234");
 
         //Add the instance to array
         tagsArray.push(tag);
@@ -322,10 +322,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -421,7 +421,7 @@ class Tag{
 
         //example
         // let moduleAPIName = "Leads";
-        // let tagId = 3409643000000661047n;
+        // let tagId = 34096430661047n;
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -456,10 +456,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -553,7 +553,7 @@ class Tag{
     static async deleteTag(tagId){
 
         //example
-        //let tagId = 3409643000000661047n;
+        //let tagId = 34096430661047n;
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -564,10 +564,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -662,8 +662,8 @@ class Tag{
     static async mergeTags(tagId, conflictId){
 
         //example
-        //let tagId = 3409643000000661047n;
-        //let conflictId = "3409643000000661026";
+        //let tagId = 34096430661047n;
+        //let conflictId = "34096430661026";
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -692,10 +692,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -792,7 +792,7 @@ class Tag{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002157023n;
+        // let recordId = 34096432157023n;
         // let tagNames = ["addtag1,addtag12"];
 
         //Get instance of TagsOperations Class
@@ -805,7 +805,7 @@ class Tag{
 
         await paramInstance.add(AddTagsToRecordParam.TAG_NAMES, tagNames.toString());
 
-        await paramInstance.add(AddTagsToRecordParam.OVER_WRITE, "false");
+        await paramInstance.add(AddTagsToRecordParam.OVER_WRITE, "true");
 
         //Call addTagsToRecord method that takes paramInstance, moduleAPIName and recordId as parameter
         let response = await tagsOperations.addTagsToRecord(recordId, moduleAPIName, paramInstance);
@@ -813,10 +813,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -913,7 +913,7 @@ class Tag{
 
         //example
         // let moduleAPIName = "Leads";
-        // let recordId = 3409643000002157023n;
+        // let recordId = 34096432157023n;
         // let tagNames = ["addtag1,addtag12"];
 
         //Get instance of TagsOperations Class
@@ -931,10 +931,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1032,7 +1032,7 @@ class Tag{
         //example
         // let moduleAPIName = "Leads";
         // let tagNames = ["addtag1,addtag12"];
-        // let recordIds = [3409643000000723026n, 3409643000000527003n, 3409643000000394028n];
+        // let recordIds = [34096430723026n, 34096430527003n, 34096430394028n];
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -1055,10 +1055,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1156,7 +1156,7 @@ class Tag{
         //example
         // let moduleAPIName = "Leads";
         // let tagNames = ["addtag1,addtag12"];
-        // let recordIds = [3409643000000723026n, 3409643000000527003n, 3409643000000394028n];
+        // let recordIds = [34096430723026n, 34096430527003n, 34096430394028n];
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -1177,10 +1177,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1277,7 +1277,7 @@ class Tag{
 
         //example
         // let moduleAPIName = "Leads";
-        // let tagId = 3409643000000661047n;
+        // let tagId = 34096430661047n;
 
         //Get instance of TagsOperations Class
         let tagsOperations = new TagsOperations();
@@ -1294,10 +1294,10 @@ class Tag{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

@@ -43,10 +43,10 @@ class ShareRecordsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/share");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_GET;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_READ;
-		handlerInstance.param = paramInstance;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_GET);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_READ);
+		handlerInstance.setParam(paramInstance);
 		let ResponseHandler = require.resolve("./response_handler");
 		return handlerInstance.apiCall(ResponseHandler, "application/json");
 
@@ -70,12 +70,12 @@ class ShareRecordsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/share");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_POST;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_CREATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_POST);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -99,12 +99,12 @@ class ShareRecordsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/share");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_PUT;
-		handlerInstance.categoryMethod = Constants.REQUEST_CATEGORY_UPDATE;
-		handlerInstance.contentType = "application/json";
-		handlerInstance.request = request;
-		handlerInstance.mandatoryChecker = true;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_PUT);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
+		handlerInstance.setContentType("application/json");
+		handlerInstance.setRequest(request);
+		handlerInstance.setMandatoryChecker(true);
 		let ActionHandler = require.resolve("./action_handler");
 		return handlerInstance.apiCall(ActionHandler, "application/json");
 
@@ -123,9 +123,9 @@ class ShareRecordsOperations{
 		apiPath = apiPath.concat("/");
 		apiPath = apiPath.concat(this.recordId.toString());
 		apiPath = apiPath.concat("/actions/share");
-		handlerInstance.apiPath = apiPath;
-		handlerInstance.httpMethod = Constants.REQUEST_METHOD_DELETE;
-		handlerInstance.categoryMethod = Constants.REQUEST_METHOD_DELETE;
+		handlerInstance.setAPIPath(apiPath);
+		handlerInstance.setHttpMethod(Constants.REQUEST_METHOD_DELETE);
+		handlerInstance.setCategoryMethod(Constants.REQUEST_METHOD_DELETE);
 		let DeleteActionHandler = require.resolve("./delete_action_handler");
 		return handlerInstance.apiCall(DeleteActionHandler, "application/json");
 

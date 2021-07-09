@@ -1,39 +1,39 @@
 /**
  * This class represents the HTTP header.
  */
-class Header{
+class Header {
 
-	name;
-	className;
+	_name;
+	_className;
 
 	/**
 	 * Creates a Header class instance with the specified header name.
 	 * @param {string} name - A String containing the header name.
 	 * @param {string} className - A String containing the class name.
 	 */
-	constructor(name, className=null) {
-		this.name = name;
-		this.className = className;
+	constructor(name, className = null) {
+		this._name = name;
+		this._className = className;
 	}
-	
+
 	/**
 	 * This is a getter method to get the header name.
 	 * @returns A String representing the header name.
 	 */
-	get name() {
-		return name;
+	getName() {
+		return this._name;
 	}
-	
+
 	/**
 	 * This is a getter method to get the class name.
 	 * @returns A String representing the class name.
 	 */
-	get className() {
-		return this.className;
+	getClassName() {
+		return this._className;
 	}
 }
 
 module.exports = {
-	MasterModel : Header, 
-	Header : Header
+	MasterModel: Header,
+	Header: Header
 }

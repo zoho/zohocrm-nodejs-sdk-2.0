@@ -1,12 +1,12 @@
-const ZCRMVariable = require("../../../../../../../core/com/zoho/crm/api/variables/variable").Variable;
-const {VariablesOperations, DeleteVariablesParam, GetVariableByIDParam, GetVariableForAPINameParam, GetVariablesParam}= require("../../../../../../../core/com/zoho/crm/api/variables/variables_operations");
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/variables/response_wrapper").ResponseWrapper;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/variables/success_response").SuccessResponse;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/variables/api_exception").APIException;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/variables/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/variables/action_wrapper").ActionWrapper;
-const VariableGroup = require("../../../../../../../core/com/zoho/crm/api/variable_groups/variable_group").VariableGroup;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
+const ZCRMVariable = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/variable").Variable;
+const {VariablesOperations, DeleteVariablesParam, GetVariableByIDParam, GetVariableForAPINameParam, GetVariablesParam}= require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/variables_operations");
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/response_wrapper").ResponseWrapper;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/success_response").SuccessResponse;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/api_exception").APIException;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variables/action_wrapper").ActionWrapper;
+const VariableGroup = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/variable_groups/variable_group").VariableGroup;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
 
 
 
@@ -33,16 +33,16 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -130,10 +130,10 @@ class Variable{
         let variable1 = new ZCRMVariable();
 
         //Set the name to variable
-        variable1.setName("Variable551");
+        variable1.setName("Variable1");
         
         //Set the API name to variable
-        variable1.setAPIName("Variable551");
+        variable1.setAPIName("Variable1");
         
         //Get instance of VariableGroup Class
         let variableGroup = new VariableGroup();
@@ -157,9 +157,9 @@ class Variable{
 
         variable1 = new ZCRMVariable();
 
-        variable1.setName("Variable661");
+        variable1.setName("Variable2");
 		
-		variable1.setAPIName("Variable661");
+		variable1.setAPIName("Variable2");
 		
 		variableGroup = new VariableGroup();
 		
@@ -185,10 +185,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -292,7 +292,7 @@ class Variable{
         //Get instance of Variable Class
         let variable1 = new ZCRMVariable();
 
-        variable1.setId(3477061000006852038n);
+        variable1.setId(34770616852038n);
 
         variable1.setValue("4763");
 
@@ -300,13 +300,15 @@ class Variable{
 
         variable1 = new ZCRMVariable();
 		
-		variable1.setId(3409643000002275035n);
+		variable1.setId(34096432275035n);
 		
 		variable1.setDescription("This is a new description");
 		
 		variableArray.push(variable1);
 		
 		variable1 = new ZCRMVariable();
+
+        variable1.setId(34770617444014n);
 		
 		variable1.setAPIName("NewAPI");
 		
@@ -321,10 +323,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -418,7 +420,7 @@ class Variable{
     static async deleteVariables(variableIds){
 
         //example
-        //let variableIds = [3409643000002275025n, 3409643000002275035n];
+        //let variableIds = [34096432275025n, 34096432275035n];
 
         //Get instance of VariablesOperations Class
         let variablesOperations = new VariablesOperations();
@@ -437,10 +439,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -541,7 +543,7 @@ class Variable{
         let paramInstance = new ParameterMap();
 
         /* Possible parameters of Get Variable By ID operation */
-        await paramInstance.add(GetVariableByIDParam.GROUP, "3477061000003089001");
+        await paramInstance.add(GetVariableByIDParam.GROUP, "34770613089001");
 
         //Call getVariableByGroupId method that takes paramInstance and variableId as parameter
         let response = await variablesOperations.getVariableById(variableId, paramInstance);
@@ -549,16 +551,16 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -635,7 +637,7 @@ class Variable{
     static async updateVariableById(variableId){
 
         //example
-        //let variableId = 3409643000002275025n;
+        //let variableId = 34096432275025n;
 
         //Get instance of VariablesOperations Class
         let variablesOperations = new VariablesOperations();
@@ -663,10 +665,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -760,7 +762,7 @@ class Variable{
     static async deleteVariable(variableId){
 
         //example
-        //let variableId = 3409643000002275025n;
+        //let variableId = 34096432275025n;
 
         //Get instance of VariablesOperations Class
         let variablesOperations = new VariablesOperations();
@@ -771,10 +773,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -886,16 +888,16 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1000,10 +1002,10 @@ class Variable{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

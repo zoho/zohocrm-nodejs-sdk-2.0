@@ -1,7 +1,7 @@
-const {CustomViewsOperations, GetCustomViewsParam} = require("../../../../../../../core/com/zoho/crm/api/custom_views/custom_views_operations");
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/custom_views/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/custom_views/api_exception").APIException;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
+const {CustomViewsOperations, GetCustomViewsParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/custom_views/custom_views_operations");
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/custom_views/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/custom_views/api_exception").APIException;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
 
 class CustomView{
 
@@ -33,16 +33,16 @@ class CustomView{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -53,7 +53,6 @@ class CustomView{
                     let customViews = responseObject.getCustomViews();
 
                     customViews.forEach(customView => {
-
                         //Get the ID of each CustomView
                         console.log("CustomView ID: " + customView.getId());
 
@@ -173,7 +172,7 @@ class CustomView{
 
         //example
         // let moduleAPIName = "Leads"
-        // let customViewId = 3409643000000087507n;
+        // let customViewId = 34096430087507n;
 
         //Get instance of CustomViewOperations Class that takes moduleAPIName as parameter
         let customViewsOperations = new CustomViewsOperations(moduleAPIName);
@@ -184,16 +183,16 @@ class CustomView{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

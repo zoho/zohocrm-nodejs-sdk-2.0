@@ -1,7 +1,7 @@
-const LayoutsOperations = require("../../../../../../../core/com/zoho/crm/api/layouts/layouts_operations").LayoutsOperations;
-const ZCRMLayout = require("../../../../../../../core/com/zoho/crm/api/layouts/layout").Layout;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/layouts/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/layouts/api_exception").APIException;
+const LayoutsOperations = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/layouts/layouts_operations").LayoutsOperations;
+const ZCRMLayout = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/layouts/layout").Layout;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/layouts/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/layouts/api_exception").APIException;
 
 class Layout{
 
@@ -24,27 +24,25 @@ class Layout{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
-            if(responseObject != null){
-
+            if(responseObject != null) {
                 //Check if expected ResponseWrapper instance is received. 
-                if(responseObject instanceof ResponseWrapper){
-
+                if(responseObject instanceof ResponseWrapper) {
                     //Get the array of obtained Layout instances
                     let layouts = responseObject.getLayouts();
 
                     layouts.forEach(layout => {
-                        if(layout.getCreatedTime() != null){
+                        if(layout.getCreatedTime() != null) {
 							//Get the CreatedTime of each Layout
 							console.log("Layout CreatedTime: " + layout.getCreatedTime().toString());
 						}
@@ -244,7 +242,7 @@ class Layout{
 
         //example
 		//let moduleAPIName = "Leads";
-        //let layoutId = 3477061000000091055n
+        //let layoutId = 34770610091055n
         
         //Get instance of LayoutsOperations Class that takes moduleAPIName as parameter
         let layoutsOperations = new LayoutsOperations(moduleAPIName);
@@ -255,16 +253,16 @@ class Layout{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

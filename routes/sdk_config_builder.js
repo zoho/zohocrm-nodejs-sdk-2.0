@@ -1,17 +1,19 @@
-const SDKConfig = require('./sdk_config').SDKConfig; 
+const SDKConfig = require('./sdk_config').SDKConfig;
 
 class SDKConfigBuilder {
-    autoRefreshFields = false;
+    _autoRefreshFields = false;
 
-    pickListValidation = true;
+    _pickListValidation = true;
+
+    _timeout = 0;
 
     /**
      * This is a setter method to set autoRefreshFields.
      * @param {Boolean} autoRefreshFields A boolean value
      * @returns {SDKConfigBuilder} An instance of SDKConfigBuilder
      */
-    setAutoRefreshFields(autoRefreshFields) {
-        this.autoRefreshFields = autoRefreshFields;
+    autoRefreshFields(autoRefreshFields) {
+        this._autoRefreshFields = autoRefreshFields;
 
         return this;
     }
@@ -21,8 +23,19 @@ class SDKConfigBuilder {
      * @param {Boolean} pickListValidation A boolean value
      * @returns {SDKConfigBuilder} An instance of SDKConfigBuilder
      */
-    setPickListValidation(pickListValidation) {
-        this.pickListValidation = pickListValidation;
+    pickListValidation(pickListValidation) {
+        this._pickListValidation = pickListValidation;
+
+        return this;
+    }
+
+    /**
+     * This is a setter method to set API timeout.
+     * @param {number} timeout
+     * @returns {SDKConfigBuilder} An instance of SDKConfigBuilder
+     */
+    timeout(timeout) {
+        this._timeout = timeout > 0 ? timeout : 0;
 
         return this;
     }
@@ -32,11 +45,11 @@ class SDKConfigBuilder {
      * @returns {SDKConfig} An instance of SDKConfig
      */
     build() {
-        return new SDKConfig(this.autoRefreshFields, this.pickListValidation);
+        return new SDKConfig(this._autoRefreshFields, this._pickListValidation, this._timeout);
     }
 }
 
 module.exports = {
-    MasterModel : SDKConfigBuilder,
-    SDKConfigBuilder : SDKConfigBuilder
+    MasterModel: SDKConfigBuilder,
+    SDKConfigBuilder: SDKConfigBuilder
 }

@@ -19,9 +19,6 @@ class DeleteActionWrapper{
 	 * @param {DeleteActionResponse} share An instance of DeleteActionResponse
 	 */
 	setShare(share)	{
-		if((share != null) && (!(share instanceof DeleteActionResponse)))	{
-			throw new SDKException(Constants.DATA_TYPE_ERROR, "KEY: share EXPECTED TYPE: DeleteActionResponse", null, null);
-		}
 		this.share = share;
 		this.keyModified.set("share", 1);
 

@@ -1,21 +1,21 @@
 const Environment = require("./environment").Environment;
 
 /**
- * This class represents the properties of Zoho CRM DataCenter
+ * The abstract class represents the properties of Zoho CRM DataCenter.
  */
-class DataCenter{
+class DataCenter {
 
     /**
-     * The method to get the accounts URL.
+     * This method to get accounts URL. URL to be used when calling an OAuth accounts.
      * @returns A String representing the accounts URL.
      */
-    getIamUrl(){}
+    getIAMUrl() { }
 
     /**
      * The method to get the File Upload URL
      * @returns A String representing the File Upload URL.
      */
-    getFileUploadUrl(){}
+    getFileUploadUrl() { }
 
     /**
      * This method sets the environment to the calling DataCenter instance
@@ -23,9 +23,12 @@ class DataCenter{
      * @param {string} accountsUrl - A String representing the accounts URL to fetch tokens.
      * @param {string} fileUploadUrl - A String representing the File Upload URL
      */
-    static setEnvironment(url, accountsUrl, fileUploadUrl){
-        return new Environment(url, accountsUrl, fileUploadUrl);
+    static setEnvironment(url, accountsUrl, fileUploadUrl, $name) {
+        return new Environment(url, accountsUrl, fileUploadUrl, $name);
     }
 }
 
-module.exports = {DataCenter}
+module.exports = {
+    MasterModel: DataCenter,
+    DataCenter: DataCenter
+}

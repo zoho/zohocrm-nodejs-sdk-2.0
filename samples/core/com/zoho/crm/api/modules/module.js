@@ -1,12 +1,12 @@
-const {ModulesOperations, GetModulesHeader} = require("../../../../../../../core/com/zoho/crm/api/modules/modules_operations");
-const HeaderMap = require("../../../../../../../routes/header_map").HeaderMap;
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/modules/response_wrapper").ResponseWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/modules/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/modules/success_response").SuccessResponse;
-const ZCRMProfile = require("../../../../../../../core/com/zoho/crm/api/profiles/profile").Profile;
-const ZCRMModule = require("../../../../../../../core/com/zoho/crm/api/modules/module").Module;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/modules/body_wrapper").BodyWrapper;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/modules/action_wrapper").ActionWrapper;
+const {ModulesOperations, GetModulesHeader} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/modules_operations");
+const HeaderMap = require("@zohocrm/nodejs-sdk-2.0/routes/header_map").HeaderMap;
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/response_wrapper").ResponseWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/success_response").SuccessResponse;
+const ZCRMProfile = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/profiles/profile").Profile;
+const ZCRMModule = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/module").Module;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/body_wrapper").BodyWrapper;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/modules/action_wrapper").ActionWrapper;
 
 
 class Module{
@@ -32,27 +32,24 @@ class Module{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
-            if(responseObject != null){
-
+            if(responseObject != null) {
                 //Check if expected ResponseWrapper instance is received.
-                if(responseObject instanceof ResponseWrapper){
-
+                if(responseObject instanceof ResponseWrapper) {
                     //Get the array of obtained Module instances
                     let modules = responseObject.getModules();
 
-                    modules.forEach(module=> {
-
+                    modules.forEach(async module => {
 						//Get the Name of each Module
 						console.log("Module Name: " + module.getName());
 						
@@ -89,7 +86,7 @@ class Module{
 						console.log("Module Id: " + module.getId().toString());
 						
 						//Get the Visibility of each Module
-						console.log("Module Visibility: " + module.getVisibility().toString());
+						console.log("Module Visibility: " + module.getVisibility());
 						
 						//Get the Convertable of each Module
 						console.log("Module Convertable: " + module.getConvertable().toString());
@@ -98,7 +95,7 @@ class Module{
 						console.log("Module Editable: " + module.getEditable().toString());
 						
 						//Get the EmailtemplateSupport of each Module
-						console.log("Module EmailtemplateSupport: " + module.getEmailtemplateSupport().toString());
+						console.log("Module EmailtemplateSupport: " + module.getEmailtemplateSupport());
 						
 						//Get the list of Profile instance each Module
 						let profiles = module.getProfiles();
@@ -116,7 +113,7 @@ class Module{
 						}
 								
 						//Get the FilterSupported of each Module
-						console.log("Module FilterSupported: " + module.getFilterSupported().toString());
+						console.log("Module FilterSupported: " + module.getFilterSupported());
 						
 						//Get the ShowAsTab of each Module
 						console.log("Module ShowAsTab: " + module.getShowAsTab().toString());
@@ -140,7 +137,7 @@ class Module{
 						console.log("Module APIName: " + module.getAPIName());
 						
 						//Get the QuickCreate of each Module
-						console.log("Module QuickCreate: " + module.getQuickCreate().toString());
+						console.log("Module QuickCreate: " + module.getQuickCreate());
 						
 						//Get the modifiedBy User instance of each Module
 						let modifiedBy = module.getModifiedBy();
@@ -158,13 +155,13 @@ class Module{
 						console.log("Module GeneratedType: " + module.getGeneratedType().getValue());
 						
 						//Get the FeedsRequired of each Module
-						console.log("Module FeedsRequired: " + module.getFeedsRequired().toString());
+						console.log("Module FeedsRequired: " + module.getFeedsRequired());
 						
 						//Get the ScoringSupported of each Module
 						console.log("Module ScoringSupported: " + module.getScoringSupported().toString());
 						
 						//Get the WebformSupported of each Module
-						console.log("Module WebformSupported: " + module.getWebformSupported().toString());
+						console.log("Module WebformSupported: " + module.getWebformSupported());
 						
 						//Get the list of Argument instance each Module
 						let moduleArguments = module.getArguments();
@@ -248,16 +245,16 @@ class Module{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -273,7 +270,7 @@ class Module{
 						console.log("Module Name: " + module.getName());
 						
 						//Get the GlobalSearchSupported of each Module
-                        console.log("Module GlobalSearchSupported: " + module.getGlobalSearchSupported().toString());
+                        console.log("Module GlobalSearchSupported: " + module.getGlobalSearchSupported());
                         
                         if(module.getKanbanView() != null) {
                             //Get the KanbanView of each Module
@@ -295,7 +292,7 @@ class Module{
                         }
 					
 						//Get the InventoryTemplateSupported of each Module
-						console.log("Module InventoryTemplateSupported: " + module.getInventoryTemplateSupported().toString());
+						console.log("Module InventoryTemplateSupported: " + module.getInventoryTemplateSupported());
 						
 						if(module.getModifiedTime() != null){
 							//Get the ModifiedTime of each Module
@@ -306,10 +303,10 @@ class Module{
 						console.log("Module PluralLabel: " + module.getPluralLabel());
 						
 						//Get the PresenceSubMenu of each Module
-						console.log("Module PresenceSubMenu: " + module.getPresenceSubMenu().toString());
+						console.log("Module PresenceSubMenu: " + module.getPresenceSubMenu());
 						
 						//Get the TriggersSupported of each Module
-						console.log("Module TriggersSupported: " + module.getTriggersSupported().toString());
+						console.log("Module TriggersSupported: " + module.getTriggersSupported());
 						
 						//Get the Id of each Module
 						console.log("Module Id: " + module.getId().toString());
@@ -349,10 +346,10 @@ class Module{
 						}
 						
 						//Get the PerPage of each Module
-						console.log("Module PerPage: " + module.getPerPage().toString());
+						console.log("Module PerPage: " + module.getPerPage());
 						
 						//Get the Visibility of each Module
-						console.log("Module Visibility: " + module.getVisibility().toString());
+						console.log("Module Visibility: " + module.getVisibility());
 						
 						//Get the Convertable of each Module
 						console.log("Module Convertable: " + module.getConvertable().toString());
@@ -361,7 +358,7 @@ class Module{
 						console.log("Module Editable: " + module.getEditable().toString());
 						
 						//Get the EmailtemplateSupport of each Module
-						console.log("Module EmailtemplateSupport: " + module.getEmailtemplateSupport().toString());
+						console.log("Module EmailtemplateSupport: " + module.getEmailtemplateSupport());
 						
 						//Get the list of Profile instance each Module
 						let profiles = module.getProfiles();
@@ -378,7 +375,7 @@ class Module{
 						}
 								
 						//Get the FilterSupported of each Module
-						console.log("Module FilterSupported: " + module.getFilterSupported().toString());
+						console.log("Module FilterSupported: " + module.getFilterSupported());
 						
 						//Get the DisplayField of each Module
 						console.log("Module DisplayField: " + module.getDisplayField());
@@ -400,7 +397,7 @@ class Module{
                         }
 						
 						//Get the ShowAsTab of each Module
-						console.log("Module ShowAsTab: " + module.getShowAsTab().toString());
+						console.log("Module ShowAsTab: " + module.getShowAsTab());
 						
 						//Get the WebLink of each Module
 						console.log("Module WebLink: " + module.getWebLink());
@@ -421,7 +418,7 @@ class Module{
 						console.log("Module APIName: " + module.getAPIName());
 						
 						//Get the QuickCreate of each Module
-						console.log("Module QuickCreate: " + module.getQuickCreate().toString());
+						console.log("Module QuickCreate: " + module.getQuickCreate());
 						
 						//Get the modifiedBy User instance of each Module
 						let modifiedBy = module.getModifiedBy();
@@ -439,13 +436,13 @@ class Module{
 						console.log("Module GeneratedType: " + module.getGeneratedType().getValue());
 						
 						//Get the FeedsRequired of each Module
-						console.log("Module FeedsRequired: " + module.getFeedsRequired().toString());
+						console.log("Module FeedsRequired: " + module.getFeedsRequired());
 						
 						//Get the ScoringSupported of each Module
 						console.log("Module ScoringSupported: " + module.getScoringSupported().toString());
 						
 						//Get the WebformSupported of each Module
-						console.log("Module WebformSupported: " + module.getWebformSupported().toString());
+						console.log("Module WebformSupported: " + module.getWebformSupported());
 						
 						//Get the list of Argument instance each Module
 						let moduleArguments = module.getArguments();
@@ -465,7 +462,7 @@ class Module{
 						console.log("Module ModuleName: " + module.getModuleName());
 						
 						//Get the BusinessCardFieldLimit of each Module
-						console.log("Module BusinessCardFieldLimit: " + module.getBusinessCardFieldLimit().toString());
+						console.log("Module BusinessCardFieldLimit: " + module.getBusinessCardFieldLimit());
 						
 						//Get the CustomView instance of each Module
 						let customView = module.getCustomView();
@@ -536,7 +533,7 @@ class Module{
         let profile = new ZCRMProfile();
 
         //To set the Profile Id
-        profile.setId(3477061000000026014n);
+        profile.setId(34770610026014n);
 
         //Add Profile instance to the array
         profilesArray.push(profile);
@@ -562,10 +559,10 @@ class Module{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -659,7 +656,7 @@ class Module{
     static async updateModuleById(moduleId){
 
         //example
-        //moduleId = 3409643000000252001n
+        //moduleId = 34096430252001n
 
         //Get instance of ModulesOperations Class
         let modulesOperations = new ModulesOperations();
@@ -675,7 +672,7 @@ class Module{
         let module = new ZCRMModule();
 
         //To set the Profile Id
-        profile.setId(3477061000000026014n);
+        profile.setId(34770610026014n);
 
         profile.setDelete(true);
 
@@ -703,10 +700,10 @@ class Module{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

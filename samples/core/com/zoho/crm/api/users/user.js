@@ -1,15 +1,15 @@
-const {UsersOperations, GetUserHeader, GetUsersHeader, GetUsersParam} = require("../../../../../../../core/com/zoho/crm/api/users/users_operations");
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/users/response_wrapper").ResponseWrapper;
-const ZCRMUser = require("../../../../../../../core/com/zoho/crm/api/users/user").User;
-const ZCRMRole = require("../../../../../../../core/com/zoho/crm/api/roles/role").Role;
-const ZCRMProfile = require("../../../../../../../core/com/zoho/crm/api/profiles/profile").Profile;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/users/action_wrapper").ActionWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/users/body_wrapper").BodyWrapper;
-const RequestWrapper = require("../../../../../../../core/com/zoho/crm/api/users/request_wrapper").RequestWrapper;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/users/api_exception").APIException;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/users/success_response").SuccessResponse;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const HeaderMap = require("../../../../../../../routes/header_map").HeaderMap;
+const {UsersOperations, GetUserHeader, GetUsersHeader, GetUsersParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/users_operations");
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/response_wrapper").ResponseWrapper;
+const ZCRMUser = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/user").User;
+const ZCRMRole = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/roles/role").Role;
+const ZCRMProfile = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/profiles/profile").Profile;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/action_wrapper").ActionWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/body_wrapper").BodyWrapper;
+const RequestWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/request_wrapper").RequestWrapper;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/api_exception").APIException;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/users/success_response").SuccessResponse;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const HeaderMap = require("@zohocrm/nodejs-sdk-2.0/routes/header_map").HeaderMap;
 
 class User{
 
@@ -44,16 +44,16 @@ class User{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -390,10 +390,10 @@ class User{
 	 * Specify the unique id of the user in your API request to get the data for that particular user.
 	 * @param {BigInt} userId The ID of the User to be obtained
 	 */
-    static async getuser(userId){
+    static async getUser(userId){
 
 		//example
-		//let userId = 3409643000000302031n;
+		//let userId = 34096430302031n;
 
 		//Get instance of UsersOperations Class
         let usersOperations = new UsersOperations();
@@ -410,16 +410,16 @@ class User{
         if(response != null){
 
 			//Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
 			//Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -744,13 +744,13 @@ class User{
         let user = new ZCRMUser();
 
 		//Set ID to User instance
-        user.setId(3409643000000302031n);
+        user.setId(34770615791024n);
 
 		//Get instance of Role Class
         let role = new ZCRMRole();
 
 		//Set ID to Role instance
-        role.setId(3409643000000026008n);
+        role.setId(34770610026008n);
 
 		//Set role instance to role in User
         user.setRole(role);
@@ -764,12 +764,12 @@ class User{
         user = new ZCRMUser();
 
 		//Set ID to Role instance
-		user.setId(3409643000000302042n);
+		user.setId(34096430302042n);
 		
 		role = new ZCRMRole();
 
 		//Set ID to Role instance
-        role.setId(3409643000000026008n);
+        role.setId(34096430026008n);
 
 		//Set role instance to role in User
         user.setRole(role);
@@ -786,10 +786,10 @@ class User{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -883,7 +883,7 @@ class User{
     static async updateUser(userId){
 
 		//example
-		//let userId = 3409643000000302031n;
+		//let userId = 34096430302031n;
 
 		//Get instance of UsersOperations Class
         let usersOperations = new UsersOperations();
@@ -901,7 +901,7 @@ class User{
         let role = new ZCRMRole();
 
 		//Set ID to role
-        role.setId(3409643000000026008n);
+        role.setId(34770610026008n);
 
 		//Set role instance to role in User instance
         user.setRole(role);
@@ -921,10 +921,10 @@ class User{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1019,7 +1019,7 @@ class User{
     static async deleteUser(userId){
 
 		//example
-		//let userId = 3409643000000302031n;
+		//let userId = 34096430302031n;
 
 		//Get instance of UsersOperations Class
         let usersOperations = new UsersOperations();
@@ -1030,10 +1030,10 @@ class User{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -1141,7 +1141,7 @@ class User{
         let role = new ZCRMRole();
 
 		//Set ID to Role instance
-        role.setId(3409643000000026008n);
+        role.setId(34770610026008n);
 
 		//Set Role instance to role in User
         user.setRole(role);
@@ -1152,12 +1152,12 @@ class User{
 
         user.setLastName("User");
 		
-        user.setEmail("testuser@zoho.com");
+        user.setEmail("testuser1234234567@zoho.com");
 
 		//Get instance of Profile Class
         let profile = new ZCRMProfile();
 
-        profile.setId(3409643000000395047n);
+        profile.setId(34770610026014n);
 
 		//Set profile instance to profile in User instance
         user.setProfile(profile);
@@ -1174,10 +1174,10 @@ class User{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 

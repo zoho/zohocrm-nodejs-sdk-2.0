@@ -1,7 +1,7 @@
-const {FieldsOperations, GetFieldsParam} = require("../../../../../../../core/com/zoho/crm/api/fields/fields_operations");
-const { APIException } = require("../../../../../../../core/com/zoho/crm/api/contact_roles/api_exception");
-const ResponseWrapper = require("../../../../../../../core/com/zoho/crm/api/fields/response_wrapper").ResponseWrapper;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
+const {FieldsOperations, GetFieldsParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/fields/fields_operations");
+const { APIException } = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/contact_roles/api_exception");
+const ResponseWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/fields/response_wrapper").ResponseWrapper;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
 
 class Field{
 
@@ -29,27 +29,25 @@ class Field{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
                 //Check if expected ResponseWrapper instance is received 
-                if(responseObject instanceof ResponseWrapper){
-
+                if(responseObject instanceof ResponseWrapper) {
                     //Get the array of obtained Field instances
                     let fields =  responseObject.getFields();
 
                     fields.forEach(field => {
-
                         //Get the ID of each Field
                         console.log("Field ID: " + field.getId().toString());
 
@@ -420,18 +418,18 @@ class Field{
                     });
                 }
                 //Check if the request returned an exception
-                else if(actionResponse instanceof APIException){
+                else if(responseObject instanceof APIException){
 
                     //Get the Status
-                    console.log("Status: " + actionResponse.getStatus().getValue());
+                    console.log("Status: " + responseObject.getStatus().getValue());
 
                     //Get the Code
-                    console.log("Code: " + actionResponse.getCode().getValue());
+                    console.log("Code: " + responseObject.getCode().getValue());
 
                     console.log("Details");
 
                     //Get the details map
-                    let details = actionResponse.getDetails();
+                    let details = responseObject.getDetails();
 
                     if(details != null){
                         Array.from(details.keys()).forEach(key => {
@@ -440,7 +438,7 @@ class Field{
                     }
 
                     //Get the Message
-                    console.log("Message: " + actionResponse.getMessage().getValue());
+                    console.log("Message: " + responseObject.getMessage().getValue());
                 } 
             }
         }
@@ -456,7 +454,7 @@ class Field{
 
         //example
         // let moduleAPIName = "Leads"
-        // let fieldId = 3409643000002293043n
+        // let fieldId = 34096432293043n
 
         //Get instance of FieldsOperations Class that takes moduleAPIName as parameter
         let fieldsOperations = new FieldsOperations(moduleAPIName);
@@ -467,16 +465,16 @@ class Field{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -528,10 +526,10 @@ class Field{
                         if(toolTip != null){
 
                             //Get the Name of the ToolTip
-                            console.log("Field ToolTip Name: " + tooltip.getName());
+                            console.log("Field ToolTip Name: " + toolTip.getName());
 
                             //Get the Value of the ToolTip
-                            console.log("Field ToolTip Value: " + tooltip.getValue());
+                            console.log("Field ToolTip Value: " + toolTip.getValue());
                         }
 
                         //Get the CreatedSource of each Field

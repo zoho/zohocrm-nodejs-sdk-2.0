@@ -1,13 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const {FileOperations, GetFileParam, UploadFilesParam} = require("../../../../../../../core/com/zoho/crm/api/file/file_operations");
-const FileBodyWrapper = require("../../../../../../../core/com/zoho/crm/api/file/file_body_wrapper").FileBodyWrapper;
-const BodyWrapper = require("../../../../../../../core/com/zoho/crm/api/file/body_wrapper").BodyWrapper;
-const SuccessResponse = require("../../../../../../../core/com/zoho/crm/api/file/success_response").SuccessResponse;
-const APIException = require("../../../../../../../core/com/zoho/crm/api/file/api_exception").APIException;
-const ActionWrapper = require("../../../../../../../core/com/zoho/crm/api/file/action_wrapper").ActionWrapper;
-const ParameterMap = require("../../../../../../../routes/parameter_map").ParameterMap;
-const StreamWrapper = require("../../../../../../../utils/util/stream_wrapper").StreamWrapper;
+const {FileOperations, GetFileParam, UploadFilesParam} = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/file_operations");
+const FileBodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/file_body_wrapper").FileBodyWrapper;
+const BodyWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/body_wrapper").BodyWrapper;
+const SuccessResponse = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/success_response").SuccessResponse;
+const APIException = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/api_exception").APIException;
+const ActionWrapper = require("@zohocrm/nodejs-sdk-2.0/core/com/zoho/crm/api/file/action_wrapper").ActionWrapper;
+const ParameterMap = require("@zohocrm/nodejs-sdk-2.0/routes/parameter_map").ParameterMap;
+const StreamWrapper = require("@zohocrm/nodejs-sdk-2.0/utils/util/stream_wrapper").StreamWrapper;
 
 class File{
 
@@ -37,9 +37,9 @@ class File{
          * param 1 -> fileName 
          * param 2 -> Read Stream.
          */
-        let streamWrapper1 = new StreamWrapper(null, fs.createReadStream("/Users/user_name/Desktop/file1.txt"));
+        // let streamWrapper1 = new StreamWrapper(null, fs.createReadStream("/Users/user_name/Desktop/file1.txt"));
 
-        let streamWrapper3 = new StreamWrapper(null, fs.createReadStream("/Users/user_name/Desktop/file2.txt"));
+        // let streamWrapper3 = new StreamWrapper(null, fs.createReadStream("/Users/user_name/Desktop/file2.txt"));
 
         /**
          * param 1 -> fileName
@@ -49,17 +49,18 @@ class File{
         let streamWrapper2 = new StreamWrapper(null, null, "/Users/user_name/Desktop/file3.txt");
 
         //Set file to the FileBodyWrapper instance
-        request.setFile([streamWrapper1, streamWrapper2, streamWrapper3]);
+        // request.setFile([streamWrapper1, streamWrapper2, streamWrapper3]);
+        request.setFile([streamWrapper2]);
 
         //Call uploadFile method that takes BodyWrapper instance and ParameterMap instance as parameter.
         let response = await fileOperations.uploadFiles(request, paramInstance);
 
         if(response != null){
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
                 //Check if expected ActionWrapper instance is received. 
@@ -169,16 +170,16 @@ class File{
         if(response != null){
 
             //Get the status code from response
-            console.log("Status Code: " + response.statusCode);
+            console.log("Status Code: " + response.getStatusCode());
 
-            if([204, 304].includes(response.statusCode)){
-                console.log(response.statusCode == 204? "No Content" : "Not Modified");
+            if([204, 304].includes(response.getStatusCode())){
+                console.log(response.getStatusCode() == 204? "No Content" : "Not Modified");
 
                 return;
             }
 
             //Get object from response
-            let responseObject = response.object;
+            let responseObject = response.getObject();
 
             if(responseObject != null){
 
@@ -189,10 +190,10 @@ class File{
                     let streamWrapper = responseObject.getFile();
 
                     //Construct the file name by joining the destinationFolder and the name from StreamWrapper instance
-                    let fileName = path.join(destinationFolder, streamWrapper.Name);
+                    let fileName = path.join(destinationFolder, streamWrapper.getName());
 
                     //Get the stream from StreamWrapper instance
-                    let readStream = streamWrapper.Stream;
+                    let readStream = streamWrapper.getStream();
 
                     //Write the stream to the destination file.
                     fs.writeFileSync(fileName, readStream);
