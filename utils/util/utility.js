@@ -122,7 +122,7 @@ class Utility {
     /**
      * This method to fetch field details of the current module for the current user and store the result in a JSON file.
      * @param {string} moduleAPIName - A String containing the CRM module API name.
-     * @param {string} handlerInstance - A String containing CommonAPIHandler Instance.
+     * @param {CommonAPIHandler} handlerInstance - A String containing CommonAPIHandler Instance.
      */
     static async getFields(moduleAPIName, handlerInstance = null) {
         this.moduleAPIName = moduleAPIName;
@@ -133,7 +133,7 @@ class Utility {
     /**
      * This method to fetch field details of the current module for the current user and store the result in a JSON file.
      * @param {string} moduleAPIName - A String containing the CRM module API name.
-     * @param {string} handlerInstance - A String containing CommonAPIHandler Instance.
+     * @param {CommonAPIHandler} handlerInstance - A String containing CommonAPIHandler Instance.
      */
      static async getFieldsInfo(moduleAPIName, handlerInstance = null) {
         let lastModifiedTime = null;
@@ -399,7 +399,7 @@ class Utility {
 
                     commonAPIHandler.setModuleAPIName(relatedListObject[Constants.MODULE]);
 
-                    await Utility.getFields(relatedListObject[Constants.MODULE], commonAPIHandler);
+                    await Utility.getFieldsInfo(relatedListObject[Constants.MODULE], commonAPIHandler);
                 }
 
                 return true;
@@ -552,7 +552,7 @@ class Utility {
 
                     let exception = new SDKException(Constants.API_EXCEPTION, null, errorResponse, null);
 
-                    if(this.moduleAPIname.toLowerCase() == moduleAPIName.toLowerCase()) {
+                    if(this.moduleAPIname != null && this.moduleAPIname.toLowerCase() == moduleAPIName.toLowerCase()) {
                         throw exception;
                     }
 
@@ -874,7 +874,7 @@ class Utility {
             fieldDetail.values = values;
         }
 
-        if (apiType == Constants.SUBFORM && field.getSubform() != null) {
+        if (apiType.toLowerCase() == Constants.SUBFORM && field.getSubform() != null) {
             module = field.getSubform().getModule();
 
             fieldDetail.module = module;
@@ -884,7 +884,7 @@ class Utility {
             fieldDetail.subform = true;
         }
 
-        if (apiType == Constants.LOOKUP && field.getLookup() != null) {
+        if (apiType.toLowerCase() == Constants.LOOKUP && field.getLookup() != null) {
             module = field.getLookup().getModule();
 
             if (module != null && module.toLowerCase() != Constants.SE_MODULE) {

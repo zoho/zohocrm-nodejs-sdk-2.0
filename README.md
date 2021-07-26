@@ -560,7 +560,7 @@ class Initializer {
     }
 }
 
-Initializer.initialize()
+Initializer.initialize();
 ```
 
 - You can now access the functionalities of the SDK. Refer to the sample codes to make various API calls through the SDK.

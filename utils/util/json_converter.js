@@ -19,7 +19,7 @@ class JSONConverter extends Converter {
 	}
 
 	async appendToRequest(requestBase, requestObject) {
-		return JSON.stringify(requestBase.requestBody) || null;
+		return JSON.stringify(requestBase.getRequestBody()) || null;
 	}
 
 	async formRequest(requestInstance, pack, instanceNumber, memberDetail) {
@@ -420,7 +420,7 @@ class JSONConverter extends Converter {
 				}
 			}
 			else {
-				if (memberDetail.hasOwnProperty(Constants.KEYS)) {
+				if (memberDetail !== null && memberDetail.hasOwnProperty(Constants.KEYS)) {
 					var keysDetail = memberDetail[Constants.KEYS];
 
 					for (let keyIndex = 0; keyIndex < keysDetail.length; keyIndex++) {
@@ -757,14 +757,14 @@ class JSONConverter extends Converter {
 		}
 	}
 
-	findMatch(classes, responseJson) {
+	async findMatch(classes, responseJson) {
 		let pack = "";
 
 		let ratio = 0;
 
 		for (let className of classes) {
 
-			var matchRatio = this.findRatio(className, responseJson);
+			var matchRatio = await this.findRatio(className, responseJson);
 
 			if (matchRatio == 1.0) {
 
