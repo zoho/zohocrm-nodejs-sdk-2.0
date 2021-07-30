@@ -22,7 +22,7 @@ class Utility {
 
     static moduleAPIname = null;
 
-    static apiSupportedModule = new Map();
+    static apiSupportedModule = {};
 
     static async assertNotNull(value, errorCode, errorMessage) {
         if (value == null) {
@@ -180,7 +180,7 @@ class Utility {
                 if (Object.keys(this.apiSupportedModule).length > 0) {
                     for (let module in this.apiSupportedModule) {
                         if (!recordFieldDetailsJson.hasOwnProperty(module)) {
-                            let moduleData = this.apiSupportedModule.get(module);
+                            let moduleData = this.apiSupportedModule[module];
 
                             recordFieldDetailsJson[module] = {};
 
@@ -287,7 +287,7 @@ class Utility {
         fs.writeFileSync(recordFieldDetailsPath, JSON.stringify(recordFieldDetailsJson));
 
         if (Object.keys(modifiedModules).length > 0) {
-            for (let module of modifiedModules) {
+            for (let module in modifiedModules) {
                 if (recordFieldDetailsJson.hasOwnProperty(module)) {
 
                     delete recordFieldDetailsJson[module];
@@ -296,10 +296,10 @@ class Utility {
 
             fs.writeFileSync(recordFieldDetailsPath, JSON.stringify(recordFieldDetailsJson));
 
-            for (let module of modifiedModules) {
-                let moduleData = modifiedModules[module];
+            for (let module in modifiedModules) {
+                let moduleMeta = modifiedModules[module];
 
-                await Utility.getFieldsInfo(moduleData[Constants.API_NAME]);
+                await Utility.getFieldsInfo(moduleMeta[Constants.API_NAME]);
             }
         }
     }
@@ -634,21 +634,32 @@ class Utility {
 
         let recordFieldDetailsPath = await this.getFileName();
 
-        if (!fs.existsSync(recordFieldDetailsPath) || (fs.existsSync(recordFieldDetailsPath) && Initializer.getJSON(recordFieldDetailsPath)[Constants.SDK_MODULE_METADATA] == null)) {
-            moduleData = Utility.getModules(null);
+        if (!fs.existsSync(recordFieldDetailsPath)) {
+            moduleData = await Utility.getModules(null);
 
-            Utility.writeModuleMetaData(recordFieldDetailsPath, moduleData);
+            await Utility.writeModuleMetaData(recordFieldDetailsPath, moduleData);
 
             return moduleData;
         }
+        else if (fs.existsSync(recordFieldDetailsPath)) {
+            let recordFieldDetailsJson = await Initializer.getJSON(recordFieldDetailsPath);
+            
+            if (!recordFieldDetailsJson.hasOwnProperty(Constants.SDK_MODULE_METADATA) || (recordFieldDetailsJson.hasOwnProperty(Constants.SDK_MODULE_METADATA) && (recordFieldDetailsJson[Constants.SDK_MODULE_METADATA] == null || Object.keys(recordFieldDetailsJson[Constants.SDK_MODULE_METADATA]).length <= 0))) {
+                moduleData = await Utility.getModules(null);
 
-        let recordFieldDetailsJson = Initializer.getJSON(recordFieldDetailsPath);
+                await Utility.writeModuleMetaData(recordFieldDetailsPath, moduleData);
+
+                return moduleData;
+            }
+        }
+
+        let recordFieldDetailsJson = await Initializer.getJSON(recordFieldDetailsPath);
 
         return recordFieldDetailsJson[Constants.SDK_MODULE_METADATA];
     }
 
     static async writeModuleMetaData(recordFieldDetailsPath, moduleData) {
-        let fieldDetailsJSON = fs.existsSync(recordFieldDetailsPath) ? Initializer.getJSON(recordFieldDetailsPath) : {};
+        let fieldDetailsJSON = fs.existsSync(recordFieldDetailsPath) ? await Initializer.getJSON(recordFieldDetailsPath) : {};
 
         fieldDetailsJSON[Constants.SDK_MODULE_METADATA] = moduleData;
 
@@ -666,7 +677,7 @@ class Utility {
 
         const GetModulesHeader = require("../../core/com/zoho/crm/api/modules/modules_operations").GetModulesHeader;
 
-        let apiNames = new Map();
+        let apiNames = {};
 
         let headerMap = new HeaderMap();
 
@@ -696,7 +707,7 @@ class Utility {
 
                             moduleDetails[Constants.GENERATED_TYPE] = module.getGeneratedType().getValue();
 
-                            apiNames.set(module.getAPIName().toLowerCase(), moduleDetails);
+                            apiNames[module.getAPIName().toLowerCase()] = moduleDetails;
                         }
                     });
                 }
@@ -732,7 +743,7 @@ class Utility {
 
                 var recordFieldDetailsPath = await this.getFileName();
 
-                Utility.writeModuleMetaData(recordFieldDetailsPath, apiNames);
+                await Utility.writeModuleMetaData(recordFieldDetailsPath, apiNames);
             }
             catch (error) {
                 if (!(error instanceof SDKException)) {

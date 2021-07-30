@@ -719,11 +719,12 @@ class Record {
 
         /*
         * Create an instance of TokenStore.
-        * 1 -> DataBase host name. Default "localhost"
-        * 2 -> DataBase name. Default "zohooauth"
-        * 3 -> DataBase user name. Default "root"
-        * 4 -> DataBase password. Default ""
-        * 5 -> DataBase port number. Default "3306"
+        * host -> DataBase host name. Default "localhost"
+        * databaseName -> DataBase name. Default "zohooauth"
+        * userName -> DataBase user name. Default "root"
+        * password -> DataBase password. Default ""
+        * portNumber -> DataBase port number. Default "3306"
+        * tableName -> DataBase table name. Default "oauthtoken"
         */
         let tokenstore = new DBBuilder()
         .host("hostName")
