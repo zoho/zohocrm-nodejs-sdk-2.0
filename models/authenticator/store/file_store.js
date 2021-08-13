@@ -239,7 +239,7 @@ class FileStore extends TokenStore {
 
                         token.setRedirectURL(redirectURL);
 
-                        return oauthToken;
+                        return token;
                     }
                 }
 

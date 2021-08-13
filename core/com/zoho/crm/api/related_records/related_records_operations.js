@@ -101,7 +101,6 @@ class RelatedRecordsOperations{
 		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
 		handlerInstance.setContentType("application/json");
 		handlerInstance.setRequest(request);
-		handlerInstance.setMandatoryChecker(true);
 		await handlerInstance.addHeader(new Header("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordsHeader"), this.xExternal);
 		await Utility.getRelatedLists(this.relatedListAPIName, this.moduleAPIName, handlerInstance);
 		let ActionHandler = require.resolve("./action_handler");
@@ -208,7 +207,6 @@ class RelatedRecordsOperations{
 		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_UPDATE);
 		handlerInstance.setContentType("application/json");
 		handlerInstance.setRequest(request);
-		handlerInstance.setMandatoryChecker(true);
 		await handlerInstance.addHeader(new Header("X-EXTERNAL", "com.zoho.crm.api.RelatedRecords.UpdateRelatedRecordsUsingExternalIDHeader"), this.xExternal);
 		await Utility.getRelatedLists(this.relatedListAPIName, this.moduleAPIName, handlerInstance);
 		let ActionHandler = require.resolve("./action_handler");

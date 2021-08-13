@@ -39,7 +39,7 @@ class Constants {
 
     static CLIENT_SECRET = "client_secret";
 
-    static REDIRECT_URL = "redirect_uri";
+    static REDIRECT_URL = "redirect_url";
 
     static REQUEST_METHOD_POST = "POST";
 
@@ -61,7 +61,7 @@ class Constants {
 
     static ZOHO_SDK = "X-ZOHO-SDK";
 
-    static SDK_VERSION = "2.0.0";
+    static SDK_VERSION = "3.0.0";
 
     static MYSQL_HOST = "localhost";
 
@@ -587,7 +587,7 @@ class Constants {
 
     static JSON_DETAILS_FILE_PATH = "json_details.json";
 
-    static REQUEST_PROXY_ERROR = "REQUESTPROXY ERROR";
+    static REQUEST_PROXY_ERROR = "REQUEST_PROXY ERROR";
 
     static USER_SIGNATURE_ERROR = "USERSIGNATURE ERROR";
 

@@ -93,7 +93,7 @@ class OAuthBuilder {
 
             error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
 
-            throw new SDKException(Constants.TOKEN_ERROR, null, $error, null);
+            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
         }
 
         this._refreshToken = refreshToken;
@@ -111,7 +111,7 @@ class OAuthBuilder {
 
             error[Constants.ERROR_HASH_CLASS] = OAuthToken.name;
 
-            throw new SDKException(Constants.TOKEN_ERROR, null, $error, null);
+            throw new SDKException(Constants.TOKEN_ERROR, null, error, null);
         }
 
         this._grantToken = grantToken;
