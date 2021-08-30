@@ -61,7 +61,7 @@ class Constants {
 
     static ZOHO_SDK = "X-ZOHO-SDK";
 
-    static SDK_VERSION = "3.0.0";
+    static SDK_VERSION = "4.0.0";
 
     static MYSQL_HOST = "localhost";
 
@@ -252,6 +252,8 @@ class Constants {
     static GET_TOKEN_ERROR = "Exception in getting access token";
 
     static LOGFILE_NAME = "sdk_logs.log";
+
+    static TOKEN_FILE = "sdk_tokens.txt"
 
     static JSON_DETAILS_FILE_PATH = "json_details.json";
 
@@ -561,7 +563,7 @@ class Constants {
 
     static CLIENT_SECRET_NULL_ERROR_MESSAGE = "ClientSecret MUST NOT be null";
 
-    static OAUTH_MANDATORY_KEYS = ["grantToken", "refreshToken", "id"];
+    static OAUTH_MANDATORY_KEYS = ["grantToken", "refreshToken", "id", "accessToken"];
 
     static REDIRECT_URI = "redirect_uri";
 
@@ -634,6 +636,12 @@ class Constants {
     static UPLOAD_PHOTO_UNSUPPORTED_MESSAGE = "Photo Upload Operation is not supported by the module: ";
 
     static SKIP_MODULES = ["deals"];
+
+    static LOGGER = "logger";
+
+    static REQUEST_PROXY = "request_proxy";
+
+    static NODEJS = "nodejs_";
 }
 
 module.exports = {
