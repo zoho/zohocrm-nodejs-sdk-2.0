@@ -27,13 +27,13 @@ Since Zoho CRM APIs are authenticated with OAuth2 standards, you should register
 
 - Visit this page [https://api-console.zoho.com/](https://api-console.zoho.com)
 
-- Click on `ADD CLIENT`.
+- Click `ADD CLIENT`.
 
-- Choose a `Client Type`.
+- Choose the `Client Type`.
 
 - Enter **Client Name**, **Client Domain** or **Homepage URL** and **Authorized Redirect URIs** then click `CREATE`.
 
-- Your Client app would have been created and displayed by now.
+- Your Client app will be created.
 
 - Select the created OAuth client.
 
@@ -41,15 +41,14 @@ Since Zoho CRM APIs are authenticated with OAuth2 standards, you should register
 
 ## Environmental Setup
 
-NodeJS SDK is installable through **npm**. **npm** is a tool for dependency management in NodeJS. SDK expects the following from the client app.
+NodeJS SDK is installable through **npm**. **npm** is a tool for dependency management in NodeJS. SDK expects the following from the client app:
 
 - Client app must have Node(version 12 and above)
 
-- NodeJS SDK must be installed into client app through **npm**.
+- NodeJS SDK must be installed in the client app through **npm**.
 
 ## Including the SDK in your project
 
-You can include the SDK to your project using:
 
 - Install **Node** from [nodejs.org](https://nodejs.org/en/download/) (if not installed).
 
@@ -62,7 +61,7 @@ You can include the SDK to your project using:
     ```
 - The NodeJS SDK will be installed and a package named **@zohocrm/nodejs-sdk-2.0** will be created in the local machine.
 
-- Another method to install the SDK 
+- Another method to install the SDK:
     - Add dependencies to the package.json of the node server with the latest version (recommended)
     - Run **npm install** in the directory which installs all the dependencies mentioned in package.json.
 
@@ -95,7 +94,7 @@ The persistence is achieved by writing an implementation of the inbuilt **TokenS
 
 - **deleteTokens()** - The method to delete all the stored tokens.
 
-- **getTokenById(id, token)** - This method is used to retrieve the user token details based on unique ID.
+- **getTokenById(id, token)** - The method to retrieve the user's token details based on unique ID.
 
 Note:
 
@@ -132,7 +131,7 @@ In case the user prefers to use the default DataBase persistence, **MySQL** can 
   - redirect_url varchar(255)
 
 Note:
-- Custom database name and table name can be set in DBStore instance
+- Custom database name and table name can be set in DBStore instance.
 
 #### MySQL Query
 
@@ -210,7 +209,7 @@ let tokenstore = new FileStore("/Users/username/Documents/nodejs_sdk_tokens.txt"
 
 ### Custom Persistence
 
-To use Custom Persistence, the user must extend **TokenStore Class** (**@zohocrm/nodejs-sdk-2.0/models/authenticator/store/token_store**) and override the methods.
+To use Custom Persistence, you must extend **TokenStore Class** (**@zohocrm/nodejs-sdk-2.0/models/authenticator/store/token_store**) and override the methods.
 
 ```js
 const TokenStore = require('@zohocrm/nodejs-sdk-2.0/models/authenticator/store/token_store').TokenStore;
@@ -281,23 +280,16 @@ module.exports = { CustomStore }
 
 ## Configuration
 
-Before you get started with creating your PHP application, you need to register your client and authenticate the app with Zoho.
+Before you get started with creating your NodeJS application, you need to register your client and authenticate the app with Zoho.
 
-- Create an instance of **Logger** Class to log exception and API information.
-    ```js
-    const LogBuilder = require("@zohocrm/nodejs-sdk-2.0/routes/logger/log_builder").LogBuilder;
-    const Levels = require("@zohocrm/nodejs-sdk-2.0/routes/logger/logger").Levels;
-
-    /*
-    * Create an instance of Logger Class that takes two parameters
-    * level -> Level of the log messages to be logged. Can be configured by typing Levels "." and choose any level from the list displayed.
-    * filePath -> Absolute file path, where messages need to be logged.
-    */
-    let logger = new LogBuilder()
-    .level(Levels.INFO)
-    .filePath("/Users/user_name/Documents/node_sdk_logs.log")
-    .build();
-    ```
+| Mandatory Keys    | Optional Keys |
+| :---------------- | :------------ |
+| user              | logger        |
+| environment       | tokenstore    |
+| token             | sdkConfig     |
+|                   | requestProxy  |
+|                   | resourcePath  |
+----
 
 - Create an instance of **UserSignature** that identifies the current user.
     ```js
@@ -306,7 +298,7 @@ Before you get started with creating your PHP application, you need to register 
     let user = new UserSignature("abc@zoho.com");
     ```
 
-- Configure API environment which decides the domain and the URL to make API calls.
+- Configure the API environment which decides the domain and the URL to make API calls.
     ```js
     const USDataCenter = require( "@zohocrm/nodejs-sdk-2.0/routes/dc/us_data_center").USDataCenter;
     /*
@@ -318,7 +310,7 @@ Before you get started with creating your PHP application, you need to register 
     let environment = USDataCenter.PRODUCTION();
     ```
 
-- Create an instance of OAuthToken with the information  that you get after registering your Zoho client.
+- Create an instance of OAuthToken with the information that you get after registering your Zoho client.
     ```js
     const OAuthBuilder = require("@zohocrm/nodejs-sdk-2.0/models/authenticator/oauth_builder").OAuthBuilder;
     /*
@@ -326,6 +318,7 @@ Before you get started with creating your PHP application, you need to register 
     * clientId -> OAuth client id.
     * clientSecret -> OAuth client secret.
     * refreshToken -> REFRESH token.
+    * accessToken -> Access token.
     * grantToken -> GRANT token.
     * id -> User unique id.
     * redirectURL -> OAuth redirect URL.
@@ -352,9 +345,30 @@ Before you get started with creating your PHP application, you need to register 
     .refreshToken("refreshToken")
     .redirectURL("redirectURL")
     .build();
+
+    // if access token is available
+    let token = new OAuthBuilder()
+    .accessToken("accessToken")
+    .build();
     ```
 
-- Create an instance of TokenStore to persist tokens, used for authenticating all the requests.
+- Create an instance of **Logger** Class to log exception and API information. By default, the SDK constructs a Logger instance with level - INFO and file_path - (sdk_logs.log parallel to node_modules)
+    ```js
+    const LogBuilder = require("@zohocrm/nodejs-sdk-2.0/routes/logger/log_builder").LogBuilder;
+    const Levels = require("@zohocrm/nodejs-sdk-2.0/routes/logger/logger").Levels;
+
+    /*
+    * Create an instance of Logger Class that takes two parameters
+    * level -> Level of the log messages to be logged. Can be configured by typing Levels "." and choose any level from the list displayed.
+    * filePath -> Absolute file path, where messages need to be logged.
+    */
+    let logger = new LogBuilder()
+    .level(Levels.INFO)
+    .filePath("/Users/user_name/Documents/node_sdk_logs.log")
+    .build();
+    ```
+
+- Create an instance of TokenStore to persist tokens, used for authenticating all the requests. By default, the SDK creates the sdk_tokens.txt file (parallel to node_modules folder) to persist the tokens.
     ```js
     const DBBuilder = require("@zohocrm/nodejs-sdk-2.0/models/authenticator/store/db_builder").DBBuilder;
     const FileStore = require("@zohocrm/nodejs-sdk-2.0/models/authenticator/store/file_store").FileStore;
@@ -382,12 +396,12 @@ Before you get started with creating your PHP application, you need to register 
     ```js
     const SDKConfigBuilder = require("@zohocrm/nodejs-sdk-2.0/routes/sdk_config_builder").MasterModel;
 
-    /*
-     * autoRefreshFields
+    /* By default, the SDK creates the SDKConfig instance
+     * autoRefreshFields (default - false)
      * if true - all the modules' fields will be auto-refreshed in the background, every hour.
      * if false - the fields will not be auto-refreshed in the background. The user can manually delete the file(s) or refresh the fields using methods from ModuleFieldsHandler(utils/util/module_fields_handler.js)
      * 
-     * pickListValidation
+     * pickListValidation (default - true)
      * A boolean field that validates user input for a pick list field and allows or disallows the addition of a new value to the list.
      * if true - the SDK validates the input. If the value does not exist in the pick list, the SDK throws an error.
      * if false - the SDK does not validate the input and makes the API request with the user’s input to the pick list
@@ -414,7 +428,7 @@ Before you get started with creating your PHP application, you need to register 
     .build();
     ```
 
-- The path containing the absolute directory path to store user specific files containing module fields information.
+- The path containing the absolute directory path to store user specific files containing module fields information. By default, the SDK stores the user-specific files in a folder parallel to node_modules
     ```js
     let resourcePath = "/Users/user_name/Documents/nodejs-app";
     ```
@@ -579,7 +593,7 @@ Whenever the API returns an error response, the **getObject()** returns an insta
 
 **ResponseWrapper** (for **GET** requests) and ActionWrapper (for **POST, PUT, DELETE** requests) are the expected objects for Zoho CRM APIs’ responses
 
-However, some specific operations have different expected objects, such as the following
+However, some specific operations have different expected objects, such as the following:
 
 - Operations involving records in Tags
     - **RecordActionWrapper**
@@ -627,7 +641,7 @@ However, some specific operations have different expected objects, such as the f
     - **ConvertActionWrapper**
     - **APIException**
 
-- These wrapper classes may contain one or an array of instances of the following classes, depending on the response
+- These wrapper classes may contain one or an array of instances of the following classes, depending on the response.
     - **SuccessResponse Class**, if the request was successful.
     - **APIException Class**, if the request was erroneous.
 
@@ -641,7 +655,7 @@ The **NodeJS SDK** supports both single-user and multi-user app.
 
 ### Multi-user App
 
-Multi-users functionality is achieved using Initializer's static **switchUser()** method.
+The multi-users functionality is achieved using Initializer's static **switchUser()** method.
 
 ```js
 (await new InitializeBuilder())
@@ -932,13 +946,13 @@ Record.call();
 
 - The program execution starts from call().
 
-- The details of **"user1"** are is given in the variables user1, token1, environment1.
+- The details of **"user1"** are given in the variables user1, token1, and environment1.
 
-- Similarly, the details of another user **"user2"** is given in the variables user2, token2, environment2.
+- Similarly, the details of another user **"user2"** are given in the variables user2, token2, and environment2.
 
-- The **switchUser()** function is used to switch between the **"user1"** and **"user2"** as required.
+- The **switchUser()** function is used to switch between **"user1"** and **"user2"** as required.
 
-- Based on the latest switched user, the **Record.getRecords(moduleAPIName)** will fetch records.
+- Based on the latest switched user, **Record.getRecords(moduleAPIName)** will fetch records.
 
 ## SDK Sample code
 

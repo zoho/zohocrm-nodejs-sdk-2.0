@@ -199,7 +199,7 @@ class OAuthToken extends Token {
             if (oauthToken === null) {//first time
                 token = (this.refreshToken != null) ? (await this.refreshAccessToken(user, store)).getAccessToken() : (await this.generateAccessToken(user, store)).getAccessToken();
             }
-            else if ((parseInt(oauthToken.getExpiresIn()) - parseInt(new Date().getTime())) < 5000) { //access token will expire in next 5 seconds or less
+            else if (oauthToken.getExpiresIn() != null && (parseInt(oauthToken.getExpiresIn()) - parseInt(new Date().getTime())) < 5000) { //access token will expire in next 5 seconds or less
                 Logger.info(Constants.REFRESH_TOKEN_MESSAGE);
 
                 token = (await this.refreshAccessToken(user, store)).getAccessToken();
@@ -367,7 +367,7 @@ class OAuthToken extends Token {
      * @param {String} redirectURL - A String containing the OAuth redirect URL.
      * @param {String} id - A string
      */
-    constructor(clientID, clientSecret, grantToken, refreshToken, redirectURL = null, id = null) {
+    constructor(clientID, clientSecret, grantToken, refreshToken, redirectURL = null, id = null, accessToken = null) {
         super();
 
         this.clientID = clientID;
@@ -380,7 +380,7 @@ class OAuthToken extends Token {
 
         this.redirectURL = redirectURL;
 
-        this.accessToken = null;
+        this.accessToken = accessToken;
 
         this.expiresIn = null;
 
@@ -390,7 +390,7 @@ class OAuthToken extends Token {
     async generateId() {
         let email = (await Initializer.getInitializer()).getUser().getEmail();
 
-        let builder = "nodejs_" + (email).substring(0, (email.indexOf('@'))) + "_";
+        let builder = Constants.NODEJS + (email).substring(0, (email.indexOf('@'))) + "_";
 
         builder = builder + (await Initializer.getInitializer()).getEnvironment().getName() + "_";
 
