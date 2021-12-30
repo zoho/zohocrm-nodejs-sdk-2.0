@@ -61,7 +61,7 @@ class Constants {
 
     static ZOHO_SDK = "X-ZOHO-SDK";
 
-    static SDK_VERSION = "4.0.0";
+    static SDK_VERSION = "5.0.0";
 
     static MYSQL_HOST = "localhost";
 
@@ -197,7 +197,7 @@ class Constants {
 
     static REQUIRED = "required";
 
-    static REQUIRED_IN_UPDATE = "required_in_update";
+    static REQUIRED_IN_UPDATE = "required-in-update";
 
     static MANDATORY_VALUE_ERROR = "MANDATORY VALUE ERROR";
 
@@ -297,7 +297,7 @@ class Constants {
 
     static RECORD_NAMESPACE = 'core/com/zoho/crm/api/record/record';
 
-    static ATTACHMENTS_NAMESPACE = 'core/com/zoho/crm/api/attachment/attachment';
+    static ATTACHMENTS_NAMESPACE = 'core/com/zoho/crm/api/attachments/attachment';
 
     static FIELD_FILE_NAMESPACE = 'core/com/zoho/crm/api/record/file_details';
 
@@ -485,7 +485,7 @@ class Constants {
 
     static REFRESH_ALL_MODULE_FIELDS_ERROR = "Exception in refreshing fields of all modules : ";
 
-    static SKIP_MANDATORY = "skip_mandatory";
+    static SKIP_MANDATORY = "skip-mandatory";
 
     static PRIMARY_KEY_ERROR = "Value missing or null for required key(s) : ";
 

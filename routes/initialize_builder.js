@@ -78,7 +78,7 @@ class InitializeBuilder {
         Utility.assertNotNull(this._token, this.errorMessage, Constants.TOKEN_ERROR_MESSAGE);
 
         if(this._store == null) {
-            this._store = new FileStore(path.join(__dirname, "../../../../", Constants.TOKEN_FILE))
+            this._store = new FileStore(path.join(__dirname, "../../../../", Constants.TOKEN_FILE));
         }
 
         if(this._sdkConfig == null) {
@@ -86,7 +86,7 @@ class InitializeBuilder {
         }
 
         if(this._resourcePath == null) {
-            this._resourcePath = path.join(__dirname, "../../../../", '')
+            this._resourcePath = path.join(__dirname, "../../../../", '');
         }
 
         if (this._logger == null) {

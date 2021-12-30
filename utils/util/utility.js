@@ -125,9 +125,9 @@ class Utility {
      * @param {CommonAPIHandler} handlerInstance - A String containing CommonAPIHandler Instance.
      */
     static async getFields(moduleAPIName, handlerInstance = null) {
-        this.moduleAPIName = moduleAPIName;
+        this.moduleAPIname = moduleAPIName;
 
-        await this.getFieldsInfo(this.moduleAPIName, handlerInstance);
+        await this.getFieldsInfo(this.moduleAPIname, handlerInstance);
     }
 
     /**
@@ -171,7 +171,7 @@ class Utility {
 
                 await Utility.fillDataType();
 
-                this.apiSupportedModule = this.apiSupportedModule.size > 0 ? this.apiSupportedModule : await Utility.getModules(null);
+                this.apiSupportedModule = Object.keys(this.apiSupportedModule).length > 0 ? this.apiSupportedModule : await Utility.getModules(null);
 
                 let recordFieldDetailsJson = fs.existsSync(recordFieldDetailsPath) ? Initializer.getJSON(recordFieldDetailsPath) : {};
 
@@ -797,7 +797,7 @@ class Utility {
 
             fieldDetail.structure_name = Constants.INVENTORY_LINE_ITEMS;
 
-            fieldDetail.skip_mandatory = true;
+            fieldDetail[Constants.SKIP_MANDATORY] = true;
 
             return;
         }
@@ -808,7 +808,7 @@ class Utility {
 
             fieldDetail.structure_name = Constants.PRICINGDETAILS;
 
-            fieldDetail.skip_mandatory = true;
+            fieldDetail[Constants.SKIP_MANDATORY] = true;
 
             return;
         }
@@ -819,7 +819,7 @@ class Utility {
 
             fieldDetail.structure_name = Constants.PARTICIPANTS;
 
-            fieldDetail.skip_mandatory = true;
+            fieldDetail[Constants.SKIP_MANDATORY] = true;
 
             return;
         }
@@ -868,7 +868,7 @@ class Utility {
         }
 
         if(apiType.toLowerCase() == Constants.CONSENT_LOOKUP) {
-            fieldDetail.skip_mandatory = true;
+            fieldDetail[Constants.SKIP_MANDATORY] = true;
         }
 
         if(Utility.apiTypeVsStructureName.has(apiType)) {
@@ -890,7 +890,7 @@ class Utility {
 
             fieldDetail.module = module;
 
-            fieldDetail.skip_mandatory = true;
+            fieldDetail[Constants.SKIP_MANDATORY] = true;
 
             fieldDetail.subform = true;
         }
@@ -902,7 +902,7 @@ class Utility {
                 fieldDetail.module = module;
 
                 if(module.toLowerCase() == Constants.ACCOUNTS && !field.getCustomField()) {
-                    fieldDetail.skip_mandatory = true;
+                    fieldDetail[Constants.SKIP_MANDATORY] = true;
                 }
             }
             else{

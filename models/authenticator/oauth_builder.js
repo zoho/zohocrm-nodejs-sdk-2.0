@@ -23,7 +23,7 @@ class OAuthBuilder {
 
     id(id) {
         if (id != null && typeof id !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.ID;
 
@@ -43,7 +43,7 @@ class OAuthBuilder {
         Utility.assertNotNull(clientID, Constants.TOKEN_ERROR, Constants.CLIENT_ID_NULL_ERROR_MESSAGE);
 
         if (typeof clientID !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.CLIENT_ID_FIELD;
 
@@ -63,7 +63,7 @@ class OAuthBuilder {
         Utility.assertNotNull(clientSecret, Constants.TOKEN_ERROR, Constants.CLIENT_SECRET_NULL_ERROR_MESSAGE);
 
         if (typeof clientSecret !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.CLIENT_SECRET_FIELD;
 
@@ -99,7 +99,7 @@ class OAuthBuilder {
 
     refreshToken(refreshToken) {
         if (typeof refreshToken !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.REFRESH_TOKEN;
 
@@ -117,7 +117,7 @@ class OAuthBuilder {
 
     grantToken(grantToken) {
         if (typeof grantToken !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.GRANT_TOKEN;
 
@@ -135,7 +135,7 @@ class OAuthBuilder {
 
     accessToken(accessToken) {
         if (accessToken != null && typeof accessToken !== Constants.STRING_NAMESPACE.toLowerCase()) {
-            let error = array();
+            let error = {};
 
             error[Constants.ERROR_HASH_FIELD] = Constants.ACCESS_TOKEN;
 

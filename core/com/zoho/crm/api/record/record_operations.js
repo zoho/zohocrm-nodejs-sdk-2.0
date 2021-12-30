@@ -192,7 +192,6 @@ class RecordOperations{
 		handlerInstance.setCategoryMethod(Constants.REQUEST_CATEGORY_CREATE);
 		handlerInstance.setContentType("application/json");
 		handlerInstance.setRequest(request);
-		handlerInstance.setMandatoryChecker(true);
 		handlerInstance.setHeader(headerInstance);
 		handlerInstance.setModuleAPIName(moduleAPIName);
 		await Utility.getFields(moduleAPIName, handlerInstance);
