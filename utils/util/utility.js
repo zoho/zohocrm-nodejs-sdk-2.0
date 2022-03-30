@@ -867,7 +867,7 @@ class Utility {
             fieldDetail.lookup = true;
         }
 
-        if(apiType.toLowerCase() == Constants.CONSENT_LOOKUP) {
+        if(apiType.toLowerCase() == Constants.CONSENT_LOOKUP || apiType.toLowerCase() == Constants.OWNER_LOOKUP) {
             fieldDetail[Constants.SKIP_MANDATORY] = true;
         }
 
