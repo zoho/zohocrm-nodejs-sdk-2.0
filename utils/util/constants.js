@@ -61,7 +61,7 @@ class Constants {
 
     static ZOHO_SDK = "X-ZOHO-SDK";
 
-    static SDK_VERSION = "5.0.0";
+    static SDK_VERSION = "6.0.0";
 
     static MYSQL_HOST = "localhost";
 
@@ -642,6 +642,8 @@ class Constants {
     static REQUEST_PROXY = "request_proxy";
 
     static NODEJS = "nodejs_";
+
+    static OWNER_LOOKUP = "ownerlookup";
 }
 
 module.exports = {
