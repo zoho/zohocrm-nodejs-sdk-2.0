@@ -2552,6 +2552,21 @@ class Record{
 
         //Get instance of Record Class
         let record = new ZCRMRecord();
+        
+        //Get instance of ApplyFeatureExecution Class
+        let applyFeatureExecution = new ApplyFeatureExecution();
+        
+        //Array to hold ApplyFeatureExecution instances
+        let featureExecutionArray=[];
+        
+        //Set layoutrules to ApplyFeatureExecution instance
+        applyFeatureExecution.setName("layout_rules");
+        
+        //Adding ApplyFeatureExecution instance to Array
+        featureExecutionArray.push(applyFeatureExecution);
+        
+        //Set featureExecutionArray to BodyWrapper instances
+        request.setApplyFeatureExecution(featureExecutionArray);
 
         /* Value to Record's fields can be provided in any of the following ways */
 
@@ -2974,6 +2989,21 @@ class Record{
 
         //ID of the record to be updated
         record1.setId(34096430986033n);
+        
+        //Get instance of ApplyFeatureExecution Class
+        let applyFeatureExecution = new ApplyFeatureExecution();
+        
+        //Array to hold ApplyFeatureExecution instances
+        let featureExecutionArray=[];
+        
+        //Set layoutrules to ApplyFeatureExecution instance
+        applyFeatureExecution.setName("layout_rules");
+        
+        //Adding ApplyFeatureExecution instance to Array
+        featureExecutionArray.push(applyFeatureExecution);
+        
+        //Set featureExecutionArray to BodyWrapper instances
+        request.setApplyFeatureExecution(featureExecutionArray);
 
         /*
          * Call addFieldValue method that takes two arguments
@@ -3297,6 +3327,21 @@ class Record{
 
         //Get instance of Record Class
         let record1 = new ZCRMRecord();
+        
+        //Get instance of ApplyFeatureExecution Class
+        let applyFeatureExecution = new ApplyFeatureExecution();
+        
+        //Array to hold ApplyFeatureExecution instances
+        let featureExecutionArray=[];
+        
+        //Set layoutrules to ApplyFeatureExecution instance
+        applyFeatureExecution.setName("layout_rules");
+        
+        //Adding ApplyFeatureExecution instance to Array
+        featureExecutionArray.push(applyFeatureExecution);
+        
+        //Set featureExecutionArray to BodyWrapper instances
+        request.setApplyFeatureExecution(featureExecutionArray);
 
         /*
          * Call addFieldValue method that takes two arguments

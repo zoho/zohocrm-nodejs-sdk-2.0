@@ -4,6 +4,7 @@ const SDKException = require("../exception/sdk_exception").MasterModel;
 class BodyWrapper{
 
 	data;
+	applyFeatureExecution;
 	trigger;
 	process;
 	duplicateCheckFields;
@@ -29,6 +30,28 @@ class BodyWrapper{
 		}
 		this.data = data;
 		this.keyModified.set("data", 1);
+
+	}
+
+	/**
+	 * The method to get the applyFeatureExecution
+	 * @returns {Array} An Array representing the applyFeatureExecution
+	 */
+	getApplyFeatureExecution()	{
+		return this.applyFeatureExecution;
+
+	}
+
+	/**
+	 * The method to set the value to applyFeatureExecution
+	 * @param {Array} applyFeatureExecution An Array representing the applyFeatureExecution
+	 */
+	setApplyFeatureExecution(applyFeatureExecution)	{
+		if((applyFeatureExecution != null) && (!(Object.prototype.toString.call(applyFeatureExecution) == "[object Array]")))	{
+			throw new SDKException(Constants.DATA_TYPE_ERROR, "KEY: applyFeatureExecution EXPECTED TYPE: Array", null, null);
+		}
+		this.applyFeatureExecution = applyFeatureExecution;
+		this.keyModified.set("apply_feature_execution", 1);
 
 	}
 
